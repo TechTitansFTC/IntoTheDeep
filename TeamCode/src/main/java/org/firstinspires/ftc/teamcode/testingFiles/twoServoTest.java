@@ -47,7 +47,7 @@ public class twoServoTest extends LinearOpMode {
                 timer.reset();
             }
             if (val2 > 0.06 && val2 < 0.94) {
-                servo1.setPosition(val);
+                servo2.setPosition(val);
 
             }
             telemetry.addData("pos = ", val);
