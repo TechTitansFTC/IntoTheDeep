@@ -29,7 +29,7 @@ import org.firstinspires.ftc.teamcode.tuningVal.MecanumDrive;
 
 @Config
 @Autonomous(name = "RED_SAMPLE_AUTO", group = "Autonomous")
-public class RED_SAMPLE_TEST extends LinearOpMode {
+public class RED_SAMPLE extends LinearOpMode {
     
     public class Intake {
         private CRServo servoInGeckoL;
@@ -188,7 +188,7 @@ public class RED_SAMPLE_TEST extends LinearOpMode {
                 timer.reset();
                 leftSlidesOuttakeMotor.setTargetPosition(OUT_SLIDES_DOWN);
                 rightSlidesOuttakeMotor.setTargetPosition(OUT_SLIDES_DOWN);
-                while (timer.milliseconds() < OUT_SLIDES_TIMER) {
+                while (timer.milliseconds() < OUT_BASE_TIMER) {
 
                 }
                 return false;
@@ -202,17 +202,17 @@ public class RED_SAMPLE_TEST extends LinearOpMode {
                 timer.reset();
                 leftSlidesOuttakeMotor.setTargetPosition(OUT_SLIDES_SAMPLE);
                 rightSlidesOuttakeMotor.setTargetPosition(OUT_SLIDES_SAMPLE);
-                while (timer.milliseconds() < OUT_SLIDES_TIMER) {
+                while (timer.milliseconds() < OUT_SAMPLE_TIMER) {
 
                 }
                 return false;
             }
         }
-        public Action slidesSample() {return new OuttakeSlidesUp();}
+        public Action slidesSample() {return new OuttakeSlidesSample();}
 
         public class OuttakeSlidesSpecimen implements Action {
             @Override
-            public boolean run (@NonNull TelemteryPacket telemetryPacket) {
+            public boolean run (@NonNull TelemetryPacket telemetryPacket) {
                 timer.reset();
                 leftSlidesOuttakeMotor.setTargetPosition(OUT_SLIDES_SPECIMEN_UP);
                 rightSlidesOuttakeMotor.setTargetPosition(OUT_SLIDES_SPECIMEN_UP);
@@ -223,7 +223,7 @@ public class RED_SAMPLE_TEST extends LinearOpMode {
                 timer.reset();
                 leftSlidesOuttakeMotor.setTargetPosition(OUT_SLIDES_SPECIMEN_DOWN);
                 rightSlidesOuttakeMotor.setTargetPosition(OUT_SLIDES_SPECIMEN_DOWN);
-                while (imer.milliseconds() < OUT_SPECIMEN_DOWN_TIMER) {
+                while (timer.milliseconds() < OUT_SPECIMEN_DOWN_TIMER) {
 
                 }
 
@@ -277,6 +277,7 @@ public class RED_SAMPLE_TEST extends LinearOpMode {
                 slidesDown();
                 clawClosed();
                 rotateUp();
+                return false;
             }
         }
         public Action load() {return new OuttakeLoad();}

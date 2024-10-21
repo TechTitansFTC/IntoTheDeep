@@ -82,3 +82,5 @@ lint/tmp/
 
 .DS_Store
 /.idea
+*.properties
+*.gradle
