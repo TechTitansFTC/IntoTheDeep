@@ -18,10 +18,10 @@ public class motorPowerPushbotSample extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        backLeftDrive = hardwareMap.get(DcMotor.class, "backLeftDrive");
-        backRightDrive = hardwareMap.get(DcMotor.class, "backRightDrive");
-        frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeftDrive");
-        frontRightDrive = hardwareMap.get(DcMotor.class, "frontRightDrive");
+        backLeftDrive = hardwareMap.get(DcMotor.class, "backLeft");
+        backRightDrive = hardwareMap.get(DcMotor.class, "backRight");
+        frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeft");
+        frontRightDrive = hardwareMap.get(DcMotor.class, "frontRight");
 
 
         // Put initialization blocks here
@@ -45,7 +45,7 @@ public class motorPowerPushbotSample extends LinearOpMode {
         backLeftDrive.setPower(-0.3);
         frontLeftDrive.setPower(-0.3);
         backRightDrive.setPower(0.3);
-        sleep(400);
+        sleep(350);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         frontRightDrive.setPower(0.3);
@@ -61,34 +61,7 @@ public class motorPowerPushbotSample extends LinearOpMode {
         backLeftDrive.setPower(-0.3);
         frontLeftDrive.setPower(-0.3);
         backRightDrive.setPower(0.3);
-        sleep(1700);
-        frontRightDrive.setPower(0);
-        backLeftDrive.setPower(0);
-        backRightDrive.setPower(0);
-        frontLeftDrive.setPower(0);
-        frontRightDrive.setPower(0.3);
-        backLeftDrive.setPower(0.3);
-        frontLeftDrive.setPower(0.3);
-        backRightDrive.setPower(0.3);
-        sleep(2700);
-        frontRightDrive.setPower(0);
-        backLeftDrive.setPower(0);
-        backRightDrive.setPower(0);
-        frontLeftDrive.setPower(0);
-        frontRightDrive.setPower(-0.3);
-        backLeftDrive.setPower(-0.3);
-        frontLeftDrive.setPower(-0.3);
-        backRightDrive.setPower(-0.3);
-        sleep(2700);
-        frontRightDrive.setPower(0);
-        backLeftDrive.setPower(0);
-        backRightDrive.setPower(0);
-        frontLeftDrive.setPower(0);
-        frontRightDrive.setPower(-0.3);
-        backLeftDrive.setPower(-0.3);
-        backRightDrive.setPower(0.3);
-        frontLeftDrive.setPower(0.3);
-        sleep(800);
+        sleep(1500);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
@@ -138,6 +111,43 @@ public class motorPowerPushbotSample extends LinearOpMode {
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
+        frontRightDrive.setPower(-0.3);
+        backLeftDrive.setPower(-0.3);
+        backRightDrive.setPower(0.3);
+        frontLeftDrive.setPower(0.3);
+        sleep(800);
+        frontRightDrive.setPower(0);
+        backLeftDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+        frontRightDrive.setPower(0.3);
+        backLeftDrive.setPower(0.3);
+        frontLeftDrive.setPower(0.3);
+        backRightDrive.setPower(0.3);
+        sleep(2700);
+        frontRightDrive.setPower(0);
+        backLeftDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+        frontRightDrive.setPower(-0.3);
+        backLeftDrive.setPower(-0.3);
+        frontLeftDrive.setPower(-0.3);
+        backRightDrive.setPower(-0.3);
+        sleep(2100);
+        frontRightDrive.setPower(0);
+        backLeftDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+        frontRightDrive.setPower(0.3);
+        backLeftDrive.setPower(-0.3);
+        frontLeftDrive.setPower(-0.3);
+        backRightDrive.setPower(0.3);
+        sleep(1900);
+        frontRightDrive.setPower(0);
+        backLeftDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+
     }
 
 }

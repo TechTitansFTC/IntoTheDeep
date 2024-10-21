@@ -1,12 +1,19 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
+import static java.lang.Math.signum;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.hardware.Servo;
+
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+
+import java.util.concurrent.TimeUnit;
 
 @TeleOp
 public class FieldCentric extends LinearOpMode {
@@ -18,13 +25,19 @@ public class FieldCentric extends LinearOpMode {
         DcMotor BL = hardwareMap.dcMotor.get("backLeft");
         DcMotor FR = hardwareMap.dcMotor.get("frontRight");
         DcMotor BR = hardwareMap.dcMotor.get("backRight");
-
+        Servo servoRightOuttakeRotate = hardwareMap.servo.get("ROS");
+        Servo servoFrontOuttakeRotate = hardwareMap.servo.get("FOS");
+        DcMotorEx motorRightSlides = (DcMotorEx) hardwareMap.dcMotor.get("RS");
+        DcMotorEx motorLeftSlides = (DcMotorEx)  hardwareMap.dcMotor.get("LS");
         // Reverse the right side motors. This may be wrong for your setup.
         // If your robot moves backwards when commanded to go forwards,
         // reverse the left side instead.
         // See the note about this earlier on this page.
-        FL.setDirection(DcMotorSimple.Direction.REVERSE);
-        BL.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorRightSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorLeftSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorLeftSlides.setDirection(DcMotorSimple.Direction.REVERSE);
+        FL.setDirection(DcMotor.Direction.REVERSE);
+        BL.setDirection(DcMotor.Direction.REVERSE);
         FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -42,9 +55,10 @@ public class FieldCentric extends LinearOpMode {
         waitForStart();
 
         if (isStopRequested()) return;
-
+        servoRightOuttakeRotate.setPosition(0.15);
+        servoFrontOuttakeRotate.setPosition(0.6);
         while (opModeIsActive()) {
-            double y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
+            double y = -gamepad1.left_stick_y - gamepad1.right_stick_y; // Remember, Y stick value is reversed
             double x = gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
 
@@ -63,6 +77,7 @@ public class FieldCentric extends LinearOpMode {
 
             rotX = rotX * 1.1;  // Counteract imperfect strafing
 
+
             // Denominator is the largest motor power (absolute value) or 1
             // This ensures all the powers maintain the same ratio,
             // but only if at least one is out of the range [-1, 1]
@@ -71,25 +86,68 @@ public class FieldCentric extends LinearOpMode {
             double backLeftPower = (rotY - rotX + rx) / denominator;
             double frontRightPower = (rotY - rotX - rx) / denominator;
             double backRightPower = (rotY + rotX - rx) / denominator;
-            double min = 0.3;
-            double nor = 0.65;
-            if (gamepad1.left_trigger > 0.5){
-                FL.setPower(frontLeftPower);
-                BL.setPower(backLeftPower);
-                FR.setPower(frontRightPower);
-                BR.setPower(backRightPower);
-            } else if (gamepad1.left_trigger < 0.5) {
-                FL.setPower(frontLeftPower*min);
-                BL.setPower(backLeftPower*min);
-                FR.setPower(frontRightPower*min);
-                BR.setPower(backRightPower*min);
-            } else {
-                FL.setPower(frontLeftPower*nor);
-                BL.setPower(backLeftPower*nor);
-                FR.setPower(frontRightPower*nor);
-                BR.setPower(backRightPower*nor);
+            if(gamepad2.dpad_up){
+                motorLeftSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                motorRightSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                motorRightSlides.setPower(0.3);
+                motorLeftSlides.setPower(0.3);
+                TimeUnit.MILLISECONDS.sleep(350);
+                motorRightSlides.setPower(0);
+                motorLeftSlides.setPower(0);
+            }
+            if(gamepad2.dpad_down){
+                motorLeftSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                motorRightSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                motorRightSlides.setPower(-0.3);
+                motorLeftSlides.setPower(-0.3);
+                TimeUnit.MILLISECONDS.sleep(350);
+                motorRightSlides.setPower(0);
+                motorLeftSlides.setPower(0);
+            }
+            if(gamepad2.a){
+                servoRightOuttakeRotate.setPosition(0.28);
+
+                TimeUnit.MILLISECONDS.sleep(350);
+
             }
 
+            if(gamepad2.x){
+
+                servoRightOuttakeRotate.setPosition(0.15);
+                TimeUnit.MILLISECONDS.sleep(350);
+
+            }
+
+            if(gamepad2.y){
+                servoFrontOuttakeRotate.setPosition(0.1);
+                TimeUnit.MILLISECONDS.sleep(350);
+
+            }
+
+            if(gamepad2.b){
+
+                    servoFrontOuttakeRotate.setPosition(0.6);
+                TimeUnit.MILLISECONDS.sleep(350);
+
+
+            }
+
+
+            if(gamepad1.left_bumper){
+                FL.setPower(frontLeftPower*0.2);
+                FR.setPower(frontRightPower*0.2);
+                BL.setPower(backLeftPower*0.2);
+                BR.setPower(backRightPower*0.2);
+            }
+            else{
+                FL.setPower(frontLeftPower*0.75);
+                FR.setPower(frontRightPower*0.75);
+                BL.setPower(backLeftPower*0.75);
+                BR.setPower(backRightPower*0.75);
+            }
+            telemetry.addData("rotate pos",servoRightOuttakeRotate.getPosition());
+            telemetry.addData("claw pos",servoFrontOuttakeRotate.getPosition());
+            telemetry.update();
         }
     }
 }
