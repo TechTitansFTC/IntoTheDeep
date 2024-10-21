@@ -3,7 +3,9 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
 public class RobotCentric extends LinearOpMode {
@@ -15,7 +17,12 @@ public class RobotCentric extends LinearOpMode {
         DcMotor BL = hardwareMap.dcMotor.get("backLeft");
         DcMotor FR = hardwareMap.dcMotor.get("frontRight");
         DcMotor BR = hardwareMap.dcMotor.get("backRight");
-
+        DcMotorEx motorRightSlides = (DcMotorEx) hardwareMap.dcMotor.get("RS");
+        DcMotorEx motorLeftSlides = (DcMotorEx)  hardwareMap.dcMotor.get("LS");
+        Servo servoRightOuttakeRotate = hardwareMap.servo.get("ROS");
+        Servo servoFrontOuttakeRotate = hardwareMap.servo.get("FOS");
+        motorRightSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorLeftSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -37,6 +44,9 @@ public class RobotCentric extends LinearOpMode {
             double y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
             double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
             double rx = gamepad1.right_stick_x;
+            servoRightOuttakeRotate.setPosition(0.28);
+            servoFrontOuttakeRotate.setPosition(0.45);
+
 
             // Denominator is the largest motor power (absolute value) or 1
             // This ensures all the powers maintain the same ratio,
@@ -47,24 +57,27 @@ public class RobotCentric extends LinearOpMode {
             double frontRightPower = (y - x - rx) / denominator;
             double backRightPower = (y + x - rx) / denominator;
 
-            double min = 0.3;
-            double nor = 0.65;
-            if (gamepad1.left_trigger > 0.5){
-                FL.setPower(frontLeftPower);
-                BL.setPower(backLeftPower);
-                FR.setPower(frontRightPower);
-                BR.setPower(backRightPower);
-            } else if (gamepad1.left_trigger < 0.5) {
-                FL.setPower(frontLeftPower*min);
-                BL.setPower(backLeftPower*min);
-                FR.setPower(frontRightPower*min);
-                BR.setPower(backRightPower*min);
-            } else {
-                FL.setPower(frontLeftPower*nor);
-                BL.setPower(backLeftPower*nor);
-                FR.setPower(frontRightPower*nor);
-                BR.setPower(backRightPower*nor);
+            FL.setPower(frontLeftPower);
+            BL.setPower(backLeftPower);
+            FR.setPower(frontRightPower);
+            BR.setPower(backRightPower);
+            if(gamepad2.a){
+                if(servoRightOuttakeRotate.getPosition()!=0.15){
+                    servoRightOuttakeRotate.setPosition(0.15);
+                }
+                else {
+                    servoRightOuttakeRotate.setPosition(0.28);
+                }
             }
+            if(gamepad2.b){
+                if(servoRightOuttakeRotate.getPosition()!=0.45){
+                    servoRightOuttakeRotate.setPosition(0.45);
+                }
+                else {
+                    servoRightOuttakeRotate.setPosition(0.6);
+                }
+            }
+
         }
     }
 }
