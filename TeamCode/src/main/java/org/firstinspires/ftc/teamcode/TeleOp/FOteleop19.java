@@ -21,10 +21,10 @@ public class FOteleop19 extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         // Declare our motors
         // Make sure your ID's match your configuration
-        DcMotor FL = hardwareMap.dcMotor.get("frontLeft");
-        DcMotor BL = hardwareMap.dcMotor.get("backLeft");
-        DcMotor FR = hardwareMap.dcMotor.get("frontRight");
-        DcMotor BR = hardwareMap.dcMotor.get("backRight");
+        DcMotor FL = hardwareMap.dcMotor.get("frontLeft");//0
+        DcMotor BL = hardwareMap.dcMotor.get("backLeft");//1
+        DcMotor FR = hardwareMap.dcMotor.get("frontRight");//3
+        DcMotor BR = hardwareMap.dcMotor.get("backRight");//2
         Servo servoRightOuttakeRotate = hardwareMap.servo.get("ROS");
         Servo servoFrontOuttakeRotate = hardwareMap.servo.get("FOS");
         DcMotorEx motorRightSlides = (DcMotorEx) hardwareMap.dcMotor.get("RS");
@@ -134,16 +134,16 @@ public class FOteleop19 extends LinearOpMode {
 
 
             if(gamepad1.left_bumper){
-                FL.setPower(frontLeftPower*0.2);
-                FR.setPower(frontRightPower*0.2);
-                BL.setPower(backLeftPower*0.2);
-                BR.setPower(backRightPower*0.2);
+                FL.setPower(frontLeftPower*0.3);
+                FR.setPower(frontRightPower*0.3);
+                BL.setPower(backLeftPower*0.3);
+                BR.setPower(backRightPower*0.3);
             }
             else{
-                FL.setPower(frontLeftPower*0.75);
-                FR.setPower(frontRightPower*0.75);
-                BL.setPower(backLeftPower*0.75);
-                BR.setPower(backRightPower*0.75);
+                FL.setPower(frontLeftPower*0.7);
+                FR.setPower(frontRightPower*0.7);
+                BL.setPower(backLeftPower*0.7);
+                BR.setPower(backRightPower*0.7);
             }
             telemetry.addData("rotate pos",servoRightOuttakeRotate.getPosition());
             telemetry.addData("claw pos",servoFrontOuttakeRotate.getPosition());
