@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(group = "testing")
-class twoServoTest extends LinearOpMode {
+public class twoServoTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         ElapsedTime timer = new ElapsedTime();
