@@ -71,6 +71,11 @@ public class OuttakeSystem {
         }
     }
 
+    public void slideSet(int position) { // FOR TELEOP
+        slidesL.setTargetPosition(position);
+        slidesR.setTargetPosition(position);
+    }
+
     public void rotateToggle(int UD) {
         timer.reset();
         if (UD > 0 && rotateR.getPosition() == rotateRightDown && rotateL.getPosition() == rotateLeftDown) {
