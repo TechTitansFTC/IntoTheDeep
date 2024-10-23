@@ -34,6 +34,7 @@ public class OuttakeSystem {
     //TODO: FIND TIMER VALUES
     final private int slideTimer = 350;
     final private int rotateTimer = 250;
+
     public OuttakeSystem (HardwareMap map) {
         this.slidesL = (DcMotorEx) map.get("outtakeLeft");
         this.slidesR = (DcMotorEx) map.get("outtakeRight");
@@ -57,23 +58,12 @@ public class OuttakeSystem {
         rotateR.setPosition(rotateRightDown);
     }
 
-    public void slideToggle() {
-        timer.reset();
-        if (slidesL.getTargetPosition() == slideDown && slidesR.getTargetPosition() == slideDown) {
-            slidesL.setTargetPosition(slideUp);
-            slidesR.setTargetPosition(slideUp);
-        } else if (slidesL.getTargetPosition() == slideUp && slidesR.getTargetPosition() == slideUp) {
-            slidesL.setTargetPosition(slideDown);
-            slidesR.setTargetPosition(slideDown);
-        }
-        while (timer.milliseconds() < slideTimer) {
-
-        }
-    }
 
     public void slideSet(int position) { // FOR TELEOP
-        slidesL.setTargetPosition(position);
-        slidesR.setTargetPosition(position);
+        if (slidesL.getTargetPosition() != position && slidesR.getTargetPosition() != position) {
+            slidesL.setTargetPosition(position);
+            slidesR.setTargetPosition(position);
+        }
     }
 
     public void rotateToggle(int UD) {
@@ -99,9 +89,7 @@ public class OuttakeSystem {
     }
 
     public void pickUp() {
-        if (slidesL.getTargetPosition() != slideDown || slidesR.getTargetPosition() != slideDown) {
-            slideToggle();
-        }
+        slideSet(slideDown);
         clawOpen();
         rotateToggle(-1); // set it to rotate down
         clawClosed();
