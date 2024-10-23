@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Autonomous.Functions;
+package org.firstinspires.ftc.teamcode.Functions;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -18,7 +18,7 @@ public class IntakeSystem {
 
     ElapsedTime timer = new ElapsedTime();
 
-    //TODO: find these values
+    //TODO: find the slide values
     private final double slidesOut = 0.75;
     private final double slidesIn = 0.3;
 
@@ -31,6 +31,11 @@ public class IntakeSystem {
     private final double leftRotateSteady = 0.75;
     private final double rightRotateSteady = 0.42;
 
+
+    //TODO: find timer values
+    private final int rotateTimer = 250;
+    private final int geckoTimer = 150;
+    private final int slideTimer = 350;
 
     public IntakeSystem (HardwareMap map) {
         this.slidesL = map.servo.get("inSlideL");
@@ -51,12 +56,16 @@ public class IntakeSystem {
     }
 
     public void slideToggle() {
+        timer.reset();
         if (slidesL.getPosition() == slidesIn && slidesR.getPosition() == slidesIn) {
             slidesR.setPosition(slidesOut);
             slidesL.setPosition(slidesOut);
         } else if (slidesL.getPosition() == slidesOut && slidesR.getPosition() == slidesOut) {
             slidesL.setPosition(slidesIn);
             slidesR.setPosition(slidesIn);
+        }
+        while (timer.milliseconds() < slideTimer) {
+
         }
     }
 
@@ -72,7 +81,7 @@ public class IntakeSystem {
             rotateL.setPosition(leftRotateSteady);
             rotateR.setPosition(rightRotateSteady);
         }
-        while (timer.milliseconds() < 250) {
+        while (timer.milliseconds() < rotateTimer) {
 
         }
     }
@@ -81,7 +90,7 @@ public class IntakeSystem {
         timer.reset();
         geckoR.setPower(power);
         geckoL.setPower(power);
-        while (timer.milliseconds() < 150) {
+        while (timer.milliseconds() < geckoTimer) {
 
         }
     }
