@@ -18,22 +18,22 @@ public class OuttakeSystem {
     private ElapsedTime timer = new ElapsedTime();
 
     //TODO: FIND THE slide VAR VALUES
-    final private int slideDown = 1000;
-    final private int slideUp = 1001;
+    final public int slideDown = 1000;
+    final public int slideUp = 1001;
 
     //TODO: FIND THE CLAW SERVO VALS
-    final private double clawOpen = 0.3;
-    final private double clawClosed = 0.7;
+    final public double clawOpen = 0.3;
+    final public double clawClosed = 0.7;
 
     //TODO: FIND THE ROTATE SERVO VALS
-    final private double rotateLeftUp = 0.01;
-    final private double rotateLeftDown = 0.00;
-    final private double rotateRightUp = 0.00;
-    final private double rotateRightDown = 0.01;
+    final public double rotateLeftUp = 0.01;
+    final public double rotateLeftDown = 0.00;
+    final public double rotateRightUp = 0.00;
+    final public double rotateRightDown = 0.01;
 
     //TODO: FIND TIMER VALUES
-    final private int slideTimer = 350;
-    final private int rotateTimer = 250;
+    final public int slideTimer = 350;
+    final public int rotateTimer = 250;
 
     public OuttakeSystem (HardwareMap map) {
         this.slidesL = (DcMotorEx) map.get("outtakeLeft");
@@ -66,12 +66,21 @@ public class OuttakeSystem {
         }
     }
 
-    public void rotateToggle(int UD) {
+    public void rotateSet(int UD) {
         timer.reset();
         if (UD > 0 && rotateR.getPosition() == rotateRightDown && rotateL.getPosition() == rotateLeftDown) {
             rotateR.setPosition(rotateRightUp);
+
+
+            }
+        }
+
+    public void rotateToggle() {
+        timer.reset();
+        if (rotateR.getPosition() == rotateRightDown && rotateL.getPosition() == rotateLeftDown) {
+            rotateR.setPosition(rotateRightUp);
             rotateL.setPosition(rotateLeftUp);
-        } else if (UD < 0 && rotateR.getPosition() == rotateRightUp && rotateL.getPosition() == rotateLeftUp) {
+        } else if (rotateR.getPosition() == rotateRightUp && rotateL.getPosition() == rotateLeftUp) {
             rotateR.setPosition(rotateRightDown);
             rotateL.setPosition(rotateLeftDown);
         }
@@ -87,12 +96,20 @@ public class OuttakeSystem {
     public void clawClosed() {
         Claw.setPosition(clawClosed);
     }
+    public void clawToggle() {
+        if (Claw.getPosition() == clawClosed) {
+            Claw.setPosition(clawOpen);
+        } else if (Claw.getPosition() == clawOpen) {
+            Claw.setPosition(clawClosed);
+        }
+    }
+
 
     public void pickUp() {
         slideSet(slideDown);
         clawOpen();
-        rotateToggle(-1); // set it to rotate down
+        rotateSet(-1); // set it to rotate down
         clawClosed();
-        rotateToggle(1); // set it to rotate up
+        rotateSet(1); // set it to rotate up
     }
 }
