@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Functions;
 
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -53,6 +54,7 @@ public class IntakeSystem {
         geckoL.setPower(0);
         rotateR.setPosition(rightRotateUp);
         rotateL.setPosition(leftRotateUp);
+        this.geckoL.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public void slideToggle() {
@@ -83,6 +85,40 @@ public class IntakeSystem {
         }
         while (timer.milliseconds() < rotateTimer) {
 
+        }
+    }
+
+    public void rotateToggle() {
+        timer.reset();
+        if (rotateL.getPosition() == leftRotateDown && rotateR.getPosition() == rightRotateDown) {
+            rotateR.setPosition(rightRotateUp);
+            rotateL.setPosition(leftRotateUp);
+        } else if (rotateL.getPosition() == leftRotateUp && rotateR.getPosition() == rightRotateUp) {
+            rotateR.setPosition(rightRotateDown);
+            rotateL.setPosition(leftRotateDown);
+        }
+        while (timer.milliseconds() < rotateTimer) {
+
+        }
+    }
+
+    public void intakeOnToggle() {
+        if (geckoL.getPower() != 0 && geckoR.getPower() != 0) {
+            geckoR.setPower(0);
+            geckoL.setPower(0);
+        } else if (geckoL.getPower() != 1 && geckoR.getPower() != 1) {
+            geckoR.setPower(1);
+            geckoL.setPower(1);
+        }
+    }
+
+    public void reverseIntakeOnToggle() {
+        if (geckoL.getPower() != 0 && geckoR.getPower() != 0) {
+            geckoR.setPower(0);
+            geckoL.setPower(0);
+        } else if (geckoL.getPower() != -1 && geckoR.getPower() != -1) {
+            geckoR.setPower(-1);
+            geckoL.setPower(-1);
         }
     }
 
