@@ -3,20 +3,14 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 import static java.lang.Math.signum;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
 import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
-
-import java.util.concurrent.TimeUnit;
 
 @TeleOp
 public class FOTeleOp26 extends LinearOpMode {
@@ -69,6 +63,7 @@ public class FOTeleOp26 extends LinearOpMode {
 
         intake.init();
         outtake.init();
+        double intakeSlidePos = intake.slidesIn;
 
         if (isStopRequested()) return;
 
@@ -124,10 +119,16 @@ public class FOTeleOp26 extends LinearOpMode {
                 outtake.rotateToggle();
             }
             if (gamepad2.y) {
-                // need to code incremental intake slide extension
+                if (intakeSlidePos + 0.025 <= intake.slidesOut) {
+                    intakeSlidePos += 0.025;
+                    intake.slideSet(intakeSlidePos);
+                }
             }
             if (gamepad2.a) {
-                // need to code incremental intake slide retraction
+                if (intakeSlidePos - 0.025 >= intake.slidesIn) {
+                    intakeSlidePos -= 0.025;
+                    intake.slideSet(intakeSlidePos);
+                }
             }
             if (gamepad2.right_trigger > 0) {
                 intake.rotateToggle();

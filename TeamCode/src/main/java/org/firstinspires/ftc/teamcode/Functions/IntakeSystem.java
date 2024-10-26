@@ -20,8 +20,8 @@ public class IntakeSystem {
     ElapsedTime timer = new ElapsedTime();
 
     //TODO: find the slide values
-    private final double slidesOut = 0.75;
-    private final double slidesIn = 0.3;
+    public final double slidesOut = 0.75;
+    public final double slidesIn = 0.3;
 
     private final double leftRotateDown = 0.85;
     private final double leftRotateUp = 0.43;
@@ -68,6 +68,13 @@ public class IntakeSystem {
         }
         while (timer.milliseconds() < slideTimer) {
 
+        }
+    }
+
+    public void slideSet(double position) {
+        if (slidesL.getPosition()!= position && slidesR.getPosition() != position) {
+            slidesR.setPosition(position);
+            slidesL.setPosition(position);
         }
     }
 
