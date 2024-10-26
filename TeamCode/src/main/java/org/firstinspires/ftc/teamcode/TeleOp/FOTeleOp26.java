@@ -73,9 +73,19 @@ public class FOTeleOp26 extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-            double y = -gamepad1.left_stick_y - gamepad1.right_stick_y; // Remember, Y stick value is reversed
-            double x = gamepad1.left_stick_x;
-            double rx = gamepad1.right_stick_x;
+            double y, x, rx;
+            y = -gamepad1.left_stick_y - gamepad1.right_stick_y; // Remember, Y stick value is reversed
+            x = gamepad1.left_stick_x;
+            rx = gamepad1.right_stick_x;
+            if (gamepad1.left_bumper) {
+                y *= 0.3;
+                x *= 0.3;
+                rx *= 0.3;
+            } else if (!gamepad1.right_bumper) {
+                y *= 0.65;
+                x *= 0.65;
+                rx *= 0.65;
+            }
 
             // This button choice was made so that it is hard to hit on accident,
             // it can be freely changed based on preference.
