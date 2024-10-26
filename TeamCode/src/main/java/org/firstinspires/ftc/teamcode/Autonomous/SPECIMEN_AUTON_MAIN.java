@@ -21,18 +21,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
     DcMotor frontLeftDrive;
     DcMotor frontRightDrive;
 
-    Servo intakeSlidesL;
-    Servo intakeSlidesR;
-    Servo intakeWristL;
-    Servo intakeWristR;
-    CRServo leftIntake;
-    CRServo rightIntake;
 
-    Servo servoRightOuttakeRotate;
-    Servo servoLeftOuttakeRotate;
-    Servo servoFrontOuttakeRotate;
-    DcMotorEx motorRightSlides;
-    DcMotorEx motorLeftSlides;
 
     final int HIGH_CHAMBER_TOP = 700;
     final int SPECIMEN_RECIEVE = 100;
@@ -46,18 +35,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeft");//CH 0
         frontRightDrive = hardwareMap.get(DcMotor.class, "frontRight");//CH 3
 
-        intakeSlidesL = hardwareMap.get(Servo.class, "inSlidesL");
-        intakeSlidesR = hardwareMap.get(Servo.class, "inSlidesR");
-        intakeWristL = hardwareMap.get(Servo.class, "inRotateL");
-        intakeWristR = hardwareMap.get(Servo.class, "inRotateL");
-        leftIntake = hardwareMap.get(CRServo.class, "geckoL");
-        rightIntake = hardwareMap.get(CRServo.class, "geckoR");
 
-        servoLeftOuttakeRotate = hardwareMap.servo.get("outtakeLeft");
-        servoRightOuttakeRotate = hardwareMap.servo.get("outtakeRight");// CH 0
-        servoFrontOuttakeRotate = hardwareMap.servo.get("outClaw");//CH 1
-        motorRightSlides = (DcMotorEx) hardwareMap.dcMotor.get("outRotateR");//EH 0
-        motorLeftSlides = (DcMotorEx)  hardwareMap.dcMotor.get("outtakeLeft");//EH 1
 
 
         OuttakeSystem outtake = new OuttakeSystem(hardwareMap);
@@ -66,13 +44,11 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        motorLeftSlides.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        motorRightSlides.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+
 
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-        rightIntake.setDirection(CRServo.Direction.REVERSE);
-        motorLeftSlides.setDirection(DcMotorSimple.Direction.REVERSE);
+
 
 
 
