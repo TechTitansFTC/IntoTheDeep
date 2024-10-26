@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp
+@TeleOp(group = "testing")
 public class encoderMotorTest extends LinearOpMode {
     public void runOpMode () throws
 
@@ -34,10 +34,10 @@ public class encoderMotorTest extends LinearOpMode {
                 motorLeftSlides.setDirection(DcMotorSimple.Direction.REVERSE);
                 motorRightSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 motorLeftSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                motorRightSlides.setVelocity(1000);
-                motorLeftSlides.setVelocity(1000);
-                motorRightSlides.setTargetPosition(300);
-                motorLeftSlides.setTargetPosition(300);
+                motorRightSlides.setVelocity(2000);
+                motorLeftSlides.setVelocity(2000);
+                motorRightSlides.setTargetPosition(600);
+                motorLeftSlides.setTargetPosition(600);
                 motorRightSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 motorLeftSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }
@@ -46,10 +46,10 @@ public class encoderMotorTest extends LinearOpMode {
                 motorLeftSlides.setDirection(DcMotorSimple.Direction.FORWARD);
                 motorRightSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 motorLeftSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                motorRightSlides.setVelocity(1000);
-                motorLeftSlides.setVelocity(1000);
-                motorRightSlides.setTargetPosition(-300);
-                motorLeftSlides.setTargetPosition(300);
+                motorRightSlides.setVelocity(2000);
+                motorLeftSlides.setVelocity(2000);
+                motorRightSlides.setTargetPosition(-600);
+                motorLeftSlides.setTargetPosition(600);
                 motorRightSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 motorLeftSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }
