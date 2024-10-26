@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 import static java.lang.Math.signum;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -19,32 +20,42 @@ import java.util.concurrent.TimeUnit;
 
 @TeleOp
 public class FOTeleOp26 extends LinearOpMode {
+    DcMotor backLeftDrive;
+    DcMotor backRightDrive;
+    DcMotor frontLeftDrive;
+    DcMotor frontRightDrive;
+
+
+    
     @Override
     public void runOpMode() throws InterruptedException {
         // Declare our motors
         // Make sure your ID's match your configuration
-        DcMotor FL = hardwareMap.dcMotor.get("frontLeft");//0
-        DcMotor BL = hardwareMap.dcMotor.get("backLeft");//1
-        DcMotor FR = hardwareMap.dcMotor.get("frontRight");//3
-        DcMotor BR = hardwareMap.dcMotor.get("backRight");//2
+        backLeftDrive = hardwareMap.get(DcMotor.class, "backLeft");//CH 1
+        backRightDrive = hardwareMap.get(DcMotor.class, "backRight");//CH 2
+        frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeft");//CH 0
+        frontRightDrive = hardwareMap.get(DcMotor.class, "frontRight");//CH 3
+
+        OuttakeSystem outtake = new OuttakeSystem(hardwareMap);
+        IntakeSystem intake = new IntakeSystem(hardwareMap);
+        
 
         boolean notReverse = true;
 
-        IntakeSystem intake = new IntakeSystem(hardwareMap);
-        OuttakeSystem outtake = new OuttakeSystem(hardwareMap);
+        
 
         // Reverse the right side motors. This may be wrong for your setup.
         // If your robot moves backwards when commanded to go forwards,
         // reverse the left side instead.
         // See the note about this earlier on this page.
 
-        FL.setDirection(DcMotor.Direction.REVERSE);
-        BL.setDirection(DcMotor.Direction.REVERSE);
-        FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        BL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+
+        backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
+        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
+        
         // Retrieve the IMU from the hardware map
         IMU imu = hardwareMap.get(IMU.class, "imu");
         // Adjust the orientation parameters to match your robot
@@ -121,65 +132,12 @@ public class FOTeleOp26 extends LinearOpMode {
             if (gamepad1.right_bumper) {
                 notReverse = !notReverse;
             }
-//            if(gamepad2.dpad_up){
-//                motorLeftSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//                motorRightSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//                motorRightSlides.setPower(0.3);
-//                motorLeftSlides.setPower(0.3);
-//                TimeUnit.MILLISECONDS.sleep(350);
-//                motorRightSlides.setPower(0);
-//                motorLeftSlides.setPower(0);
-//            }
-//            if(gamepad2.dpad_down){
-//                motorLeftSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//                motorRightSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//                motorRightSlides.setPower(-0.3);
-//                motorLeftSlides.setPower(-0.3);
-//                TimeUnit.MILLISECONDS.sleep(350);
-//                motorRightSlides.setPower(0);
-//                motorLeftSlides.setPower(0);
-//            }
-//            if(gamepad2.a){
-//                servoRightOuttakeRotate.setPosition(0.28);
-//
-//                TimeUnit.MILLISECONDS.sleep(350);
-//
-//            }
-//
-//            if(gamepad2.x){
-//
-//                servoRightOuttakeRotate.setPosition(0.15);
-//                TimeUnit.MILLISECONDS.sleep(350);
-//
-//            }
-//
-//            if(gamepad2.y){
-//                servoFrontOuttakeRotate.setPosition(0.1);
-//                TimeUnit.MILLISECONDS.sleep(350);
-//
-//            }
-//
-//            if(gamepad2.b){
-//
-//                servoFrontOuttakeRotate.setPosition(0.6);
-//                TimeUnit.MILLISECONDS.sleep(350);
-//
-//
-//            }
 
 
-            if(gamepad1.left_bumper){
-                FL.setPower(frontLeftPower*0.3);
-                FR.setPower(frontRightPower*0.3);
-                BL.setPower(backLeftPower*0.3);
-                BR.setPower(backRightPower*0.3);
-            }
-            else{
-                FL.setPower(frontLeftPower*0.7);
-                FR.setPower(frontRightPower*0.7);
-                BL.setPower(backLeftPower*0.7);
-                BR.setPower(backRightPower*0.7);
-            }
+            frontLeftDrive.setPower(frontLeftPower);
+            frontLeftDrive.setPower(frontRightPower);
+            backLeftDrive.setPower(backLeftPower);
+            backRightDrive.setPower(backRightPower);
 
             telemetry.update();
         }
