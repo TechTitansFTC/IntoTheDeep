@@ -23,8 +23,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
 
 
 
-    final int HIGH_CHAMBER_TOP = 700;
-    final int SPECIMEN_RECIEVE = 100;
+
 
     BNO055IMU imu;
 
@@ -55,7 +54,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         // Put initialization blocks here
         waitForStart();
         // Put run blocks here
-        outtake.slideSet(HIGH_CHAMBER_TOP);
+        outtake.slideSet(outtake.HIGH_CHAMBER_TOP);
         outtake.rotateSet(0);
         outtake.clawClosed();
 //        //rotates backwards
@@ -79,7 +78,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
 
-        outtake.slideSet(HIGH_CHAMBER_TOP-200);
+        outtake.slideSet(outtake.HIGH_CHAMBER_TOP-200);
         outtake.clawOpen();
 
         sleep(500);//brake to place specimen
@@ -126,9 +125,9 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         frontLeftDrive.setPower(0);
 
         outtake.rotateSet(1);
-        outtake.slideSet(SPECIMEN_RECIEVE);
+        outtake.slideSet(outtake.SPECIMEN_RECIEVE);
         outtake.clawClosed();
-        outtake.slideSet(HIGH_CHAMBER_TOP);
+        outtake.slideSet(outtake.HIGH_CHAMBER_TOP);
         outtake.rotateSet(0);
 
         sleep(100);
@@ -183,7 +182,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
 
-        outtake.slideSet(HIGH_CHAMBER_TOP-200);
+        outtake.slideSet(outtake.HIGH_CHAMBER_TOP-200);
         outtake.clawOpen();
 
         //moves away from the bar to rotate

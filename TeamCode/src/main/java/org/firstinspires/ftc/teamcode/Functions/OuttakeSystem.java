@@ -21,6 +21,9 @@ public class OuttakeSystem {
     final public int slideDown = 1000;
     final public int slideUp = 1001;
 
+    final public int HIGH_CHAMBER_TOP = 700;
+     public final int SPECIMEN_RECIEVE = 100;
+
     //TODO: FIND THE CLAW SERVO VALS
     final public double clawOpen = 0.3;
     final public double clawClosed = 0.7;
