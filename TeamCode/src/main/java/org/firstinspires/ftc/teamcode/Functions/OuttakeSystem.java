@@ -26,9 +26,8 @@ public class OuttakeSystem {
     final public int HIGH_BAR_BOTTOM = 600;
     final public int TOP_BASKET = 700;
 
-    //TODO: FIND THE CLAW SERVO VALS
-    final public double clawOpen = 0.3;
-    final public double clawClosed = 0.7;
+    final public double clawOpen = 0.35;
+    final public double clawClosed = 0.52;
 
     //TODO: FIND THE ROTATE SERVO VALS
     final public double rotateLeftUp = 0.01;
