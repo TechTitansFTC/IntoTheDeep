@@ -54,9 +54,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         // Put initialization blocks here
         waitForStart();
         // Put run blocks here
-        outtake.slideSet(outtake.HIGH_CHAMBER_TOP);
-        outtake.rotateSet(0);
-        outtake.clawClosed();
+        outtake.init();
 //        //rotates backwards
 //        backLeftDrive.setPower(0.3);
 //        backRightDrive.setPower(-0.3);
@@ -78,8 +76,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
 
-        outtake.slideSet(outtake.HIGH_CHAMBER_TOP-200);
-        outtake.clawOpen();
+        outtake.topBarDeposit();
 
         sleep(500);//brake to place specimen
         //rotates to human player
@@ -124,13 +121,9 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
 
-        outtake.rotateSet(1);
-        outtake.slideSet(outtake.SPECIMEN_RECIEVE);
-        outtake.clawClosed();
-        outtake.slideSet(outtake.HIGH_CHAMBER_TOP);
-        outtake.rotateSet(0);
+        outtake.pickUp();
 
-        sleep(100);
+        sleep(300);
         //moves back from the specimen, after picking it up
         backLeftDrive.setPower(0.3);
         backRightDrive.setPower(0.3);
@@ -182,8 +175,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
 
-        outtake.slideSet(outtake.HIGH_CHAMBER_TOP-200);
-        outtake.clawOpen();
+        outtake.topBarDeposit();
 
         //moves away from the bar to rotate
         backLeftDrive.setPower(0.3);
