@@ -21,8 +21,10 @@ public class OuttakeSystem {
     final public int slideDown = 1000;
     final public int slideUp = 1001;
 
-    final public int HIGH_CHAMBER_TOP = 700;
-     public final int SPECIMEN_RECIEVE = 100;
+    final public int HIGH_BAR_TOP = 700;
+    public final int SPECIMEN_RECIEVE = 100;
+    final public int HIGH_BAR_BOTTOM = 600;
+    final public int TOP_BASKET = 700;
 
     //TODO: FIND THE CLAW SERVO VALS
     final public double clawOpen = 0.3;
@@ -117,5 +119,17 @@ public class OuttakeSystem {
         rotateSet(-1); // set it to rotate down
         clawClosed();
         rotateSet(1); // set it to rotate up
+    }
+
+    public void topBarDeposit() {
+        slideSet(HIGH_BAR_TOP);
+        while (timer.milliseconds() < 200) {
+
+        }
+        slideSet(HIGH_BAR_BOTTOM);
+        while (timer.milliseconds() < 50) {
+
+        }
+        clawOpen();
     }
 }
