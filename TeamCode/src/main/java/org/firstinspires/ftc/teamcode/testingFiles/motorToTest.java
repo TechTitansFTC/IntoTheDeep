@@ -10,15 +10,17 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class motorToTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         ElapsedTime timer = new ElapsedTime();
-        DcMotorEx testing = (DcMotorEx) hardwareMap.dcMotor.get("motor");
+        DcMotorEx testing = (DcMotorEx) hardwareMap.dcMotor.get("motor1");
+        testing.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         int val = 50;
 
 
         waitForStart();
 
+        testing.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         testing.setTargetPosition(val);
         testing.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        testing.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         if(isStopRequested()) return;
         while (opModeIsActive()) {
 
