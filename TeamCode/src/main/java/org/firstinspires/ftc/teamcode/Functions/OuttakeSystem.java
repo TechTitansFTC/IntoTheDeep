@@ -29,11 +29,13 @@ public class OuttakeSystem {
     final public double clawOpen = 0.35;
     final public double clawClosed = 0.52;
 
-    //TODO: FIND THE ROTATE SERVO VALS
+    //TODO: FIND THE LEFT ROTATE SERVO VALS
     final public double rotateLeftUp = 0.01;
+    final public double rotateLeftAngle = 0.01;
     final public double rotateLeftDown = 0.00;
-    final public double rotateRightUp = 0.00;
-    final public double rotateRightDown = 0.01;
+    final public double rotateRightUp = 0.12;
+    final public double rotateRightAngle = 0.35;
+    final public double rotateRightDown = 0.6;
 
     //TODO: FIND TIMER VALUES
     final public int slideTimer = 350;
@@ -58,7 +60,7 @@ public class OuttakeSystem {
 
         Claw.setPosition(clawClosed);
 
-        rotateL.setPosition(rotateLeftDown);
+//        rotateL.setPosition(rotateLeftDown);
         rotateR.setPosition(rotateRightDown);
     }
 
@@ -70,26 +72,60 @@ public class OuttakeSystem {
         }
     }
 
-    public void rotateSet(int UD) {
+    public void rotateUp() {
         timer.reset();
-        if (UD > 0 && rotateR.getPosition() == rotateRightDown && rotateL.getPosition() == rotateLeftDown) {
-            rotateR.setPosition(rotateRightUp);
-            rotateL.setPosition(rotateLeftUp);
-        }
-        else{
-            rotateR.setPosition(rotateRightDown);
-            rotateL.setPosition(rotateLeftDown);
+        rotateR.setPosition(rotateRightUp);
+//        rotateL.setPosition(rotateLeftUp);
+        while (timer.milliseconds() < rotateTimer) {
+
         }
     }
 
+    public void rotateDown() {
+        timer.reset();
+        rotateR.setPosition(rotateRightAngle);
+//        rotateL.setPosition(rotateLeftAngle);
+        while (timer.milliseconds() < rotateTimer) {
+
+        }
+    }
+
+    public void rotateTrueDown() {
+        timer.reset();
+        rotateR.setPosition(rotateRightDown);
+//        rotateL.setPosition(rotateLeftDown);
+        while (timer.milliseconds() < rotateTimer) {
+
+        }
+    }
+
+    //TODO: fix it -> need work with all 3
+    public void rotateSet(int UD) {
+        timer.reset();
+        if (UD > 0 && rotateR.getPosition() == rotateRightDown
+//                && rotateL.getPosition() == rotateLeftDown
+        ) {
+            rotateR.setPosition(rotateRightUp);
+//            rotateL.setPosition(rotateLeftUp);
+        }
+        else{
+            rotateR.setPosition(rotateRightDown);
+//            rotateL.setPosition(rotateLeftDown);
+        }
+    }
+
+    //TODO: make a better toggle / make it work with all 3 values (for now i janked it to work with angle)
     public void rotateToggle() {
         timer.reset();
-        if (rotateR.getPosition() == rotateRightDown && rotateL.getPosition() == rotateLeftDown) {
-            rotateR.setPosition(rotateRightUp);
-            rotateL.setPosition(rotateLeftUp);
-        } else if (rotateR.getPosition() == rotateRightUp && rotateL.getPosition() == rotateLeftUp) {
-            rotateR.setPosition(rotateRightDown);
-            rotateL.setPosition(rotateLeftDown);
+        if (rotateR.getPosition() == rotateRightAngle
+//                && rotateL.getPosition() == rotateLeftDown
+        ) {
+            rotateUp();
+        } else if (rotateR.getPosition() == rotateRightUp
+
+//             &&   rotateL.getPosition() == rotateLeftUp
+                ) {
+            rotateDown();
         }
         while (timer.milliseconds() < rotateTimer) {
 
@@ -115,9 +151,11 @@ public class OuttakeSystem {
     public void pickUp() {
         slideSet(slideDown);
         clawOpen();
-        rotateSet(-1); // set it to rotate down
+//        rotateSet(-1); // set it to rotate down
+        rotateDown();
         clawClosed();
-        rotateSet(1); // set it to rotate up
+//        rotateSet(1); // set it to rotate up
+        rotateUp();
     }
 
     public void topBarDeposit() {
