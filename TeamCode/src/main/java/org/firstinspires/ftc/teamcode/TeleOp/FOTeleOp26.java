@@ -31,7 +31,7 @@ public class FOTeleOp26 extends LinearOpMode {
         frontRightDrive = hardwareMap.get(DcMotor.class, "frontRight");//CH 3
 
         OuttakeSystem outtake = new OuttakeSystem(hardwareMap);
-        IntakeSystem intake = new IntakeSystem(hardwareMap);
+//        IntakeSystem intake = new IntakeSystem(hardwareMap);
         
 
         boolean notReverse = true;
@@ -61,9 +61,9 @@ public class FOTeleOp26 extends LinearOpMode {
 
         waitForStart();
 
-        intake.init();
+//        intake.init();
         outtake.init();
-        double intakeSlidePos = intake.slidesIn;
+//        double intakeSlidePos = intake.slidesIn;
 
         if (isStopRequested()) return;
 
@@ -118,28 +118,28 @@ public class FOTeleOp26 extends LinearOpMode {
             if (gamepad2.left_trigger > 0) {
                 outtake.rotateToggle();
             }
-            if (gamepad2.y) {
-                if (intakeSlidePos + 0.025 <= intake.slidesOut) {
-                    intakeSlidePos += 0.025;
-                    intake.slideSet(intakeSlidePos);
-                }
-            }
-            if (gamepad2.a) {
-                if (intakeSlidePos - 0.025 >= intake.slidesIn) {
-                    intakeSlidePos -= 0.025;
-                    intake.slideSet(intakeSlidePos);
-                }
-            }
-            if (gamepad2.right_trigger > 0) {
-                intake.rotateToggle();
-            }
-            if (gamepad2.right_bumper) {
-                if (notReverse) {
-                    intake.intakeOnToggle();
-                } else {
-                    intake.reverseIntakeOnToggle();
-                }
-            }
+//            if (gamepad2.y) {
+//                if (intakeSlidePos + 0.025 <= intake.slidesOut) {
+//                    intakeSlidePos += 0.025;
+//                    intake.slideSet(intakeSlidePos);
+//                }
+//            }
+//            if (gamepad2.a) {
+//                if (intakeSlidePos - 0.025 >= intake.slidesIn) {
+//                    intakeSlidePos -= 0.025;
+//                    intake.slideSet(intakeSlidePos);
+//                }
+//            }
+//            if (gamepad2.right_trigger > 0) {
+//                intake.rotateToggle();
+//            }
+//            if (gamepad2.right_bumper) {
+//                if (notReverse) {
+//                    intake.intakeOnToggle();
+//                } else {
+//                    intake.reverseIntakeOnToggle();
+//                }
+//            }
             if (gamepad1.right_bumper) {
                 notReverse = !notReverse;
             }
