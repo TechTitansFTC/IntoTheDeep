@@ -11,10 +11,14 @@ public class motorToTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         ElapsedTime timer = new ElapsedTime();
         DcMotorEx testing = (DcMotorEx) hardwareMap.dcMotor.get("motor");
+        int val = 50;
+
+
+        waitForStart();
+
+        testing.setTargetPosition(val);
         testing.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         testing.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        int val = 50;
-        waitForStart();
         if(isStopRequested()) return;
         while (opModeIsActive()) {
 
