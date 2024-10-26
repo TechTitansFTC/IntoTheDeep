@@ -34,8 +34,8 @@ public class motorPowerPushbotPark extends LinearOpMode {
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
 
-        frontRightDrive.setPower(-0.3);
-        backLeftDrive.setPower(-0.3);
+        frontRightDrive.setPower(0.3);
+        backLeftDrive.setPower(0.3);
         frontLeftDrive.setPower(0.3);
         backRightDrive.setPower(0.3);
         sleep(3000);

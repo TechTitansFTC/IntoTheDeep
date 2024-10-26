@@ -36,8 +36,8 @@ public class encoderMotorTest extends LinearOpMode {
                 motorLeftSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 motorRightSlides.setVelocity(2000);
                 motorLeftSlides.setVelocity(2000);
-                motorRightSlides.setTargetPosition(600);
-                motorLeftSlides.setTargetPosition(600);
+                motorRightSlides.setTargetPosition(2000);
+                motorLeftSlides.setTargetPosition(2000);
                 motorRightSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 motorLeftSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }
@@ -48,8 +48,8 @@ public class encoderMotorTest extends LinearOpMode {
                 motorLeftSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 motorRightSlides.setVelocity(2000);
                 motorLeftSlides.setVelocity(2000);
-                motorRightSlides.setTargetPosition(-600);
-                motorLeftSlides.setTargetPosition(600);
+                motorRightSlides.setTargetPosition(-2000);
+                motorLeftSlides.setTargetPosition(2000);
                 motorRightSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 motorLeftSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }

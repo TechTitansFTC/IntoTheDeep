@@ -9,8 +9,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
 import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
+
+import java.util.concurrent.TimeUnit;
 
 @TeleOp
 public class FOTeleOp26 extends LinearOpMode {
@@ -29,6 +30,7 @@ public class FOTeleOp26 extends LinearOpMode {
         backRightDrive = hardwareMap.get(DcMotor.class, "backRight");//CH 2
         frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeft");//CH 0
         frontRightDrive = hardwareMap.get(DcMotor.class, "frontRight");//CH 3
+
 
         OuttakeSystem outtake = new OuttakeSystem(hardwareMap);
 //        IntakeSystem intake = new IntakeSystem(hardwareMap);
@@ -69,7 +71,7 @@ public class FOTeleOp26 extends LinearOpMode {
 
         while (opModeIsActive()) {
             double y, x, rx;
-            y = -gamepad1.left_stick_y - gamepad1.right_stick_y; // Remember, Y stick value is reversed
+            y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
             x = gamepad1.left_stick_x;
             rx = gamepad1.right_stick_x;
             if (gamepad1.left_bumper) {
@@ -107,16 +109,34 @@ public class FOTeleOp26 extends LinearOpMode {
             double frontRightPower = (rotY - rotX - rx) / denominator;
             double backRightPower = (rotY + rotX - rx) / denominator;
             if (gamepad2.dpad_up) {
-                outtake.slideSet(outtake.slideUp);
+                outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                outtake.getSlidesR().setPower(0.3);
+                outtake.getSlidesL().setPower(0.3);
+                TimeUnit.MILLISECONDS.sleep(250);
+                outtake.getSlidesR().setPower(0);
+                outtake.getSlidesL().setPower(0);
             }
             if (gamepad2.dpad_down) {
-                outtake.slideSet(outtake.slideDown);
+                outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                outtake.getSlidesR().setPower(-0.3);
+                outtake.getSlidesL().setPower(-0.3);
+                TimeUnit.MILLISECONDS.sleep(250);
+                outtake.getSlidesR().setPower(0);
+                outtake.getSlidesL().setPower(0);
             }
             if (gamepad2.left_bumper) {
-                outtake.clawToggle();
+                outtake.clawOpen();
             }
             if (gamepad2.left_trigger > 0) {
-                outtake.rotateToggle();
+                outtake.rotateUp();
+            }
+            if (gamepad2.right_bumper) {
+                outtake.clawClosed();
+            }
+            if (gamepad2.right_trigger > 0) {
+                outtake.rotateDown();
             }
 //            if (gamepad2.y) {
 //                if (intakeSlidePos + 0.025 <= intake.slidesOut) {
@@ -146,7 +166,7 @@ public class FOTeleOp26 extends LinearOpMode {
 
 
             frontLeftDrive.setPower(frontLeftPower);
-            frontLeftDrive.setPower(frontRightPower);
+            frontRightDrive.setPower(frontRightPower);
             backLeftDrive.setPower(backLeftPower);
             backRightDrive.setPower(backRightPower);
 

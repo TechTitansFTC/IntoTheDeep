@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.CRServo;
 
-import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
+//import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
 import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
 
 @Config()
@@ -63,7 +63,7 @@ public class RED_SPECIMEN_MOTOR extends LinearOpMode {
         
         
         OuttakeSystem outtake = new OuttakeSystem(hardwareMap);
-        IntakeSystem intake = new IntakeSystem(hardwareMap);
+//        IntakeSystem intake = new IntakeSystem(hardwareMap);
         
         
         

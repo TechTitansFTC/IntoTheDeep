@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Functions;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -12,7 +13,7 @@ public class OuttakeSystem {
     private DcMotorEx slidesR;
 
     private Servo Claw;
-    private Servo rotateL;
+//    private Servo //;
     private Servo rotateR;
 
     private ElapsedTime timer = new ElapsedTime();
@@ -30,11 +31,11 @@ public class OuttakeSystem {
     final public double clawClosed = 0.52;
 
     //TODO: FIND THE LEFT ROTATE SERVO VALS
-    final public double rotateLeftUp = 0.01;
-    final public double rotateLeftAngle = 0.01;
-    final public double rotateLeftDown = 0.00;
+//    final public double //eftUp = 0.01;
+//    final public double //eftAngle = 0.01;
+//    final public double //eftDown = 0.00;
     final public double rotateRightUp = 0.12;
-    final public double rotateRightAngle = 0.35;
+    final public double rotateRightAngle = 0.2;
     final public double rotateRightDown = 0.6;
 
     //TODO: FIND TIMER VALUES
@@ -45,22 +46,23 @@ public class OuttakeSystem {
         this.slidesL = (DcMotorEx) map.get("outtakeLeft");
         this.slidesR = (DcMotorEx) map.get("outtakeRight");
         this.Claw = map.servo.get("outClaw");
-        this.rotateL = map.servo.get("outRotateL");
+//        this.// = map.servo.get("out//");
         this.rotateR = map.servo.get("outRotateR");
     }
 
     public void init() {
         timer.reset();
-        slidesL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        slidesR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        slidesL.setTargetPosition(slideDown);
-        slidesR.setTargetPosition(slideDown);
-        slidesL.setPower(1);
-        slidesR.setPower(1);
+        slidesL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        slidesR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        slidesL.setDirection(DcMotor.Direction.REVERSE);
+//        slidesL.setTargetPosition(slideDown);
+//        slidesR.setTargetPosition(slideDown);
+//        slidesL.setPower(1);
+//        slidesR.setPower(1);
 
         Claw.setPosition(clawClosed);
 
-//        rotateL.setPosition(rotateLeftDown);
+//        //.setPosition(//eftDown);
         rotateR.setPosition(rotateRightDown);
     }
 
@@ -75,7 +77,7 @@ public class OuttakeSystem {
     public void rotateUp() {
         timer.reset();
         rotateR.setPosition(rotateRightUp);
-//        rotateL.setPosition(rotateLeftUp);
+//        //.setPosition(//eftUp);
         while (timer.milliseconds() < rotateTimer) {
 
         }
@@ -84,7 +86,7 @@ public class OuttakeSystem {
     public void rotateDown() {
         timer.reset();
         rotateR.setPosition(rotateRightAngle);
-//        rotateL.setPosition(rotateLeftAngle);
+//        //.setPosition(//eftAngle);
         while (timer.milliseconds() < rotateTimer) {
 
         }
@@ -93,24 +95,32 @@ public class OuttakeSystem {
     public void rotateTrueDown() {
         timer.reset();
         rotateR.setPosition(rotateRightDown);
-//        rotateL.setPosition(rotateLeftDown);
+//        //.setPosition(//eftDown);
         while (timer.milliseconds() < rotateTimer) {
 
         }
+    }
+
+    public DcMotorEx getSlidesL() {
+        return slidesL;
+    }
+
+    public DcMotorEx getSlidesR() {
+        return slidesR;
     }
 
     //TODO: fix it -> need work with all 3
     public void rotateSet(int UD) {
         timer.reset();
         if (UD > 0 && rotateR.getPosition() == rotateRightDown
-//                && rotateL.getPosition() == rotateLeftDown
+//                && //.getPosition() == //eftDown
         ) {
             rotateR.setPosition(rotateRightUp);
-//            rotateL.setPosition(rotateLeftUp);
+//            //.setPosition(//eftUp);
         }
         else{
             rotateR.setPosition(rotateRightDown);
-//            rotateL.setPosition(rotateLeftDown);
+//            //.setPosition(//eftDown);
         }
     }
 
@@ -118,12 +128,12 @@ public class OuttakeSystem {
     public void rotateToggle() {
         timer.reset();
         if (rotateR.getPosition() == rotateRightAngle
-//                && rotateL.getPosition() == rotateLeftDown
+//                && //.getPosition() == //eftDown
         ) {
             rotateUp();
         } else if (rotateR.getPosition() == rotateRightUp
 
-//             &&   rotateL.getPosition() == rotateLeftUp
+//             &&   //.getPosition() == //eftUp
                 ) {
             rotateDown();
         }
