@@ -70,10 +70,13 @@ public class OuttakeSystem {
         timer.reset();
         if (UD > 0 && rotateR.getPosition() == rotateRightDown && rotateL.getPosition() == rotateLeftDown) {
             rotateR.setPosition(rotateRightUp);
-
-
-            }
+            rotateL.setPosition(rotateLeftUp);
         }
+        else{
+            rotateR.setPosition(rotateRightDown);
+            rotateL.setPosition(rotateLeftDown);
+        }
+    }
 
     public void rotateToggle() {
         timer.reset();

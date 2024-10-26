@@ -1,11 +1,14 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
+import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
 import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @Config()
@@ -17,72 +20,99 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
     DcMotor backRightDrive;
     DcMotor frontLeftDrive;
     DcMotor frontRightDrive;
-    DcMotor slidesLOuttake;
-    DcMotor slidesROuttake;
-    Servo claw;
-    Servo rotateR;
-    Servo rotateL;
+
+    Servo intakeSlidesL;
+    Servo intakeSlidesR;
+    Servo intakeWristL;
+    Servo intakeWristR;
+    CRServo leftIntake;
+    CRServo rightIntake;
+
+    Servo servoRightOuttakeRotate;
+    Servo servoLeftOuttakeRotate;
+    Servo servoFrontOuttakeRotate;
+    DcMotorEx motorRightSlides;
+    DcMotorEx motorLeftSlides;
+
+    final int HIGH_CHAMBER_TOP = 700;
+    final int SPECIMEN_RECIEVE = 100;
 
     BNO055IMU imu;
 
     @Override
     public void runOpMode() {
-        backLeftDrive = hardwareMap.get(DcMotor.class, "backLeftDrive");
-        backRightDrive = hardwareMap.get(DcMotor.class, "backRightDrive");
-        frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeftDrive");
-        frontRightDrive = hardwareMap.get(DcMotor.class, "frontRightDrive");
-        imu = hardwareMap.get(BNO055IMU.class, "imu");
+        backLeftDrive = hardwareMap.get(DcMotor.class, "backLeft");//CH 1
+        backRightDrive = hardwareMap.get(DcMotor.class, "backRight");//CH 2
+        frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeft");//CH 0
+        frontRightDrive = hardwareMap.get(DcMotor.class, "frontRight");//CH 3
+
+        intakeSlidesL = hardwareMap.get(Servo.class, "inSlidesL");
+        intakeSlidesR = hardwareMap.get(Servo.class, "inSlidesR");
+        intakeWristL = hardwareMap.get(Servo.class, "inRotateL");
+        intakeWristR = hardwareMap.get(Servo.class, "inRotateL");
+        leftIntake = hardwareMap.get(CRServo.class, "geckoL");
+        rightIntake = hardwareMap.get(CRServo.class, "geckoR");
+
+        servoLeftOuttakeRotate = hardwareMap.servo.get("outtakeLeft");
+        servoRightOuttakeRotate = hardwareMap.servo.get("outtakeRight");// CH 0
+        servoFrontOuttakeRotate = hardwareMap.servo.get("outClaw");//CH 1
+        motorRightSlides = (DcMotorEx) hardwareMap.dcMotor.get("outRotateR");//EH 0
+        motorLeftSlides = (DcMotorEx)  hardwareMap.dcMotor.get("outtakeLeft");//EH 1
+
+
+        OuttakeSystem outtake = new OuttakeSystem(hardwareMap);
+        IntakeSystem intake = new IntakeSystem(hardwareMap);
         backRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorLeftSlides.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        motorRightSlides.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-
-        OuttakeSystem outtake = new OuttakeSystem();{
-
-        }
-        OuttakeSystem (hardwareMap hardwareMap); {
-            this.slidesLOuttake = (DcMotorEx) hardwareMap.get("outtakeLeft");
-            this.slidesROuttake = (DcMotorEx) hardwareMap.get("outtakeRight");
-            this.claw = hardwareMap.servo.get("outClaw");
-            this.rotateL = hardwareMap.servo.get("outRotateL");
-            this.rotateR = hardwareMap.servo.get("outRotateR");
-        }
+        rightIntake.setDirection(CRServo.Direction.REVERSE);
+        motorLeftSlides.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
 
         // Put initialization blocks here
         waitForStart();
         // Put run blocks here
-
-        //rotates backwards
-        backLeftDrive.setPower(0.3);
-        backRightDrive.setPower(-0.3);
-        frontLeftDrive.setPower(0.3);
-        frontRightDrive.setPower(-0.3);
-        sleep(9500);
-        frontRightDrive.setPower(0);
-        backLeftDrive.setPower(0);
-        backRightDrive.setPower(0);
-        frontLeftDrive.setPower(0);
+        outtake.slideSet(HIGH_CHAMBER_TOP);
+        outtake.rotateSet(0);
+        outtake.clawClosed();
+//        //rotates backwards
+//        backLeftDrive.setPower(0.3);
+//        backRightDrive.setPower(-0.3);
+//        frontLeftDrive.setPower(0.3);
+//        frontRightDrive.setPower(-0.3);
+//        sleep(9500);
+//        frontRightDrive.setPower(0);
+//        backLeftDrive.setPower(0);
+//        backRightDrive.setPower(0);
+//        frontLeftDrive.setPower(0);
         //moves to bar
         backLeftDrive.setPower(-0.3);
         backRightDrive.setPower(-0.3);
         frontLeftDrive.setPower(-0.3);
         frontRightDrive.setPower(-0.3);
-        sleep(5000);
+        sleep(1000);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
+
+        outtake.slideSet(HIGH_CHAMBER_TOP-200);
+        outtake.clawOpen();
+
         sleep(500);//brake to place specimen
         //rotates to human player
         backLeftDrive.setPower(0.3);
         backRightDrive.setPower(-0.3);
         frontLeftDrive.setPower(0.3);
         frontRightDrive.setPower(-0.3);
-        sleep(6500);
+        sleep(200);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
@@ -92,7 +122,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(-0.3);
         frontLeftDrive.setPower(-0.3);
         frontRightDrive.setPower(-0.3);
-        sleep(8000);
+        sleep(1000);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
@@ -102,7 +132,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(-0.3);
         frontLeftDrive.setPower(0.3);
         frontRightDrive.setPower(-0.3);
-        sleep(3000);
+        sleep(400);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
@@ -112,19 +142,26 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(-0.3);
         frontLeftDrive.setPower(-0.3);
         frontRightDrive.setPower(-0.3);
-        sleep(800);
+        sleep(100);
         //gives break to pick up speciman
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
-        sleep(800);
+
+        outtake.rotateSet(1);
+        outtake.slideSet(SPECIMEN_RECIEVE);
+        outtake.clawClosed();
+        outtake.slideSet(HIGH_CHAMBER_TOP);
+        outtake.rotateSet(0);
+
+        sleep(100);
         //moves back from the specimen, after picking it up
         backLeftDrive.setPower(0.3);
         backRightDrive.setPower(0.3);
         frontLeftDrive.setPower(0.3);
         frontRightDrive.setPower(0.3);
-        sleep(800);
+        sleep(100);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
@@ -134,7 +171,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(-0.3);
         frontLeftDrive.setPower(0.3);
         frontRightDrive.setPower(-0.3);
-        sleep(6500);
+        sleep(800);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
@@ -144,7 +181,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(-0.3);
         frontLeftDrive.setPower(-0.3);
         frontRightDrive.setPower(-0.3);
-        sleep(7500);
+        sleep(940);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
@@ -154,7 +191,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(-0.3);
         frontLeftDrive.setPower(0.3);
         frontRightDrive.setPower(-0.3);
-        sleep(3000);
+        sleep(50);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
@@ -164,17 +201,21 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(-0.3);
         frontLeftDrive.setPower(-0.3);
         frontRightDrive.setPower(-0.3);
-        sleep(800);
+        sleep(100);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
+
+        outtake.slideSet(HIGH_CHAMBER_TOP-200);
+        outtake.clawOpen();
+
         //moves away from the bar to rotate
         backLeftDrive.setPower(0.3);
         backRightDrive.setPower(0.3);
         frontLeftDrive.setPower(0.3);
         frontRightDrive.setPower(0.3);
-        sleep(800);
+        sleep(100);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
@@ -184,7 +225,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(0.3);
         frontLeftDrive.setPower(-0.3);
         frontRightDrive.setPower(0.3);
-        sleep(3500);
+        sleep(450);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
@@ -194,7 +235,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(0.3);
         frontLeftDrive.setPower(0.3);
         frontRightDrive.setPower(0.3);
-        sleep(12150);
+        sleep(1500);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
@@ -204,11 +245,15 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backRightDrive.setPower(0.3);
         frontLeftDrive.setPower(-0.3);
         frontRightDrive.setPower(0.3);
-        sleep(6000);
+        sleep(650);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
+        backLeftDrive.setPower(-1);
+        backRightDrive.setPower(-1);
+        frontLeftDrive.setPower(-1);
+        frontRightDrive.setPower(-1);
     }
 
 }
