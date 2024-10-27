@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 //import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
+import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
 import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -39,7 +40,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
 
 
         OuttakeSystem outtake = new OuttakeSystem(hardwareMap);
-//        IntakeSystem intake = new IntakeSystem(hardwareMap);
+        IntakeSystem intake = new IntakeSystem(hardwareMap);
         backRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

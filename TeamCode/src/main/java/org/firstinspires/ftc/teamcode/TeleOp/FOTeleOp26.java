@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
 import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
 
 import java.util.concurrent.TimeUnit;
@@ -33,7 +34,7 @@ public class FOTeleOp26 extends LinearOpMode {
 
 
         OuttakeSystem outtake = new OuttakeSystem(hardwareMap);
-//        IntakeSystem intake = new IntakeSystem(hardwareMap);
+        IntakeSystem intake = new IntakeSystem(hardwareMap);
         
 
         boolean notReverse = true;
@@ -47,7 +48,8 @@ public class FOTeleOp26 extends LinearOpMode {
 
         backRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
+        frontRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -63,9 +65,9 @@ public class FOTeleOp26 extends LinearOpMode {
 
         waitForStart();
 
-//        intake.init();
+        intake.init();
         outtake.init();
-//        double intakeSlidePos = intake.slidesIn;
+        double intakeSlidePos = intake.slidesIn;
 
         if (isStopRequested()) return;
 
@@ -138,28 +140,28 @@ public class FOTeleOp26 extends LinearOpMode {
             if (gamepad2.right_trigger > 0) {
                 outtake.rotateDown();
             }
-//            if (gamepad2.y) {
-//                if (intakeSlidePos + 0.025 <= intake.slidesOut) {
-//                    intakeSlidePos += 0.025;
-//                    intake.slideSet(intakeSlidePos);
-//                }
-//            }
-//            if (gamepad2.a) {
-//                if (intakeSlidePos - 0.025 >= intake.slidesIn) {
-//                    intakeSlidePos -= 0.025;
-//                    intake.slideSet(intakeSlidePos);
-//                }
-//            }
-//            if (gamepad2.right_trigger > 0) {
-//                intake.rotateToggle();
-//            }
-//            if (gamepad2.right_bumper) {
-//                if (notReverse) {
-//                    intake.intakeOnToggle();
-//                } else {
-//                    intake.reverseIntakeOnToggle();
-//                }
-//            }
+            if (gamepad2.y) {
+                if (intakeSlidePos + 0.025 <= intake.slidesOut) {
+                    intakeSlidePos += 0.025;
+                    intake.slideSet(intakeSlidePos);
+                }
+            }
+            if (gamepad2.a) {
+                if (intakeSlidePos - 0.025 >= intake.slidesIn) {
+                    intakeSlidePos -= 0.025;
+                    intake.slideSet(intakeSlidePos);
+                }
+            }
+            if (gamepad2.right_trigger > 0) {
+                intake.rotateToggle();
+            }
+            if (gamepad2.right_bumper) {
+                if (notReverse) {
+                    intake.intakeOnToggle();
+                } else {
+                    intake.reverseIntakeOnToggle();
+                }
+            }
             if (gamepad1.right_bumper) {
                 notReverse = !notReverse;
             }
