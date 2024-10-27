@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 @Config
-@Autonomous
+@Autonomous(name = "strafe")
 
 
 
@@ -34,10 +34,19 @@ public class motorPowerPushbotPark extends LinearOpMode {
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
 
-        frontRightDrive.setPower(0.3);
-        backLeftDrive.setPower(0.3);
+        frontRightDrive.setPower(-0.3);
+        backLeftDrive.setPower(-0.3);
         frontLeftDrive.setPower(0.3);
         backRightDrive.setPower(0.3);
+        sleep(5000);
+        frontRightDrive.setPower(0);
+        backLeftDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+        frontRightDrive.setPower(-0.3);
+        backLeftDrive.setPower(-0.3);
+        frontLeftDrive.setPower(-0.3);
+        backRightDrive.setPower(-0.3);
         sleep(3000);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);

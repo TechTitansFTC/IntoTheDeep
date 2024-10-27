@@ -28,7 +28,7 @@ public class OuttakeSystem {
     final public int TOP_BASKET = 700;
 
     final public double clawOpen = 0.35;
-    final public double clawClosed = 0.52;
+    final public double clawClosed = 0.55;
 
     //TODO: FIND THE LEFT ROTATE SERVO VALS
 //    final public double //eftUp = 0.01;
@@ -63,7 +63,7 @@ public class OuttakeSystem {
         Claw.setPosition(clawClosed);
 
 //        //.setPosition(//eftDown);
-        rotateR.setPosition(rotateRightDown);
+        rotateR.setPosition(rotateRightAngle);
     }
 
 

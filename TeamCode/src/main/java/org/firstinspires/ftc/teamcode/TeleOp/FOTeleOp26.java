@@ -111,18 +111,18 @@ public class FOTeleOp26 extends LinearOpMode {
             if (gamepad2.dpad_up) {
                 outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                outtake.getSlidesR().setPower(0.3);
-                outtake.getSlidesL().setPower(0.3);
-                TimeUnit.MILLISECONDS.sleep(250);
+                outtake.getSlidesR().setPower(0.6);
+                outtake.getSlidesL().setPower(0.6);
+                TimeUnit.MILLISECONDS.sleep(500);
                 outtake.getSlidesR().setPower(0);
                 outtake.getSlidesL().setPower(0);
             }
             if (gamepad2.dpad_down) {
                 outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                outtake.getSlidesR().setPower(-0.3);
-                outtake.getSlidesL().setPower(-0.3);
-                TimeUnit.MILLISECONDS.sleep(250);
+                outtake.getSlidesR().setPower(-0.6);
+                outtake.getSlidesL().setPower(-0.6);
+                TimeUnit.MILLISECONDS.sleep(500);
                 outtake.getSlidesR().setPower(0);
                 outtake.getSlidesL().setPower(0);
             }
@@ -164,6 +164,10 @@ public class FOTeleOp26 extends LinearOpMode {
                 notReverse = !notReverse;
             }
 
+            if (gamepad1.dpad_up) botHeading = 0;
+            if (gamepad1.dpad_left) botHeading = 90;
+            if (gamepad1.dpad_up) botHeading = 180;
+            if (gamepad1.dpad_right) botHeading = 270;
 
             frontLeftDrive.setPower(frontLeftPower);
             frontRightDrive.setPower(frontRightPower);
