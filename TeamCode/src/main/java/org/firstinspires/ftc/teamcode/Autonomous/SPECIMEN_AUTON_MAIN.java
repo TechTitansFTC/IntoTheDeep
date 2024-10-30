@@ -70,16 +70,25 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         //moves to bar
         outtake.getSlidesR().setPower(0.5);
         outtake.getSlidesL().setPower(0.5);
-        sleep(2300);
+        sleep(2300);//raises slides
         outtake.getSlidesR().setPower(0);
         outtake.getSlidesL().setPower(0);
 
-        sleep(1000);
+        sleep(500);
         backLeftDrive.setPower(-0.3);
         backRightDrive.setPower(-0.3);
         frontLeftDrive.setPower(-0.3);
         frontRightDrive.setPower(-0.3);
-        sleep(1300);
+        sleep(1500);//forward to rail
+        frontRightDrive.setPower(0);
+        backLeftDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+        backLeftDrive.setPower(0.3);
+        backRightDrive.setPower(0.3);
+        frontLeftDrive.setPower(0.3);
+        frontRightDrive.setPower(0.3);
+        sleep(200);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
@@ -106,7 +115,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backLeftDrive.setPower(-0.3);
         frontLeftDrive.setPower(-0.3);
         backRightDrive.setPower(-0.3);
-        sleep(4000);
+        sleep(3000);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
@@ -114,7 +123,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backLeftDrive.setPower(-0.3);
         frontLeftDrive.setPower(0.3);
         backRightDrive.setPower(0.3);
-        sleep(5000);
+        sleep(4000);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
@@ -123,7 +132,7 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backLeftDrive.setPower(-0.3);
         frontLeftDrive.setPower(-0.3);
         backRightDrive.setPower(-0.3);
-        sleep(3000);
+        sleep(1000);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
