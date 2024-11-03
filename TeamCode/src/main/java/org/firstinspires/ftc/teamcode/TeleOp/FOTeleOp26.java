@@ -113,18 +113,18 @@ public class FOTeleOp26 extends LinearOpMode {
             if (gamepad2.dpad_up) {
                 outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                outtake.getSlidesR().setPower(0.6);
-                outtake.getSlidesL().setPower(0.6);
-                TimeUnit.MILLISECONDS.sleep(500);
+                outtake.getSlidesR().setPower(1);
+                outtake.getSlidesL().setPower(1);
+                TimeUnit.MILLISECONDS.sleep(1000);
                 outtake.getSlidesR().setPower(0);
                 outtake.getSlidesL().setPower(0);
             }
             if (gamepad2.dpad_down) {
                 outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                outtake.getSlidesR().setPower(-0.6);
-                outtake.getSlidesL().setPower(-0.6);
-                TimeUnit.MILLISECONDS.sleep(500);
+                outtake.getSlidesR().setPower(-1);
+                outtake.getSlidesL().setPower(-1);
+                TimeUnit.MILLISECONDS.sleep(1000);
                 outtake.getSlidesR().setPower(0);
                 outtake.getSlidesL().setPower(0);
             }
