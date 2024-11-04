@@ -77,10 +77,14 @@ public class FOTeleOp26 extends LinearOpMode {
             x = gamepad1.left_stick_x;
             rx = gamepad1.right_stick_x;
             if (gamepad1.left_bumper) {
-                y *= 0.3;
-                x *= 0.3;
-                rx *= 0.3;
-            } else if (!gamepad1.right_bumper) {
+                y *= 0.2;
+                x *= 0.2;
+                rx *= 0.2;
+            } else if (gamepad1.right_bumper) {
+                y *= 0.4;
+                x *= 0.4;
+                rx *= 0.4;
+            }else{
                 y *= 0.65;
                 x *= 0.65;
                 rx *= 0.65;
@@ -110,12 +114,27 @@ public class FOTeleOp26 extends LinearOpMode {
             double backLeftPower = (rotY - rotX + rx) / denominator;
             double frontRightPower = (rotY - rotX - rx) / denominator;
             double backRightPower = (rotY + rotX - rx) / denominator;
+            if(gamepad1.left_trigger > 0){
+                while(imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) != 0){
+                    frontLeftDrive.setPower(-1);
+                    backRightDrive.setPower(1);
+                }
+                frontLeftDrive.setPower(0);
+                backRightDrive.setPower(0);
+            }if(gamepad1.right_trigger > 0){
+                while(imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) != 0){
+                    frontRightDrive.setPower(-1);
+                    backLeftDrive.setPower(1);
+                }
+                frontLeftDrive.setPower(0);
+                backRightDrive.setPower(0);
+            }
             if (gamepad2.dpad_up) {
                 outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setPower(1);
                 outtake.getSlidesL().setPower(1);
-                TimeUnit.MILLISECONDS.sleep(1000);
+                TimeUnit.MILLISECONDS.sleep(500);
                 outtake.getSlidesR().setPower(0);
                 outtake.getSlidesL().setPower(0);
             }
@@ -124,7 +143,7 @@ public class FOTeleOp26 extends LinearOpMode {
                 outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setPower(-1);
                 outtake.getSlidesL().setPower(-1);
-                TimeUnit.MILLISECONDS.sleep(1000);
+                TimeUnit.MILLISECONDS.sleep(500);
                 outtake.getSlidesR().setPower(0);
                 outtake.getSlidesL().setPower(0);
             }
@@ -175,6 +194,9 @@ public class FOTeleOp26 extends LinearOpMode {
             frontRightDrive.setPower(frontRightPower);
             backLeftDrive.setPower(backLeftPower);
             backRightDrive.setPower(backRightPower);
+
+            telemetry.addData(" botheading",botHeading);
+            telemetry.addData("currheading",imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS));
 
             telemetry.update();
         }
