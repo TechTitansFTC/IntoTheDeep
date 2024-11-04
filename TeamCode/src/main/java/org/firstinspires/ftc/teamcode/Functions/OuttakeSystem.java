@@ -179,4 +179,21 @@ public class OuttakeSystem {
         }
         clawOpen();
     }
+
+    public void topBarPart1(){
+        slideSet(HIGH_BAR_TOP);
+    }
+    public void topBarPart2(){
+        slideSet(HIGH_BAR_BOTTOM);
+        clawOpen();
+    }
+    public void pickUpPart1(){
+        slideSet(slideDown);
+        clawOpen();
+        rotateDown();
+    }
+    public void pickUpPart2(){
+        clawClosed();
+        rotateUp();
+    }
 }
