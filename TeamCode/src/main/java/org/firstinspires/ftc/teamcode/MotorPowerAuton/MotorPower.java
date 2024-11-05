@@ -5,12 +5,15 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+
 public class MotorPower  {
     private  ElapsedTime time = new ElapsedTime();
     private  DcMotor FL;//0
     private  DcMotor BL;//1
     private  DcMotor BR;//2
     private  DcMotor FR;//3
+    private final double MS_PER_DEG = 100;
+
     public MotorPower(HardwareMap map) {
         this.FL = (DcMotor) map.get("frontLeft");
         this.FR = (DcMotor) map.get("frontLeft");
@@ -100,6 +103,34 @@ public class MotorPower  {
         FL.setPower(pwr);
         BL.setPower(pwr);
         while (time.milliseconds() < t){
+
+        }
+        FR.setPower(0);
+        BR.setPower(0);
+        FL.setPower(0);
+        BL.setPower(0);
+    }
+    public void turnRD(double pwr,double deg){
+        time.reset();
+        FR.setPower(-pwr);
+        BR.setPower(-pwr);
+        FL.setPower(pwr);
+        BL.setPower(pwr);
+        while (time.milliseconds() < deg * MS_PER_DEG){
+
+        }
+        FR.setPower(0);
+        BR.setPower(0);
+        FL.setPower(0);
+        BL.setPower(0);
+    }
+    public void turnLD(double pwr,double deg){
+        time.reset();
+        FR.setPower(pwr);
+        BR.setPower(pwr);
+        FL.setPower(-pwr);
+        BL.setPower(-pwr);
+        while (time.milliseconds() < deg * MS_PER_DEG){
 
         }
         FR.setPower(0);
