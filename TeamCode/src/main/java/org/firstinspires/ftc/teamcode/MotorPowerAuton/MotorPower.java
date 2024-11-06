@@ -110,12 +110,20 @@ public class MotorPower  {
         FL.setPower(0);
         BL.setPower(0);
     }
-    public void turnRD(double pwr,double deg){
+    public void turn(double pwr,double deg){
         time.reset();
-        FR.setPower(-pwr);
-        BR.setPower(-pwr);
-        FL.setPower(pwr);
-        BL.setPower(pwr);
+        if (deg > 0){
+            FR.setPower(-pwr);
+            BR.setPower(-pwr);
+            FL.setPower(pwr);
+            BL.setPower(pwr);
+        }
+        else{
+            FR.setPower(pwr);
+            BR.setPower(pwr);
+            FL.setPower(-pwr);
+            BL.setPower(-pwr);
+        }
         while (time.milliseconds() < deg * MS_PER_DEG){
 
         }
@@ -124,20 +132,7 @@ public class MotorPower  {
         FL.setPower(0);
         BL.setPower(0);
     }
-    public void turnLD(double pwr,double deg){
-        time.reset();
-        FR.setPower(pwr);
-        BR.setPower(pwr);
-        FL.setPower(-pwr);
-        BL.setPower(-pwr);
-        while (time.milliseconds() < deg * MS_PER_DEG){
 
-        }
-        FR.setPower(0);
-        BR.setPower(0);
-        FL.setPower(0);
-        BL.setPower(0);
-    }
 
 
 }
