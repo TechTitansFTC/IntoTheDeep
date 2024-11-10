@@ -24,6 +24,12 @@ public class simpleServo extends LinearOpMode {
                 timer.reset();
             }
 
+            if (gamepad1.a) {
+                servo.setDirection(Servo.Direction.REVERSE);
+            } else if (gamepad1.b) {
+                servo.setDirection(Servo.Direction.FORWARD);
+            }
+
             telemetry.addData("pos", servo.getPosition());
             telemetry.update();     
         }
