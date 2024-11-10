@@ -98,10 +98,10 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         sleep(500);
 
 
-        frontRightDrive.setPower(-power);
+        frontRightDrive.setPower(power);
         backRightDrive.setPower(-power);
         frontLeftDrive.setPower(-power);
-        backLeftDrive.setPower(-power);
+        backLeftDrive.setPower(power);
         sleep(2000); //moves to bar
         frontRightDrive.setPower(0);
         backRightDrive.setPower(0);

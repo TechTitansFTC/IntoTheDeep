@@ -31,10 +31,10 @@ int p = 370;
 
         while (opModeIsActive()) {
             if (gamepad1.x){
-               m.turn(0.75,90);
+               m.strafe(0.75,500);
             }
             if(gamepad1.b){
-                m.turnP(0.75,p);
+                m.strafe(-0.75,500);
             }
             if(gamepad1.dpad_up){
                 p+=10;

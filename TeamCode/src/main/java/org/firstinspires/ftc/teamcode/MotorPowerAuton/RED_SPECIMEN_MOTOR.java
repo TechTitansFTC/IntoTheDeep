@@ -24,23 +24,38 @@ public class RED_SPECIMEN_MOTOR extends LinearOpMode {
     public void runOpMode() {
         MotorPower m = new MotorPower(hardwareMap);
         waitForStart();
-        m.move(-0.3,700);//rail against sub
+        m.move(-0.3,1600);//rail against sub
+        sleep(1500);
+        m.move(0.3,300);//rail against sub
         sleep(1500);
 //        m.turnP(-0.5, 300 );
 //        sleep(300);
 //        m.move(0.75,100);//forward a bit
-        m.strafe(-0.3,800);//strafe to entry
+        m.turnP(0.75,400);//strafe to entry
         sleep(500);
-        m.move(-0.3,800);//back behind sample
+        m.move(0.3,1500);//back behind sample
         sleep(500);
-        m.strafe(-0.3,200);//straighten to sample
+        m.turnP(-0.75,400);//straighten to sample
         sleep(500);
-        m.move(0.3,2000);//observation
+        m.move(-0.3,2000);//observation
         sleep(500);
-        m.move(-0.3,2000);//back to sample
+        m.strafe(-0.75,300);//back to sample
         sleep(500);
-        m.strafe(-0.3,200);//straighten to sample
+        m.move(0.3,3500);//observation
         sleep(500);
+        m.move(-0.3,3500);//observation
+        sleep(500);
+        m.strafe(-0.75,300);//back to sample
+        sleep(500);
+        m.move(0.3,3500);//observation
+        sleep(500);
+        m.move(-0.3,3500);//observation
+        sleep(500);
+        m.strafe(-0.75,300);//back to sample
+        sleep(500);
+        m.move(0.3,3500);//observation
+        sleep(500);
+
 
     }
 
