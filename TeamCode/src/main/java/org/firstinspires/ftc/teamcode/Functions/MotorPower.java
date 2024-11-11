@@ -27,12 +27,31 @@ public class MotorPower  {
         BL.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
-    public void strafe(double pwr, int t){
+    public void strafeR(double pwr, int t){
         time.reset();
         FR.setPower(-pwr);
         BR.setPower(pwr);
         FL.setPower(pwr);
         BL.setPower(-pwr);
+        while (time.milliseconds() < t){
+
+        }
+        FR.setPower(0);
+        BR.setPower(0);
+        FL.setPower(0);
+        BL.setPower(0);
+        time.reset();
+        while (time.milliseconds() < 100){
+
+        }
+    }
+
+    public void strafeL (double pwr, int t) {
+        time.reset();
+        FR.setPower(pwr);
+        BR.setPower(-pwr);
+        FL.setPower(-pwr);
+        BL.setPower(pwr);
         while (time.milliseconds() < t){
 
         }
@@ -83,8 +102,9 @@ public class MotorPower  {
 
         }
     }
-    public void turn(double pwr,double deg){
+    public void turn(double deg){
         time.reset();
+        double pwr = 0.5;
 
         FR.setPower(-pwr);
         BR.setPower(-pwr);
