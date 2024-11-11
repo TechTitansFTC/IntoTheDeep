@@ -20,7 +20,7 @@ public class OuttakeSystem {
 
     //TODO: FIND THE slide VAR VALUES
     final public int slideDown = 1000;
-    final public int slideUp = 1001;
+    final public int slideUp = 1000;
 
     final public int HIGH_BAR_TOP = 700;
     public final int SPECIMEN_RECIEVE = 100;
@@ -34,9 +34,9 @@ public class OuttakeSystem {
 //    final public double //eftUp = 0.01;
 //    final public double //eftAngle = 0.01;
 //    final public double //eftDown = 0.00;
-    final public double rotateRightUp = 0.12;
-    final public double rotateRightAngle = 0.2;
-    final public double rotateRightDown = 0.6;
+    final public double rotateRightUp = 0.5;
+    final public double rotateRightAngle = 0.58;
+    final public double rotateRightDown = 0.85;
 
     //TODO: FIND TIMER VALUES
     final public int slideTimer = 350;
