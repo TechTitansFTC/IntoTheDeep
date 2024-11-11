@@ -1,19 +1,12 @@
-package org.firstinspires.ftc.teamcode.TeleOp;
+package org.firstinspires.ftc.teamcode.testingFiles;
 
 import static java.lang.Math.signum;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 //import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
-import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
 import org.firstinspires.ftc.teamcode.MotorPowerAuton.MotorPower;
-
-import java.util.concurrent.TimeUnit;
 
 @TeleOp
 public class TurnDegTest extends LinearOpMode {

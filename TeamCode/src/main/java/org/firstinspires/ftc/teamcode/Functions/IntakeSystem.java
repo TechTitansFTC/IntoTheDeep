@@ -6,8 +6,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import java.util.concurrent.TimeUnit;
-
 public class IntakeSystem {
 
     private Servo slidesL;
@@ -19,22 +17,15 @@ public class IntakeSystem {
 
     ElapsedTime timer = new ElapsedTime();
 
-    //TODO: find the slide values
-//    public final double leftSlidesOut = 0.15; - this is the correct value
-//    public final double leftSlidesIn = 0.55; - this is the correct value
-//    public final double rightSlidesOut = 0.4; - this is the correct value
-//    public final double rightSlidesIn = 0; - this is the correct value
-    public final double slidesOut = 0.75;
-    public final double slidesIn = 0.3;
+    public final double leftSlidesOut = 0.15;// - this is the correct value
+    public final double leftSlidesIn = 0.55;// - this is the correct value
+    public final double rightSlidesOut = 0.4;// - this is the correct value
+    public final double rightSlidesIn = 0; //- this is the correct value
 
-    private final double leftRotateDown = 0.8;
-    private final double leftRotateUp = 0.4;
+    private final double leftRotateDown = 0.8; //tested correct
+    private final double leftRotateUp = 0.4; // tested correctly
+    private final double leftRotateSteady = 0.7;
 
-//    private final double rightRotateDown = 0.32;
-//    private final double rightRotateUp = 0.73;
-
-    private final double leftRotateSteady = 0.75;
-    private final double rightRotateSteady = 0.42;
 
 
     //TODO: find timer values
@@ -52,8 +43,8 @@ public class IntakeSystem {
     }
 
     public void init () {
-        slidesR.setPosition(slidesIn);
-        slidesL.setPosition(slidesIn);
+        slidesR.setPosition(rightSlidesIn);
+        slidesL.setPosition(leftSlidesIn);
         geckoR.setPower(0);
         geckoL.setPower(0);
 //        rotateR.setPosition(rightRotateUp);
@@ -63,22 +54,25 @@ public class IntakeSystem {
 
     public void slideToggle() {
         timer.reset();
-        if (slidesL.getPosition() == slidesIn && slidesR.getPosition() == slidesIn) {
-            slidesR.setPosition(slidesOut);
-            slidesL.setPosition(slidesOut);
-        } else if (slidesL.getPosition() == slidesOut && slidesR.getPosition() == slidesOut) {
-            slidesL.setPosition(slidesIn);
-            slidesR.setPosition(slidesIn);
+        if (slidesL.getPosition() == leftSlidesIn && slidesR.getPosition() == rightSlidesIn) {
+            slidesR.setPosition(rightSlidesOut);
+            slidesL.setPosition(leftSlidesOut);
+        } else if (slidesL.getPosition() == leftSlidesOut && slidesR.getPosition() == rightSlidesOut) {
+            slidesL.setPosition(leftSlidesIn);
+            slidesR.setPosition(rightSlidesIn);
         }
         while (timer.milliseconds() < slideTimer) {
 
         }
     }
 
-    public void slideSet(double position) {
-        if (slidesL.getPosition()!= position && slidesR.getPosition() != position) {
-            slidesR.setPosition(position);
-            slidesL.setPosition(position);
+    public void slideSet(boolean O_I) {
+        if (O_I) {
+            slidesL.setPosition(leftSlidesOut);
+            slidesR.setPosition(rightSlidesOut);
+        } else {
+            slidesL.setPosition(leftSlidesIn);
+            slidesR.setPosition(rightSlidesIn);
         }
     }
 
