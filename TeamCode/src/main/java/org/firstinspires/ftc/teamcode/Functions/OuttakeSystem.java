@@ -35,8 +35,7 @@ public class OuttakeSystem {
 //    final public double //eftAngle = 0.01;
 //    final public double //eftDown = 0.00;
     final public double rotateRightUp = 0.5;
-    final public double rotateRightAngle = 0.58;
-    final public double rotateRightDown = 0.85;
+    final public double rotateRightDown = 0.87;
 
     //TODO: FIND TIMER VALUES
     final public int slideTimer = 350;
@@ -59,11 +58,10 @@ public class OuttakeSystem {
 //        slidesR.setTargetPosition(slideDown);
 //        slidesL.setPower(1);
 //        slidesR.setPower(1);
+        rotateR.setPosition(rotateRightUp);
 
         Claw.setPosition(clawClosed);
 
-//        //.setPosition(//eftDown);
-        rotateR.setPosition(rotateRightAngle);
     }
 
 
@@ -85,17 +83,8 @@ public class OuttakeSystem {
 
     public void rotateDown() {
         timer.reset();
-        rotateR.setPosition(rotateRightAngle);
-//        //.setPosition(//eftAngle);
-        while (timer.milliseconds() < rotateTimer) {
-
-        }
-    }
-
-    public void rotateTrueDown() {
-        timer.reset();
         rotateR.setPosition(rotateRightDown);
-//        //.setPosition(//eftDown);
+//        //.setPosition(//eftAngle);
         while (timer.milliseconds() < rotateTimer) {
 
         }
@@ -121,24 +110,6 @@ public class OuttakeSystem {
         else{
             rotateR.setPosition(rotateRightDown);
 //            //.setPosition(//eftDown);
-        }
-    }
-
-    //TODO: make a better toggle / make it work with all 3 values (for now i janked it to work with angle)
-    public void rotateToggle() {
-        timer.reset();
-        if (rotateR.getPosition() == rotateRightAngle
-//                && //.getPosition() == //eftDown
-        ) {
-            rotateUp();
-        } else if (rotateR.getPosition() == rotateRightUp
-
-//             &&   //.getPosition() == //eftUp
-                ) {
-            rotateDown();
-        }
-        while (timer.milliseconds() < rotateTimer) {
-
         }
     }
 

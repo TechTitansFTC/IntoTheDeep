@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 //import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
-import org.firstinspires.ftc.teamcode.MotorPowerAuton.MotorPower;
+import org.firstinspires.ftc.teamcode.Functions.MotorPower;
 
 @TeleOp
 public class TurnDegTest extends LinearOpMode {

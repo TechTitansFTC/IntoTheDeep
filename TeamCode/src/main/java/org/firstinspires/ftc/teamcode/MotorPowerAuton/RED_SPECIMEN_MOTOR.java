@@ -2,15 +2,11 @@ package org.firstinspires.ftc.teamcode.MotorPowerAuton;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.CRServo;
-import org.firstinspires.ftc.teamcode.MotorPowerAuton.MotorPower;
+
+import org.firstinspires.ftc.teamcode.Functions.MotorPower;
 
 //import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
-import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
+
 
 @Config()
 @Autonomous(name = "RED_SPECIMEN_MOTOR", group = "MOTOR_POWER")

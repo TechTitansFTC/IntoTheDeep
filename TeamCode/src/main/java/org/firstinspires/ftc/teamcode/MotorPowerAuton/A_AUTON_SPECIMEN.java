@@ -5,9 +5,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IMU;
-import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
 
-import java.util.concurrent.TimeUnit;
+import org.firstinspires.ftc.teamcode.Functions.MotorPower;
+import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
 
 @Autonomous(name = "A_AUTON_SPECIMEN")
 public class A_AUTON_SPECIMEN extends LinearOpMode {
@@ -33,7 +33,7 @@ public class A_AUTON_SPECIMEN extends LinearOpMode {
         if (isStopRequested()) return;
         outtake.init();
 
-        while (opModeIsActive()) {
+        if (opModeIsActive()) {
             //lift slides
             outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -45,7 +45,7 @@ public class A_AUTON_SPECIMEN extends LinearOpMode {
 
             //move to bar
             m.move(-0.5,1700);
-            m.move(0.5,80);
+            m.move(0.5,90);
             sleep(250);
 
             //lift slides down and score
@@ -55,6 +55,8 @@ public class A_AUTON_SPECIMEN extends LinearOpMode {
             outtake.getSlidesR().setPower(0);
             outtake.getSlidesL().setPower(0);
             outtake.clawOpen();
+            sleep(250);
+            outtake.clawClosed();
             outtake.rotateDown();
 
             //Go into park for 2nd pickup
@@ -62,13 +64,30 @@ public class A_AUTON_SPECIMEN extends LinearOpMode {
             m.turnP(0.5,1050);
             m.move(-0.5,1200);
             m.strafe(1,1200);
-            m.move(0.5, 120);
+            sleep(1000);
+            m.move(0.5, 200);
+            sleep(1000);
             outtake.rotateUp();
+            outtake.clawOpen();
+            m.move(0.5, -200);
+            sleep(1000);
             outtake.clawClosed();
+            m.move(0.5, 200);
 
             //Go back to set position for score
             m.turnP(-0.5,1050);
-            m.strafe(1,700);
+
+            //lift slides
+            outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            outtake.getSlidesR().setPower(1);
+            outtake.getSlidesL().setPower(1);
+            sleep(1230);
+            outtake.getSlidesR().setPower(0);
+            outtake.getSlidesL().setPower(0);
+
+            //strafe to pos
+            m.strafe(1,900);
 
             //Everything below this is a copy of previous values so if u update something above also update it here
             //move to bar
