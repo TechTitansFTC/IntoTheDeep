@@ -22,7 +22,7 @@ import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
 import org.firstinspires.ftc.teamcode.tuningVal.MecanumDrive;
 
 @Config
-@Autonomous(name = "DO_NOT_RUN", group = "Autonomous")
+@Autonomous(name = "KYS", group = "Autonomous")
 public class RED_SPECIMEN extends LinearOpMode {
     // need to create action classes
 

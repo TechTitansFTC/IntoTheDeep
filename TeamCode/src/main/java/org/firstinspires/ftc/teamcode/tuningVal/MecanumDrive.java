@@ -41,10 +41,10 @@ import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
-import org.firstinspires.ftc.teamcode.messages.DriveCommandMessage;
-import org.firstinspires.ftc.teamcode.messages.MecanumCommandMessage;
-import org.firstinspires.ftc.teamcode.messages.MecanumLocalizerInputsMessage;
-import org.firstinspires.ftc.teamcode.messages.PoseMessage;
+import org.firstinspires.ftc.teamcode.tuning.messages.DriveCommandMessage;
+import org.firstinspires.ftc.teamcode.tuning.messages.MecanumCommandMessage;
+import org.firstinspires.ftc.teamcode.tuning.messages.MecanumLocalizerInputsMessage;
+import org.firstinspires.ftc.teamcode.tuning.messages.PoseMessage;
 
 import java.lang.Math;
 import java.util.Arrays;
@@ -68,7 +68,7 @@ public final class MecanumDrive {
         // feedforward parameters (in tick units)
         public double kS = 1.3763267638471502;
         public double kV =  0.0004681083902564442;
-        public double kA = 0.000075;
+        public double kA = 0.000001;
 
         // path profile parameters (in inches)
         public double maxWheelVel = 50;
@@ -80,9 +80,9 @@ public final class MecanumDrive {
         public double maxAngAccel = Math.PI;
 
         // path controller gains
-        public double axialGain = 6;
-        public double lateralGain = 5;
-        public double headingGain = 8; // shared with turn
+        public double axialGain = 1;
+        public double lateralGain = 1;
+        public double headingGain = 1; // shared with turn
 
         public double axialVelGain = 0.0;
         public double lateralVelGain = 0.0;

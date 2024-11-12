@@ -39,6 +39,8 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
 
 
 
+
+
         OuttakeSystem outtake = new OuttakeSystem(hardwareMap);
 //        IntakeSystem intake = new IntakeSystem(hardwareMap);
         backRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -50,237 +52,200 @@ public class SPECIMEN_AUTON_MAIN extends LinearOpMode {
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
 
+        double power = 0.3;
+
+
+//      methods
+
+//        private void backward(int i) {
+//            frontRightDrive.setPower(power);
+//            backRightDrive.setPower(power);
+//            frontLeftDrive.setPower(power);
+        //          backLeftDrive.setPower(power);
+        //        sleep(i);
+        //      backLeftDrive.setPower(0);
+        //    backRightDrive.setPower(0);
+        //  frontLeftDrive.setPower(0);
+        //frontRightDrive.setPower(0);
+//        }
+
+//        public void movingBack(int i)
+//        {
+//            frontRightDrive.setPower(power);
+//            backRightDrive.setPower(power);
+//            frontLeftDrive.setPower(power);
+//            backLeftDrive.setPower(power);
+//            sleep(i);
+//            backLeftDrive.setPower(0);
+//            backRightDrive.setPower(0);
+//            frontLeftDrive.setPower(0);
+//            frontRightDrive.setPower(0);
+//        }
 
 
 
-        // Put initialization blocks here
+
         waitForStart();
-        // Put run blocks here
+
         outtake.init();
-//        //rotates backwards
-//        backLeftDrive.setPower(0.3);
-//        backRightDrive.setPower(-0.3);
-//        frontLeftDrive.setPower(0.3);
-//        frontRightDrive.setPower(-0.3);
-//        sleep(9500);
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-//        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-        //moves to bar
+
         outtake.getSlidesR().setPower(0.5);
         outtake.getSlidesL().setPower(0.5);
-        sleep(2300);//raises slides
+        sleep(1300);//raises slides
         outtake.getSlidesR().setPower(0);
         outtake.getSlidesL().setPower(0);
 
         sleep(500);
-        backLeftDrive.setPower(-0.3);
-        backRightDrive.setPower(-0.3);
-        frontLeftDrive.setPower(-0.3);
-        frontRightDrive.setPower(-0.3);
-        sleep(1500);//forward to rail
-        frontRightDrive.setPower(0);
-        backLeftDrive.setPower(0);
-        backRightDrive.setPower(0);
-        frontLeftDrive.setPower(0);
-        backLeftDrive.setPower(0.3);
-        backRightDrive.setPower(0.3);
-        frontLeftDrive.setPower(0.3);
-        frontRightDrive.setPower(0.3);
-        sleep(200);
-        frontRightDrive.setPower(0);
-        backLeftDrive.setPower(0);
-        backRightDrive.setPower(0);
-        frontLeftDrive.setPower(0);
 
+
+        frontRightDrive.setPower(power);
+        backRightDrive.setPower(-power);
+        frontLeftDrive.setPower(-power);
+        backLeftDrive.setPower(power);
+        sleep(2000); //moves to bar
+        frontRightDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+        backLeftDrive.setPower(0);
+
+        frontRightDrive.setPower(power);
+        backRightDrive.setPower(power);
+        frontLeftDrive.setPower(power);
+        backLeftDrive.setPower(power);
+        sleep(200); //goes back by a little
+        frontRightDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+        backLeftDrive.setPower(0);
 
         outtake.getSlidesR().setPower(-0.5);
         outtake.getSlidesL().setPower(-0.5);
-        sleep(1300);
+        sleep(1300); //lowers slides
         outtake.getSlidesR().setPower(0);
         outtake.getSlidesL().setPower(0);
-        outtake.clawOpen();
 
-        backLeftDrive.setPower(0.3);
-        backRightDrive.setPower(-0.3);
-        frontLeftDrive.setPower(0.3);
-        frontRightDrive.setPower(-0.3);
-        sleep(2000);
-        backLeftDrive.setPower(0);
-        backRightDrive.setPower(0);
-        frontLeftDrive.setPower(0);
+        //outtake.clawOpen();
+
+        frontRightDrive.setPower(power);
+        backRightDrive.setPower(power);
+        frontLeftDrive.setPower(-power);
+        backLeftDrive.setPower(-power);
+        sleep(2100); //turns around
         frontRightDrive.setPower(0);
-        frontRightDrive.setPower(-0.3);
-        backLeftDrive.setPower(-0.3);
-        frontLeftDrive.setPower(-0.3);
-        backRightDrive.setPower(-0.3);
-        sleep(3000);
-        backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
-        frontRightDrive.setPower(-0.3);
-        backLeftDrive.setPower(-0.3);
-        frontLeftDrive.setPower(0.3);
-        backRightDrive.setPower(0.3);
-        sleep(4000);
+        backLeftDrive.setPower(0);
+
+        frontRightDrive.setPower(-power);
+        backRightDrive.setPower(-power);
+        frontLeftDrive.setPower(-power);
+        backLeftDrive.setPower(-power);
+        sleep(500); //approaches wall
         frontRightDrive.setPower(0);
-        backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
-        frontRightDrive.setPower(-0.3);
-        backLeftDrive.setPower(-0.3);
-        frontLeftDrive.setPower(-0.3);
-        backRightDrive.setPower(-0.3);
-        sleep(1000);
+        backLeftDrive.setPower(0);
+
+        frontRightDrive.setPower(power);
+        backRightDrive.setPower(-power);
+        frontLeftDrive.setPower(-power);
+        backLeftDrive.setPower(power);
+        sleep(1000); //strafes left
         frontRightDrive.setPower(0);
-        backLeftDrive.setPower(0);
         backRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
+        backLeftDrive.setPower(0);
+
+        frontRightDrive.setPower(-power);
+        backRightDrive.setPower(-power);
+        frontLeftDrive.setPower(-power);
+        backLeftDrive.setPower(-power);
+        sleep(300); //little back
+        frontRightDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+        backLeftDrive.setPower(0);
+
+        outtake.clawClosed();
+
+        outtake.getSlidesR().setPower(0.5);
+        outtake.getSlidesL().setPower(0.5);
+        sleep(1300);//raises slides
+        outtake.getSlidesR().setPower(0);
+        outtake.getSlidesL().setPower(0);
+
+        sleep(500);
+
+        frontRightDrive.setPower(power);
+        backRightDrive.setPower(power);
+        frontLeftDrive.setPower(power);
+        backLeftDrive.setPower(power);
+        sleep(300); //little forward
+        frontRightDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+        backLeftDrive.setPower(0);
+
+        frontRightDrive.setPower(-power);
+        backRightDrive.setPower(power);
+        frontLeftDrive.setPower(power);
+        backLeftDrive.setPower(-power);
+        sleep(300); //strafes right
+        frontRightDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+        backLeftDrive.setPower(0);
+
+        frontRightDrive.setPower(-power);
+        backRightDrive.setPower(-power);
+        frontLeftDrive.setPower(power);
+        backLeftDrive.setPower(power);
+        sleep(2000); //turns around
+        frontRightDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+        backLeftDrive.setPower(0);
+
+        frontRightDrive.setPower(-power);
+        backRightDrive.setPower(-power);
+        frontLeftDrive.setPower(-power);
+        backLeftDrive.setPower(-power);
+        sleep(1800); //approaches bar
+        frontRightDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+        backLeftDrive.setPower(0);
+
+
+        frontRightDrive.setPower(power);
+        backRightDrive.setPower(power);
+        frontLeftDrive.setPower(power);
+        backLeftDrive.setPower(power);
+        sleep(2000); //little back
+        frontRightDrive.setPower(0);
+        backRightDrive.setPower(0);
+        frontLeftDrive.setPower(0);
+        backLeftDrive.setPower(0);
+
+        outtake.getSlidesR().setPower(-0.5);
+        outtake.getSlidesL().setPower(-0.5);
+        sleep(1300);//lowers slides
+        outtake.getSlidesR().setPower(0);
+        outtake.getSlidesL().setPower(0);
+
+        sleep(500);
+
+        //specimen 3
 
 
 
 
-        sleep(1000);//brake to place specimen
-//        //rotates to human player
-//        backLeftDrive.setPower(0.3);
-//        backRightDrive.setPower(-0.3);
-//        frontLeftDrive.setPower(0.3);
-//        frontRightDrive.setPower(-0.3);
-//        sleep(400);
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-//        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-//        //moves to human player
-//        backLeftDrive.setPower(-0.3);
-//        backRightDrive.setPower(-0.3);
-//        frontLeftDrive.setPower(-0.3);
-//        frontRightDrive.setPower(-0.3);
-//        sleep(1000);
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-//        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-//        //rotates to pick up the speciman
-//        backLeftDrive.setPower(0.3);
-//        backRightDrive.setPower(-0.3);
-//        frontLeftDrive.setPower(0.3);
-//        frontRightDrive.setPower(-0.3);
-//        sleep(400);
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-//        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-//        //moves forward to pick up speciman
-//        backLeftDrive.setPower(-0.3);
-//        backRightDrive.setPower(-0.3);
-//        frontLeftDrive.setPower(-0.3);
-//        frontRightDrive.setPower(-0.3);
-//        sleep(100);
-//        //gives break to pick up speciman
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-//        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-//
-//        outtake.pickUp();
 
-//        sleep(300);
-//        //moves back from the specimen, after picking it up
-//        backLeftDrive.setPower(0.3);
-//        backRightDrive.setPower(0.3);
-//        frontLeftDrive.setPower(0.3);
-//        frontRightDrive.setPower(0.3);
-//        sleep(100);
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-//        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-//        //rotates to the bar
-//        backLeftDrive.setPower(0.3);
-//        backRightDrive.setPower(-0.3);
-//        frontLeftDrive.setPower(0.3);
-//        frontRightDrive.setPower(-0.3);
-//        sleep(800);
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-////        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-//        //moves to the bar
-//        backLeftDrive.setPower(-0.3);
-//        backRightDrive.setPower(-0.3);
-//        frontLeftDrive.setPower(-0.3);
-//        frontRightDrive.setPower(-0.3);
-//        sleep(940);
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-//        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-//        //rotates to align with the bar
-//        backLeftDrive.setPower(0.3);
-//        backRightDrive.setPower(-0.3);
-//        frontLeftDrive.setPower(0.3);
-//        frontRightDrive.setPower(-0.3);
-//        sleep(50);
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-//        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-//        //moves to bar to drop specimen #2
-//        backLeftDrive.setPower(-0.3);
-//        backRightDrive.setPower(-0.3);
-//        frontLeftDrive.setPower(-0.3);
-//        frontRightDrive.setPower(-0.3);
-//        sleep(100);
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-//        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-//
-//        outtake.topBarDeposit();
 
-//        //moves away from the bar to rotate
-//        backLeftDrive.setPower(0.3);
-//        backRightDrive.setPower(0.3);
-//        frontLeftDrive.setPower(0.3);
-//        frontRightDrive.setPower(0.3);
-//        sleep(100);
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-//        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-        //rotates back to human player
-//        backLeftDrive.setPower(-0.3);
-//        backRightDrive.setPower(0.3);
-//        frontLeftDrive.setPower(-0.3);
-//        frontRightDrive.setPower(0.3);
-//        sleep(450);
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-//        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-//        //moves to human player to PARk
-//        backLeftDrive.setPower(0.3);
-//        backRightDrive.setPower(0.3);
-//        frontLeftDrive.setPower(0.3);
-//        frontRightDrive.setPower(0.3);
-//        sleep(1500);
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-//        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-//        //rotates so that field centric works
-//        backLeftDrive.setPower(-0.3);
-//        backRightDrive.setPower(0.3);
-//        frontLeftDrive.setPower(-0.3);
-//        frontRightDrive.setPower(0.3);
-//        sleep(650);
-//        frontRightDrive.setPower(0);
-//        backLeftDrive.setPower(0);
-//        backRightDrive.setPower(0);
-//        frontLeftDrive.setPower(0);
-//        backLeftDrive.setPower(-1)
+
+
+
     }
+
 
 }
