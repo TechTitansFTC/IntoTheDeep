@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.MotorPowerAuton;
+package org.firstinspires.ftc.teamcode.Autonomous.MotorPowerAuton;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
