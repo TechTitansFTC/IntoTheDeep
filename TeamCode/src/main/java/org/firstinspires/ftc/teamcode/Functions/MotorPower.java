@@ -46,6 +46,25 @@ public class MotorPower  {
         }
     }
 
+    public void strafel(double pwr, int t){
+        time.reset();
+        FR.setPower(pwr);
+        BR.setPower(-pwr);
+        FL.setPower(-pwr);
+        BL.setPower(pwr);
+        while (time.milliseconds() < t){
+
+        }
+        FR.setPower(0);
+        BR.setPower(0);
+        FL.setPower(0);
+        BL.setPower(0);
+        time.reset();
+        while (time.milliseconds() < 100){
+
+        }
+    }
+
     public void turnP(double pwr, int t){
         time.reset();
         FR.setPower(pwr);

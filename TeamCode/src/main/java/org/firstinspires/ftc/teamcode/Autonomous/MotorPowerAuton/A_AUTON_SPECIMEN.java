@@ -61,9 +61,9 @@ public class A_AUTON_SPECIMEN extends LinearOpMode {
 
             //Go into park for 2nd pickup
             m.move(0.5,300);
-            m.turnP(0.5,1050);
-            m.move(-0.5,1200);
-            m.strafe(1,1200);
+            m.turnP(0.5,1150);
+            m.move(-0.5,1100);
+            m.strafe(1,1100);
             sleep(1000);
             m.move(0.5, 200);
             sleep(1000);
@@ -72,10 +72,16 @@ public class A_AUTON_SPECIMEN extends LinearOpMode {
             m.move(0.5, -200);
             sleep(1000);
             outtake.clawClosed();
-            m.move(0.5, 200);
+            m.move(0.5, 350);
+            outtake.clawOpen();
+            sleep(1000);
+            m.move(-0.5, 300);
+            outtake.clawClosed();
+
 
             //Go back to set position for score
-            m.turnP(-0.5,1050);
+            m.strafel(0.5, 300);
+            m.turnP(-0.5,1150);
 
             //lift slides
             outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -87,7 +93,7 @@ public class A_AUTON_SPECIMEN extends LinearOpMode {
             outtake.getSlidesL().setPower(0);
 
             //strafe to pos
-            m.strafe(1,900);
+            m.strafe(1,1000);
 
             //Everything below this is a copy of previous values so if u update something above also update it here
             //move to bar
@@ -106,8 +112,8 @@ public class A_AUTON_SPECIMEN extends LinearOpMode {
 
             //Park
             m.move(0.5,300);
-            m.turnP(0.5,1050);
-            m.move(-0.5,1200);
+            m.turnP(0.5,1150);
+            m.move(-0.5,1100);
             m.strafe(1,1200);
         }
     }
