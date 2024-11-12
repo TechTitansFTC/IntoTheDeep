@@ -12,7 +12,7 @@ public class MotorPower  {
     private  DcMotor BL;//1
     private  DcMotor BR;//2
     private  DcMotor FR;//3
-    private final double MS_PER_DEG = 3.802469135;//380/90  980/270 1280/360 710/180
+    private final double MS_PER_DEG = 5.83333333333333333; // 1050 / 180
 
     public MotorPower(HardwareMap map) {
         this.FL = (DcMotor) map.get("frontLeft");
