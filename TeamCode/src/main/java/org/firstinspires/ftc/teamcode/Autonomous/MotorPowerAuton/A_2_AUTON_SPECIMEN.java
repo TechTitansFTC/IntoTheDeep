@@ -9,16 +9,13 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.teamcode.Functions.MotorPower;
 import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
 
-@Autonomous(name = "A_AUTON_SPECIMEN")
-public class A_AUTON_SPECIMEN extends LinearOpMode {
+@Autonomous(name = "A_2_AUTON_SPECIMEN")
+public class A_2_AUTON_SPECIMEN extends LinearOpMode {
     DcMotor backLeftDrive;
     DcMotor backRightDrive;
     DcMotor frontLeftDrive;
     DcMotor frontRightDrive;
     OuttakeSystem outtake;
-
-
-    IMU imu;
 
     @Override
     public void runOpMode() throws InterruptedException {
