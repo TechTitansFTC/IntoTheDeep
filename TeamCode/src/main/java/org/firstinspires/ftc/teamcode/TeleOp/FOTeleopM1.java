@@ -148,27 +148,27 @@ public class FOTeleopM1 extends LinearOpMode {
 //                outtake.getSlidesR().setPower(0);
 //                outtake.getSlidesL().setPower(0);
 //            }
-            if (gamepad2.left_bumper) {
-                outtake.clawOpen();
-            }
-            if (gamepad2.left_trigger > 0) {
-                outtake.rotateUp();
-            }
-            if (gamepad2.right_bumper) {
-                outtake.clawClosed();
-            }
-            if (gamepad2.right_trigger > 0) {
-                outtake.rotateDown();
-            }
+//            if (gamepad2.left_bumper) {
+//                outtake.clawOpen();
+//            }
+//            if (gamepad2.left_trigger > 0) {
+//                outtake.rotateUp();
+//            }
+//            if (gamepad2.right_bumper) {
+//                outtake.clawClosed();
+//            }
+//            if (gamepad2.right_trigger > 0) {
+//                outtake.rotateDown();
+//            }
             //TODO: setup manual control slides
             if (gamepad2.y) {
-                intake.slideSet(true);
+                intake.slideSet(true); //makes the slides extend
             }
             if (gamepad2.a) {
-                intake.slideSet(false);
+                intake.slideSet(false); //makes the slides retract
             }
             if (gamepad2.right_trigger > 0) {
-                intake.rotateToggle();
+                intake.rotateToggle(); //rotates intake down and up toggle
             }
             if (gamepad2.right_bumper) {
                 if (notReverse) {
