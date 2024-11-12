@@ -31,9 +31,9 @@ public class OuttakeSystem {
     final public double clawClosed = 0.55;
 
     //TODO: FIND THE LEFT ROTATE SERVO VALS
-//    final public double //eftUp = 0.01;
-//    final public double //eftAngle = 0.01;
-//    final public double //eftDown = 0.00;
+//    final public double rotateLeftUp = 0.01;
+//    final public double rotateLeftAngle = 0.01;
+//    final public double rotateLeftDown = 0.00;
     final public double rotateRightUp = 0.5;
     final public double rotateRightDown = 0.87;
 
@@ -45,7 +45,7 @@ public class OuttakeSystem {
         this.slidesL = (DcMotorEx) map.get("outtakeLeft");
         this.slidesR = (DcMotorEx) map.get("outtakeRight");
         this.Claw = map.servo.get("outClaw");
-//        this.// = map.servo.get("out//");
+//        this.rotateL = map.servo.get("outrotateL");
         this.rotateR = map.servo.get("outRotateR");
     }
 
@@ -75,7 +75,7 @@ public class OuttakeSystem {
     public void rotateUp() {
         timer.reset();
         rotateR.setPosition(rotateRightUp);
-//        //.setPosition(//eftUp);
+//        rotateL.setPosition(rotateLeftUp);
         while (timer.milliseconds() < rotateTimer) {
 
         }
@@ -84,7 +84,7 @@ public class OuttakeSystem {
     public void rotateDown() {
         timer.reset();
         rotateR.setPosition(rotateRightDown);
-//        //.setPosition(//eftAngle);
+//        rotateL.setPosition(rotateLeftAngle);
         while (timer.milliseconds() < rotateTimer) {
 
         }
@@ -102,14 +102,14 @@ public class OuttakeSystem {
     public void rotateSet(int UD) {
         timer.reset();
         if (UD > 0 && rotateR.getPosition() == rotateRightDown
-//                && //.getPosition() == //eftDown
+//                && rotateL.getPosition() == rotateLeftDown
         ) {
             rotateR.setPosition(rotateRightUp);
-//            //.setPosition(//eftUp);
+//            rotateL.setPosition(rotateLeftUp);
         }
         else{
             rotateR.setPosition(rotateRightDown);
-//            //.setPosition(//eftDown);
+//            rotateL.setPosition(rotateLeftDown);
         }
     }
 
