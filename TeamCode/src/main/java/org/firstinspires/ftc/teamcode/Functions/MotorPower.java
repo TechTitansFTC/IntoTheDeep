@@ -12,7 +12,8 @@ public class MotorPower  {
     private  DcMotor BL;//1
     private  DcMotor BR;//2
     private  DcMotor FR;//3
-    private final double MS_PER_DEG = 5.83333333333333333; // 1050 / 180
+    private final double MS_PER_DEG = 5.83333333333333333; // 1050 / 180 - FOR 0.5 POWER
+    private final double MS_PER_IN = 15.9574468; // 750 / 47 -
 
     public MotorPower(HardwareMap map) {
         this.FL = (DcMotor) map.get("frontLeft");
@@ -46,7 +47,7 @@ public class MotorPower  {
         }
     }
 
-    public void strafel(double pwr, int t){
+    public void strafeL(double pwr, int t){
         time.reset();
         FR.setPower(pwr);
         BR.setPower(-pwr);
@@ -64,6 +65,7 @@ public class MotorPower  {
 
         }
     }
+
 
     public void turnP(double pwr, int t){
         time.reset();
