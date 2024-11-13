@@ -4,7 +4,6 @@ package org.firstinspires.ftc.teamcode.Autonomous.MotorPowerAuton;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Functions.MotorPower;
@@ -38,17 +37,16 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
             //lift slides
             outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            timer.reset();
             outtake.getSlidesR().setPower(1);
             outtake.getSlidesL().setPower(1);
-            if (timer.milliseconds() > 1230) {
-                outtake.getSlidesR().setPower(0);
-                outtake.getSlidesL().setPower(0);
-            }
+            sleep(1230);
+            outtake.getSlidesR().setPower(0);
+            outtake.getSlidesL().setPower(0);
 
             //move to bar
-            m.move(-0.5,1700);
-            m.move(0.5,90);
+            m.move(-1.0,750);
+            m.move(1,90);
+            sleep(250);
 
             //lift slides down and score
             outtake.getSlidesR().setPower(-1);
@@ -57,28 +55,23 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
             outtake.getSlidesR().setPower(0);
             outtake.getSlidesL().setPower(0);
             outtake.clawOpen();
-            sleep(100);
+            sleep(250);
             outtake.clawClosed();
             outtake.rotateDown();
 
-            //Move to observation zone
-            //TODO: Adjust the next 4 lines to be a turn and diagonal movement
-            //TODO: Will need to adjust the motor power to make it diagonally move and turn together
-            m.move(0.5,300);
-            m.turnP(0.5,1150);
-            m.move(-0.5,1100);
-            m.strafe(1,1100);
-
-            //go back for pickup
+            //Go into park for 2nd pickup
+            m.turnP(1.0,500);
+            m.move(-1,350);
+            m.strafe(1.0, 650);
             sleep(1000);
             m.move(0.5, 200);
             sleep(1000);
             outtake.rotateUp();
             outtake.clawOpen();
-            m.move(0.5, -200);
+            m.move(-0.5, 200);
             sleep(1000);
             outtake.clawClosed();
-            m.move(0.5, 350);
+            m.move(0.5, 550);
             outtake.clawOpen();
             sleep(1000);
             m.move(-0.5, 300);
@@ -86,8 +79,8 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
 
 
             //Go back to set position for score
-            m.strafel(0.5, 300);
-            m.turnP(-0.5,1150);
+            m.strafeL(1, 300);
+            m.turnP(1.0,500);
 
             //lift slides
             outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -99,12 +92,12 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
             outtake.getSlidesL().setPower(0);
 
             //strafe to pos
-            m.strafe(1,1000);
+            m.strafe(1.0, 950);
 
             //Everything below this is a copy of previous values so if u update something above also update it here
             //move to bar
-            m.move(-0.5,1700);
-            m.move(0.5,80);
+            m.move(-1.0,1050);
+            m.move(1,80);
             sleep(250);
 
             //lift slides down and score
@@ -116,19 +109,18 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
             outtake.clawOpen();
             outtake.rotateDown();
 
-            //Park
-            m.move(0.5,300);
-            m.turnP(0.5,1150);
-            m.move(-0.5,1100);
-            m.strafe(1,1000);
+
 
             //Pick up 3
-            m.move(0.5, 2000);
-            m.turnP(0.5, 1150);
-            m.strafel(0.5, 200);
-            m.move(0.5, 1700);
+            m.move(1,200);
+            m.strafe(1,350);
+            m.move(-1.0,400);
+            m.strafe(1, 300);
+            m.move(1.0,850);
             m.move(-0.5, 300);
-            m.turnP(0.5, 1150);
+            m.turnP(1.0,500);
+            sleep(1000);
+            outtake.rotateUp();
             outtake.clawOpen();
             m.move(-0.5,300);
             outtake.clawClosed();
@@ -144,9 +136,9 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
 
             //go to score
             m.move(.5,300);
-            m.turnP(.5,1150);
-            m.strafe(.5,1000);
-            m.move(-.5, 1100);
+            m.turnP(1.0,500);
+            m.strafe(1.0, 950);
+            m.move(-1.0,950);
             m.move(.5, 90);
 
             //slides down
@@ -161,10 +153,9 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
             outtake.rotateDown();
 
             //park
-            m.move(0.5,300);
-            m.turnP(0.5,1150);
-            m.move(-0.5,1100);
-            m.strafe(1,1200);
+            m.move(1,300);
+            m.turnP(1.0,950);
+
         }
     }
 }
