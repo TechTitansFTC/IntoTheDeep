@@ -4,7 +4,6 @@ package org.firstinspires.ftc.teamcode.Autonomous.MotorPowerAuton;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.teamcode.Functions.MotorPower;
 import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
@@ -77,7 +76,7 @@ public class A_2_AUTON_SPECIMEN extends LinearOpMode {
 
 
             //Go back to set position for score
-            m.strafel(0.5, 300);
+            m.strafeL(0.5, 300);
             m.turnP(-0.5,1150);
 
             //lift slides
