@@ -44,7 +44,7 @@ public class A_4_AUTON_SPECIMEN extends LinearOpMode {
             outtake.getSlidesL().setPower(0);
 
             //move to bar
-            m.move(-1.0,750);
+            m.move(-1.0,800);
             m.move(1,90);
             sleep(250);
 
@@ -113,16 +113,20 @@ public class A_4_AUTON_SPECIMEN extends LinearOpMode {
 
             //Pick up 3 and 4
             m.move(1,200);
-            m.strafe(1,350);
-            m.move(-1.0,400);
-            m.strafe(1, 300);
+            m.strafeL(1,500);
+            m.move(-1.0,500);
+            m.strafeL(1, 250);
             m.move(1.0,850);
-            m.move(-1.0,850);
-            m.strafe(1,300);
-            m.move(1, 850);
+            m.turnP(1.0,30);
+            sleep(500);
+            m.move(-1.0,750);
+            m.strafeL(1,300);
+            m.move(1, 950);
             m.move(-0.5, 300);
-            m.turnP(1.0,500);
+            m.turnP(1.0,600);
             sleep(1000);
+
+
             outtake.rotateUp();
             outtake.clawOpen();
             m.move(-0.5,300);
@@ -156,44 +160,48 @@ public class A_4_AUTON_SPECIMEN extends LinearOpMode {
             outtake.rotateDown();
 
             //score 2 ,3, and 4
-            for(int i = 0; i <= 3; i++) {
-                m.move(1, 300);
-                m.turnP(1.0, 500);
-                m.move(-1, 500);
-                m.strafe(1, 550);
-                m.move(1, 200);
-                outtake.clawOpen();
-                sleep(1000);
-                m.move(-1, 200);
-                outtake.clawClosed();
-                m.strafeL(1, 650);
-                m.move(1, 500);
-                m.turnP(1, 500);
+            m.move(1, 300);
+            m.turnP(1.0, 500);
+            m.move(-1, 500);
+            m.strafe(1, 650);
+            m.move(-1, 200);
+            outtake.clawOpen();
+            sleep(1000);
+            m.move(-1, 200);
+            outtake.clawClosed();
+            m.strafeL(1, 650);
+            m.move(1, 500);
+            m.turnP(1, 500);
 
                 //slides up
-                outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                outtake.getSlidesR().setPower(1);
-                outtake.getSlidesL().setPower(1);
-                sleep(1230);
-                outtake.getSlidesR().setPower(0);
-                outtake.getSlidesL().setPower(0);
+            outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            outtake.getSlidesR().setPower(1);
+            outtake.getSlidesL().setPower(1);
+            sleep(1230);
+            outtake.getSlidesR().setPower(0);
+            outtake.getSlidesL().setPower(0);
 
-                //score
-                m.move(-1, 300);
-                m.move(1, 90);
+            //score
+            m.move(-1, 300);
+            m.move(1, 90);
 
-                //slides down
-                outtake.getSlidesR().setPower(-1);
-                outtake.getSlidesL().setPower(-1);
-                sleep(1230);
-                outtake.getSlidesR().setPower(0);
-                outtake.getSlidesL().setPower(0);
-                outtake.clawOpen();
-                sleep(250);
-                outtake.clawClosed();
-                outtake.rotateDown();
-            }
+            //slides down
+            outtake.getSlidesR().setPower(-1);
+            outtake.getSlidesL().setPower(-1);
+            sleep(1230);
+            outtake.getSlidesR().setPower(0);
+            outtake.getSlidesL().setPower(0);
+            outtake.clawOpen();
+            sleep(250);
+            outtake.clawClosed();
+            outtake.rotateDown();
+
+            //go back
+            m.move(1.0, 300);
+            m.strafe(1.0,650 );
+            m.turnP(1.0,500);
+
 
 
 
