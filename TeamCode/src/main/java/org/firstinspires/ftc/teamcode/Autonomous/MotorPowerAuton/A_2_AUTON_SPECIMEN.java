@@ -4,21 +4,17 @@ package org.firstinspires.ftc.teamcode.Autonomous.MotorPowerAuton;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.teamcode.Functions.MotorPower;
 import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
 
-@Autonomous(name = "A_AUTON_SPECIMEN")
-public class A_AUTON_SPECIMEN extends LinearOpMode {
+@Autonomous(name = "A_2_AUTON_SPECIMEN")
+public class A_2_AUTON_SPECIMEN extends LinearOpMode {
     DcMotor backLeftDrive;
     DcMotor backRightDrive;
     DcMotor frontLeftDrive;
     DcMotor frontRightDrive;
     OuttakeSystem outtake;
-
-
-    IMU imu;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -61,9 +57,9 @@ public class A_AUTON_SPECIMEN extends LinearOpMode {
 
             //Go into park for 2nd pickup
             m.move(0.5,300);
-            m.turn(180);
-            m.move(-0.5,1200);
-            m.strafeR(1,1200);
+            m.turnP(0.5,1150);
+            m.move(-0.5,1100);
+            m.strafe(1,1100);
             sleep(1000);
             m.move(0.5, 200);
             sleep(1000);
@@ -72,11 +68,16 @@ public class A_AUTON_SPECIMEN extends LinearOpMode {
             m.move(0.5, -200);
             sleep(1000);
             outtake.clawClosed();
-            m.move(0.5, 200);
-            m.strafeL(0.5, 200);
+            m.move(0.5, 350);
+            outtake.clawOpen();
+            sleep(1000);
+            m.move(-0.5, 300);
+            outtake.clawClosed();
+
 
             //Go back to set position for score
-            m.turn(180);
+            m.strafeL(0.5, 300);
+            m.turnP(-0.5,1150);
 
             //lift slides
             outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -87,8 +88,8 @@ public class A_AUTON_SPECIMEN extends LinearOpMode {
             outtake.getSlidesR().setPower(0);
             outtake.getSlidesL().setPower(0);
 
-            //strafeR to pos
-            m.strafeR(1,900);
+            //strafe to pos
+            m.strafe(1,1000);
 
             //Everything below this is a copy of previous values so if u update something above also update it here
             //move to bar
@@ -107,9 +108,9 @@ public class A_AUTON_SPECIMEN extends LinearOpMode {
 
             //Park
             m.move(0.5,300);
-            m.turnP(0.5,1050);
-            m.move(-0.5,1200);
-            m.strafeR(1,1200);
+            m.turnP(0.5,1150);
+            m.move(-0.5,1100);
+            m.strafe(1,1200);
         }
     }
 }

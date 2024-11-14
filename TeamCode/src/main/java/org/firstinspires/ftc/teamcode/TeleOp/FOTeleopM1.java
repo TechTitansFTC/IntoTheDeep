@@ -114,40 +114,43 @@ public class FOTeleopM1 extends LinearOpMode {
             double backLeftPower = (rotY - rotX + rx) / denominator;
             double frontRightPower = (rotY - rotX - rx) / denominator;
             double backRightPower = (rotY + rotX - rx) / denominator;
+
+            //TODO: Fix adjusted driving settings
+            if(gamepad1.left_trigger > 0){
+                while(imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) != 0){
+                    frontLeftDrive.setPower(-1);
+                    backRightDrive.setPower(1);
+                }
+                frontLeftDrive.setPower(0);
+                backRightDrive.setPower(0);
+            }if(gamepad1.right_trigger > 0){
+                while(imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) != 0){
+                    frontRightDrive.setPower(-1);
+                    backLeftDrive.setPower(1);
+                }
+                frontLeftDrive.setPower(0);
+                backRightDrive.setPower(0);
+            }
+
             //TODO: fix outtake stuff
-//            if(gamepad1.left_trigger > 0){
-//                while(imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) != 0){
-//                    frontLeftDrive.setPower(-1);
-//                    backRightDrive.setPower(1);
-//                }
-//                frontLeftDrive.setPower(0);
-//                backRightDrive.setPower(0);
-//            }if(gamepad1.right_trigger > 0){
-//                while(imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) != 0){
-//                    frontRightDrive.setPower(-1);
-//                    backLeftDrive.setPower(1);
-//                }
-//                frontLeftDrive.setPower(0);
-//                backRightDrive.setPower(0);
-//            }
-//            if (gamepad2.dpad_up) {
-//                outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//                outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//                outtake.getSlidesR().setPower(1);
-//                outtake.getSlidesL().setPower(1);
-//                TimeUnit.MILLISECONDS.sleep(500);
-//                outtake.getSlidesR().setPower(0);
-//                outtake.getSlidesL().setPower(0);
-//            }
-//            if (gamepad2.dpad_down) {
-//                outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//                outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//                outtake.getSlidesR().setPower(-1);
-//                outtake.getSlidesL().setPower(-1);
-//                TimeUnit.MILLISECONDS.sleep(500);
-//                outtake.getSlidesR().setPower(0);
-//                outtake.getSlidesL().setPower(0);
-//            }
+            if (gamepad2.dpad_up) {
+                outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                outtake.getSlidesR().setPower(1);
+                outtake.getSlidesL().setPower(1);
+                TimeUnit.MILLISECONDS.sleep(500);
+                outtake.getSlidesR().setPower(0);
+                outtake.getSlidesL().setPower(0);
+            }
+            if (gamepad2.dpad_down) {
+                outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                outtake.getSlidesR().setPower(-1);
+                outtake.getSlidesL().setPower(-1);
+                TimeUnit.MILLISECONDS.sleep(500);
+                outtake.getSlidesR().setPower(0);
+                outtake.getSlidesL().setPower(0);
+            }
             if (gamepad2.left_bumper) {
                 outtake.clawOpen();
             }
@@ -160,15 +163,16 @@ public class FOTeleopM1 extends LinearOpMode {
             if (gamepad2.right_trigger > 0) {
                 outtake.rotateDown();
             }
-            //TODO: setup manual control slides
+
+            //TODO: setup manual control slides and fix intake button mapping
             if (gamepad2.y) {
-                intake.slideSet(true);
+                intake.slideSet(true); //makes the slides extend
             }
             if (gamepad2.a) {
-                intake.slideSet(false);
+                intake.slideSet(false); //makes the slides retract
             }
             if (gamepad2.right_trigger > 0) {
-                intake.rotateToggle();
+                intake.rotateToggle(); //rotates intake down and up toggle
             }
             if (gamepad2.right_bumper) {
                 if (notReverse) {
