@@ -67,7 +67,6 @@ public class FOTeleopM1 extends LinearOpMode {
 
         intake.init();
         outtake.init();
-//        double intakeSlidePos = intake.slidesIn;
 
         if (isStopRequested()) return;
 
@@ -115,25 +114,39 @@ public class FOTeleopM1 extends LinearOpMode {
             double frontRightPower = (rotY - rotX - rx) / denominator;
             double backRightPower = (rotY + rotX - rx) / denominator;
 
-            //TODO: Fix adjusted driving settings
-            if(gamepad1.left_trigger > 0){
-                while(imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) != 0){
-                    frontLeftDrive.setPower(-1);
-                    backRightDrive.setPower(1);
-                }
-                frontLeftDrive.setPower(0);
-                backRightDrive.setPower(0);
-            }if(gamepad1.right_trigger > 0){
-                while(imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS) != 0){
-                    frontRightDrive.setPower(-1);
-                    backLeftDrive.setPower(1);
-                }
-                frontLeftDrive.setPower(0);
-                backRightDrive.setPower(0);
+            // CR SERVO
+            if (gamepad1.left_bumper) {
+                intake.intakeOnToggle();
+            } else if (gamepad1.right_bumper) {
+                intake.intakeOnToggle();
             }
 
-            //TODO: fix outtake stuff
-            if (gamepad2.dpad_up) {
+            // INTAKE SLIDES
+            if (gamepad2.y) {
+                intake.slideIncrement(0.05);
+            } else if (gamepad2.a) {
+                intake.slideIncrement(-0.05);
+            }
+
+            // ROTATE
+            if (gamepad2.right_bumper) {
+                intake.rotateToggle();
+            }
+
+            // CLAW
+            if (gamepad2.left_bumper) {
+                outtake.clawToggle();
+            }
+            if (gamepad2.left_trigger > 0) {
+                outtake.rotateToggle();
+            }
+
+            // OUTTAKE SLIDES HEIGHT
+            if (gamepad2.dpad_down) {
+                outtake.slideSet(0);
+            } else if (gamepad2.dpad_up) {
+                outtake.slideSet(outtake.HIGH_BAR_TOP);
+            } if (gamepad2.dpad_right) {
                 outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setPower(1);
@@ -141,8 +154,7 @@ public class FOTeleopM1 extends LinearOpMode {
                 TimeUnit.MILLISECONDS.sleep(500);
                 outtake.getSlidesR().setPower(0);
                 outtake.getSlidesL().setPower(0);
-            }
-            if (gamepad2.dpad_down) {
+            } else if (gamepad2.dpad_left) {
                 outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setPower(-1);
@@ -150,39 +162,6 @@ public class FOTeleopM1 extends LinearOpMode {
                 TimeUnit.MILLISECONDS.sleep(500);
                 outtake.getSlidesR().setPower(0);
                 outtake.getSlidesL().setPower(0);
-            }
-            if (gamepad2.left_bumper) {
-                outtake.clawOpen();
-            }
-            if (gamepad2.left_trigger > 0) {
-                outtake.rotateUp();
-            }
-            if (gamepad2.right_bumper) {
-                outtake.clawClosed();
-            }
-            if (gamepad2.right_trigger > 0) {
-                outtake.rotateDown();
-            }
-
-            //TODO: setup manual control slides and fix intake button mapping
-            if (gamepad2.y) {
-                intake.slideSet(true); //makes the slides extend
-            }
-            if (gamepad2.a) {
-                intake.slideSet(false); //makes the slides retract
-            }
-            if (gamepad2.right_trigger > 0) {
-                intake.rotateToggle(); //rotates intake down and up toggle
-            }
-            if (gamepad2.right_bumper) {
-                if (notReverse) {
-                    intake.intakeOnToggle();
-                } else {
-                    intake.reverseIntakeOnToggle();
-                }
-            }
-            if (gamepad1.right_bumper) {
-                notReverse = !notReverse;
             }
 
             if (gamepad1.dpad_up) botHeading = 0;

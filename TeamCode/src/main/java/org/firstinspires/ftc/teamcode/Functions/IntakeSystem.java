@@ -66,6 +66,17 @@ public class IntakeSystem {
         }
     }
 
+    public void slideIncrement(double amt) {
+        double rightPos = slidesR.getPosition() + amt;
+        double leftPos = slidesL.getPosition() - amt;
+
+        if ( (rightPos >= rightSlidesIn && rightPos <= rightSlidesOut) &&
+                (leftPos <= leftSlidesIn && leftPos >= leftSlidesOut) ) {
+            slidesR.setPosition(rightPos);
+            slidesL.setPosition(leftPos);
+        }
+    }
+
     public void slideSet(boolean O_I) {
         if (O_I) {
             slidesL.setPosition(leftSlidesOut);

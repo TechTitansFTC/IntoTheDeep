@@ -90,6 +90,18 @@ public class OuttakeSystem {
         }
     }
 
+    public void rotateToggle() {
+        if (rotateR.getPosition() == rotateRightDown
+        // rotateL.getPosition() == rotateLeftDown
+        ) {
+            rotateUp();
+        } else if (rotateR.getPosition() == rotateRightUp
+        // rotateL.getPosition() == rotateLeftUp
+        ) {
+            rotateDown();
+        }
+    }
+
     public DcMotorEx getSlidesL() {
         return slidesL;
     }

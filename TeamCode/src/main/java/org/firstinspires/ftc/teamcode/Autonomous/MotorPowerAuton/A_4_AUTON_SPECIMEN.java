@@ -6,8 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.Functions.MotorPower;
-import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
+import org.firstinspires.ftc.teamcode.Functions.*;
 
 @Autonomous(name = "A_4_AUTON_SPECIMEN")
 public class A_4_AUTON_SPECIMEN extends LinearOpMode {
@@ -16,6 +15,7 @@ public class A_4_AUTON_SPECIMEN extends LinearOpMode {
     DcMotor frontLeftDrive;
     DcMotor frontRightDrive;
     OuttakeSystem outtake;
+    IntakeSystem intake;
     ElapsedTime timer;
 
 
@@ -32,6 +32,7 @@ public class A_4_AUTON_SPECIMEN extends LinearOpMode {
         waitForStart();
         if (isStopRequested()) return;
         outtake.init();
+        intake.init();
 
         if (opModeIsActive()) {
             //lift slides
