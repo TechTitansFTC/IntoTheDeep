@@ -137,7 +137,7 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
         //go to score
         m.move(.5,300);
         m.turnP(1.0,550);
-        m.strafe(1.0, 950);
+        m.strafe(1.0, 950); 
         m.move(-1.0,950);
         m.move(.5, 90);
 
@@ -159,9 +159,9 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
         sleep(1000);
         m.move(-1,600);
         m.move(1,400);
-        m.turnP(1,500);
+        m.turnP(1,550);
 
-            //slides up
+        //slides up
             outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             outtake.getSlidesR().setPower(1);
@@ -170,7 +170,7 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
             outtake.getSlidesR().setPower(0);
             outtake.getSlidesL().setPower(0);
 
-            m.strafe(1,1050);
+            m.strafe(1,1150);
             m.move(-1,400);
 
             //slides down
@@ -184,53 +184,12 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
             outtake.clawClosed();
             outtake.rotateDown();
 
+            //Park
+            m.move(1,400);
+            m.turnP(1, 500);
+            m.move(-1,300);
+            m.strafe(1,800);
 
-
-
-
-
-          //score 2 ,3, and 4
-//        m.move(1, 300);
-//        m.turnP(1.0, 500);
-//        m.move(-1, 500);
-//        m.strafe(1, 650);
-//        m.move(-1, 200);
-//        outtake.clawOpen();
-//        sleep(1000);
-//        m.move(-1, 200);
-//        outtake.clawClosed();
-//        m.strafeL(1, 650);
-//        m.move(1, 500);
-//        m.turnP(1, 500);
-//
-//        //slides up
-//        outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        outtake.getSlidesR().setPower(1);
-//        outtake.getSlidesL().setPower(1);
-//        sleep(1230);
-//        outtake.getSlidesR().setPower(0);
-//        outtake.getSlidesL().setPower(0);
-//
-//        //score
-//        m.move(-1, 300);
-//        m.move(1, 90);
-//
-//        //slides down
-//        outtake.getSlidesR().setPower(-1);
-//        outtake.getSlidesL().setPower(-1);
-//        sleep(1230);
-//        outtake.getSlidesR().setPower(0);
-//        outtake.getSlidesL().setPower(0);
-//        outtake.clawOpen();
-//        sleep(250);
-//        outtake.clawClosed();
-//        outtake.rotateDown();
-//
-//        //go back
-//        m.move(1.0, 300);
-//        m.strafe(1.0,650 );
-//        m.turnP(1.0,500);
 
 
     }

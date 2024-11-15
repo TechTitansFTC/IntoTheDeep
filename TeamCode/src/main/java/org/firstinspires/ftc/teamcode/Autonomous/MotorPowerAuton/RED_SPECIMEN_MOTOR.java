@@ -35,19 +35,19 @@ public class RED_SPECIMEN_MOTOR extends LinearOpMode {
         sleep(500);
         m.move(-0.3,2000);//observation
         sleep(500);
-        m.strafeR(-0.75,300);//back to sample
+        m.strafe(-0.75,300);//back to sample
         sleep(500);
         m.move(0.3,3500);//observation
         sleep(500);
         m.move(-0.3,3500);//observation
         sleep(500);
-        m.strafeR(-0.75,300);//back to sample
+        m.strafe(-0.75,300);//back to sample
         sleep(500);
         m.move(0.3,3500);//observation
         sleep(500);
         m.move(-0.3,3500);//observation
         sleep(500);
-        m.strafeR(-0.75,300);//back to sample
+        m.strafe(-0.75,300);//back to sample
         sleep(500);
         m.move(0.3,3500);//observation
         sleep(500);
