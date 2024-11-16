@@ -26,6 +26,7 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
         frontLeftDrive = hardwareMap.get(DcMotor.class, "frontLeft"); //CH 0
         frontRightDrive = hardwareMap.get(DcMotor.class, "frontRight"); //CH 3
         outtake = new OuttakeSystem(hardwareMap);
+        intake = new IntakeSystem(hardwareMap);
         MotorPower m = new MotorPower(hardwareMap);
         timer = new ElapsedTime();
 
@@ -34,7 +35,7 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
         outtake.init();
         intake.init();
 
-        if (opModeIsActive()) {
+
             //lift slides
         outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -45,7 +46,7 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
         outtake.getSlidesL().setPower(0);
 
         //move to bar
-        m.move(-1.0,800);
+        m.move(-0.5,1600);
         m.move(1,90);
         sleep(250);
 
@@ -193,7 +194,7 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
 
 
 
-    }
+
     }
 }
 

@@ -23,7 +23,7 @@ public class IntakeSystem {
     public final double rightSlidesIn = 0; //- this is the correct value
 
     private final double leftRotateDown = 0.8; //tested correct
-    private final double leftRotateUp = 0.4; // tested correctly
+    private final double leftRotateUp = 0.36; // tested correctly
     private final double leftRotateSteady = 0.7;
 
 
@@ -104,6 +104,12 @@ public class IntakeSystem {
         }
     }
 
+    public void rotateD() {
+        rotateL.setPosition(leftRotateDown);
+    }
+    public void rotateU() {
+        rotateL.setPosition(leftRotateUp);
+    }
     public void rotateToggle() {
         timer.reset();
 //        if (rotateL.getPosition() == leftRotateDown && rotateR.getPosition() == rightRotateDown) {
@@ -121,11 +127,12 @@ public class IntakeSystem {
         if (geckoL.getPower() != 0 && geckoR.getPower() != 0) {
             geckoR.setPower(0);
             geckoL.setPower(0);
-        } else if (geckoL.getPower() != 1 && geckoR.getPower() != 1) {
+        } else {
             geckoR.setPower(1);
             geckoL.setPower(1);
         }
     }
+
 
     public void reverseIntakeOnToggle() {
         if (geckoL.getPower() != 0 && geckoR.getPower() != 0) {
@@ -138,12 +145,10 @@ public class IntakeSystem {
     }
 
     public void geckoPos (int power) {
-        timer.reset();
+
         geckoR.setPower(power);
         geckoL.setPower(power);
-        while (timer.milliseconds() < geckoTimer) {
 
-        }
     }
 
     public void ejectSample() {

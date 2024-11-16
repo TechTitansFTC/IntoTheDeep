@@ -115,38 +115,42 @@ public class FOTeleopM1 extends LinearOpMode {
             double backRightPower = (rotY + rotX - rx) / denominator;
 
             // CR SERVO
-            if (gamepad1.left_bumper) {
-                intake.intakeOnToggle();
-            } else if (gamepad1.right_bumper) {
-                intake.intakeOnToggle();
-            }
+            if (gamepad2.dpad_right) {
+                intake.geckoPos(1);
 
+            }
+            if (gamepad2.dpad_left) {
+                intake.geckoPos(-1);
+            }
+            if(gamepad2.left_trigger>0.1){
+                intake.geckoPos(0);
+            }
             // INTAKE SLIDES
             if (gamepad2.y) {
                 intake.slideIncrement(0.05);
             } else if (gamepad2.a) {
                 intake.slideIncrement(-0.05);
             }
+            if(gamepad2.x){
+                intake.rotateU();
+            }
+            if(gamepad2.b){
+                intake.rotateD();
+            }
 
             // ROTATE
-            if (gamepad2.right_bumper) {
-                intake.rotateToggle();
-            }
+
 
             // CLAW
             if (gamepad2.left_bumper) {
-                outtake.clawToggle();
+                outtake.clawClosed();
             }
-            if (gamepad2.left_trigger > 0) {
-                outtake.rotateToggle();
+            if (gamepad2.right_bumper) {
+                outtake.clawOpen();
             }
 
             // OUTTAKE SLIDES HEIGHT
-            if (gamepad2.dpad_down) {
-                outtake.slideSet(0);
-            } else if (gamepad2.dpad_up) {
-                outtake.slideSet(outtake.HIGH_BAR_TOP);
-            } if (gamepad2.dpad_right) {
+            if (gamepad2.dpad_up) {
                 outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setPower(1);
@@ -154,7 +158,8 @@ public class FOTeleopM1 extends LinearOpMode {
                 TimeUnit.MILLISECONDS.sleep(500);
                 outtake.getSlidesR().setPower(0);
                 outtake.getSlidesL().setPower(0);
-            } else if (gamepad2.dpad_left) {
+
+            } else if (gamepad2.dpad_down) {
                 outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 outtake.getSlidesR().setPower(-1);
