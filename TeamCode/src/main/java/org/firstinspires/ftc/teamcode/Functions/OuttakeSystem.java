@@ -34,8 +34,8 @@ public class OuttakeSystem {
 //    final public double rotateLeftUp = 0.01;
 //    final public double rotateLeftAngle = 0.01;
 //    final public double rotateLeftDown = 0.00;
-    final public double rotateRightUp = 0.89;
-    final public double rotateRightDown = 0.94;
+    final public double rotateRightUp = 0.1;
+    final public double rotateRightDown = 0.15;
 
     //TODO: FIND TIMER VALUES
     final public int slideTimer = 350;

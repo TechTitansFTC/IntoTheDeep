@@ -46,8 +46,8 @@ public class A_A_A_AUTON_WORKING_SPECIMEN extends LinearOpMode {
         outtake.getSlidesL().setPower(0);
 
         //move to bar
-        m.move(-0.5,1700);
-        
+        m.move(-0.5,1600);
+        m.move(1,90);
         sleep(250);
 
         //lift slides down and score
@@ -61,24 +61,20 @@ public class A_A_A_AUTON_WORKING_SPECIMEN extends LinearOpMode {
         outtake.clawClosed();
 
 
-
         m.move(1,300);
-        m.turnP(1,270);
-        m.move(1,550);
-        m.turnP(1,270);
+        m.turnP(-1,300);
+        m.move(1,300);
+        m.turnP(-1,300);
         outtake.clawOpen();
-        outtake.rotateUp();
-        sleep(3000);
-        m.move(-1, 350);
-        sleep(250);
+        sleep(1000);
+        m.move(-1, 300);
         outtake.clawClosed();
-        sleep(500);
 
 
         //lift slides up
         outtake.getSlidesR().setPower(1);
         outtake.getSlidesL().setPower(1);
-        sleep(450);
+        sleep(150);
         outtake.getSlidesR().setPower(0);
         outtake.getSlidesL().setPower(0);
         sleep(250);
@@ -86,20 +82,21 @@ public class A_A_A_AUTON_WORKING_SPECIMEN extends LinearOpMode {
 
 
         m.move(1,300);
-        m.turnP(1,270);
-        m.move(1,800);
-        m.turnP(1,250);
+        m.turnP(-1,300);
+        m.move(1,300);
+        m.turnP(-1,300);
 
         //lift slides
         outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         outtake.getSlidesR().setPower(1);
         outtake.getSlidesL().setPower(1);
-        sleep(880);
+        sleep(1230);
         outtake.getSlidesR().setPower(0);
         outtake.getSlidesL().setPower(0);
 
-        m.move(-0.5,900);
+        m.move(-0.5,650);
+        m.move(1,90);
 
         //lift slides down and score
         outtake.getSlidesR().setPower(-1);
@@ -110,15 +107,12 @@ public class A_A_A_AUTON_WORKING_SPECIMEN extends LinearOpMode {
         outtake.clawOpen();
         sleep(250);
         outtake.clawClosed();
-        outtake.rotateUp();
 
         m.move(1,300);
-        m.turnP(1,250);
-        m.move(1,1000);
-        m.turnP(1,300);
-        outtake.rotateDown();
-        m.move(-0.5,2000);
-
+        m.turnP(-1,300);
+        m.move(1,300);
+        m.turnP(-1,300);
+        m.move(-1,300);
 
 
 

@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Functions.*;
 
-@Autonomous(name = "a3")
+@Autonomous(name = "A_3_AUTON_SPECIMEN")
 public class A_3_AUTON_SPECIMEN extends LinearOpMode {
     DcMotor backLeftDrive;
     DcMotor backRightDrive;
@@ -36,7 +36,7 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
         intake.init();
 
 
-        //lift slides
+            //lift slides
         outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         outtake.getSlidesR().setPower(1);
@@ -47,7 +47,7 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
 
         //move to bar
         m.move(-0.5,1600);
-        m.move(1,70);
+        m.move(1,90);
         sleep(250);
 
         //lift slides down and score
@@ -59,110 +59,138 @@ public class A_3_AUTON_SPECIMEN extends LinearOpMode {
         outtake.clawOpen();
         sleep(250);
         outtake.clawClosed();
-
-
-
-        m.move(1,300);
-        m.turnP(1,250);
-        m.move(1,550);
-        m.turnP(1,250);
-        outtake.clawOpen();
-        outtake.rotateUp();
-        sleep(3000);
-        m.move(-1, 350);
-        sleep(250);
-        outtake.clawClosed();
-        sleep(500);
-
-
-        //lift slides up
-        outtake.getSlidesR().setPower(1);
-        outtake.getSlidesL().setPower(1);
-        sleep(450);
-        outtake.getSlidesR().setPower(0);
-        outtake.getSlidesL().setPower(0);
-        sleep(250);
-        outtake.clawClosed();
-
-
-        m.move(1,300);
-        m.turnP(1,300);
-        m.move(1,600);
-        m.turnP(1,250);
-
-        //lift slides
-        outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        outtake.getSlidesR().setPower(1);
-        outtake.getSlidesL().setPower(1);
-        sleep(880);
-        outtake.getSlidesR().setPower(0);
-        outtake.getSlidesL().setPower(0);
-
-        m.move(-0.5,850);
-        m.move(1,50);
-
-        //lift slides down and score
-        outtake.getSlidesR().setPower(-1);
-        outtake.getSlidesL().setPower(-1);
-        sleep(1230);
-        outtake.getSlidesR().setPower(0);
-        outtake.getSlidesL().setPower(0);
-        outtake.clawOpen();
-        sleep(250);
-        outtake.clawClosed();
-        outtake.rotateUp();
-
-        m.move(1,300);
-        m.turnP(1,250);
-        m.move(1,550);
-        m.turnP(1,250);
-        outtake.clawOpen();
-        outtake.rotateUp();
-        sleep(3000);
-        m.move(-1, 350);
-        sleep(250);
-        outtake.clawClosed();
-        sleep(500);
-
-
-        m.move(1,300);
-        m.turnP(1,300);
-        m.move(1,600);
-        m.turnP(1,250);
-
-        //lift slides
-        outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        outtake.getSlidesR().setPower(1);
-        outtake.getSlidesL().setPower(1);
-        sleep(880);
-        outtake.getSlidesR().setPower(0);
-        outtake.getSlidesL().setPower(0);
-
-        m.move(-0.5,850);
-        m.move(1,50);
-
-        //lift slides down and score
-        outtake.getSlidesR().setPower(-1);
-        outtake.getSlidesL().setPower(-1);
-        sleep(1230);
-        outtake.getSlidesR().setPower(0);
-        outtake.getSlidesL().setPower(0);
-        outtake.clawOpen();
-        sleep(250);
-        outtake.clawClosed();
-        outtake.rotateUp();
-
-        m.move(1,300);
-        m.turnP(1,250);
-        m.move(1,500);
-        m.turnP(1,300);
         outtake.rotateDown();
-        m.move(-0.5,2000);
-//        m.turnP(-1,160);
+
+        //Go into park for 2nd pickup
+//            m.turnP(1.0,500);
+//            m.move(-1,350);
+//            m.strafe(1.0, 650);
+//            sleep(1000);
+//            m.move(0.5, 200);
+//            sleep(1000);
+//            outtake.rotateUp();
+//            outtake.clawOpen();
+//            m.move(-0.5, 200);
+//            sleep(1000);
+//            outtake.clawClosed();
+//            m.move(0.5, 550);
+//            outtake.clawOpen();
+//            sleep(1000);
+//            m.move(-0.5, 300);
+//            outtake.clawClosed();
+//
+//
+//            //Go back to set position for score
+//            m.strafeL(1, 300);
+//            m.turnP(1.0,500);
+//
+//            //lift slides
+//            outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//            outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//            outtake.getSlidesR().setPower(1);
+//            outtake.getSlidesL().setPower(1);
+//            sleep(1230);
+//            outtake.getSlidesR().setPower(0);
+//            outtake.getSlidesL().setPower(0);
+//
+//            //strafe to pos
+//            m.strafe(1.0, 950);
+//
+//            //Everything below this is a copy of previous values so if u update something above also update it here
+//            //move to bar
+//            m.move(-1.0,1050);
+//            m.move(1,80);
+//            sleep(250);
+//
+//            //lift slides down and score
+//            outtake.getSlidesR().setPower(-1);
+//            outtake.getSlidesL().setPower(-1);
+//            sleep(1230);
+//            outtake.getSlidesR().setPower(0);
+//            outtake.getSlidesL().setPower(0);
+//            outtake.clawOpen();
+//            outtake.rotateDown();
 
 
+
+        //Pick up 3
+        m.move(1,200);
+        m.strafeL(1,500);
+        m.move(-1.0,500);
+        m.strafeL(1, 250);
+        m.move(1.0,850);
+        m.move(-0.5, 300);
+        m.turnP(1.0,550);
+        sleep(1000);
+        outtake.rotateUp();
+        outtake.clawOpen();
+        m.move(-0.5,300);
+        outtake.clawClosed();
+
+        //slides up
+        outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        outtake.getSlidesR().setPower(1);
+        outtake.getSlidesL().setPower(1);
+        sleep(1230);
+        outtake.getSlidesR().setPower(0);
+        outtake.getSlidesL().setPower(0);
+
+        //go to score
+        m.move(.5,300);
+        m.turnP(1.0,550);
+        m.strafe(1.0, 950); 
+        m.move(-1.0,950);
+        m.move(.5, 90);
+
+        //slides down
+        outtake.getSlidesR().setPower(-1);
+        outtake.getSlidesL().setPower(-1);
+        sleep(1230);
+        outtake.getSlidesR().setPower(0);
+        outtake.getSlidesL().setPower(0);
+        outtake.clawOpen();
+        sleep(250);
+        outtake.clawClosed();
+        outtake.rotateDown();
+
+        //go to get 3
+        m.move(1,200);
+        m.strafeL(1,950);
+        m.turnP(1,550);
+        sleep(1000);
+        m.move(-1,600);
+        m.move(1,400);
+        m.turnP(1,550);
+
+        //slides up
+            outtake.getSlidesL().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            outtake.getSlidesR().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            outtake.getSlidesR().setPower(1);
+            outtake.getSlidesL().setPower(1);
+            sleep(1230);
+            outtake.getSlidesR().setPower(0);
+            outtake.getSlidesL().setPower(0);
+
+            m.strafe(1,1150);
+            m.move(-1,400);
+
+            //slides down
+            outtake.getSlidesR().setPower(-1);
+            outtake.getSlidesL().setPower(-1);
+            sleep(1230);
+            outtake.getSlidesR().setPower(0);
+            outtake.getSlidesL().setPower(0);
+            outtake.clawOpen();
+            sleep(250);
+            outtake.clawClosed();
+            outtake.rotateDown();
+
+            //Park
+            m.move(1,400);
+            m.turnP(1, 500);
+            m.move(-1,300);
+            m.strafe(1,800);
 
 
 
