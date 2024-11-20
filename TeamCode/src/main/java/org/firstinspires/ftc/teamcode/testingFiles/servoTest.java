@@ -15,8 +15,8 @@ public class servoTest extends LinearOpMode{
         boolean isOn = true;
         double baseValue = 0.0;
 
-        double bigVal = 0.1;
-        double smallVal = 0.05;
+        double bigVal = 0.01;
+        double smallVal = 0.005;
 
         ElapsedTime timer = new ElapsedTime();
 

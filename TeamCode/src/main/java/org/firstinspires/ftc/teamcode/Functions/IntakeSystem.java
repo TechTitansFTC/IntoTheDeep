@@ -22,7 +22,7 @@ public class IntakeSystem {
     public final double rightSlidesOut = 0.4;// - this is the correct value
     public final double rightSlidesIn = 0; //- this is the correct value
 
-    private final double leftRotateDown = 0.8; //tested correct
+    private final double leftRotateDown = 0.85 ; //tested correct
     private final double leftRotateUp = 0.36; // tested correctly
     private final double leftRotateSteady = 0.7;
 
