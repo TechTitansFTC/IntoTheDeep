@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.Autonomous.MotorPowerAuton;
+package org.firstinspires.ftc.teamcode.old.m1.Autonomous.MotorPowerAuton;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Functions.MotorPower;
+import org.firstinspires.ftc.teamcode.old.m1.Functions.MotorPower;
 
-//import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
+//import org.firstinspires.ftc.teamcode.old.m1.Functions.IntakeSystem;
 
 
 @Config()

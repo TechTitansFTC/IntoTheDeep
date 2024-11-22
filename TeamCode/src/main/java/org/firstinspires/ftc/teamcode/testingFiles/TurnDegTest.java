@@ -5,8 +5,8 @@ import static java.lang.Math.signum;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-//import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
-import org.firstinspires.ftc.teamcode.Functions.MotorPower;
+//import org.firstinspires.ftc.teamcode.old.m1.Functions.IntakeSystem;
+import org.firstinspires.ftc.teamcode.old.m1.Functions.MotorPower;
 
 @TeleOp
 public class TurnDegTest extends LinearOpMode {

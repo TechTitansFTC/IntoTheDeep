@@ -1,11 +1,13 @@
-package org.firstinspires.ftc.teamcode.Autonomous.MotorPowerAuton;
+package org.firstinspires.ftc.teamcode.old.m1.Autonomous.MotorPowerAuton;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.Functions.*;
+import org.firstinspires.ftc.teamcode.old.m1.Functions.IntakeSystem;
+import org.firstinspires.ftc.teamcode.old.m1.Functions.MotorPower;
+import org.firstinspires.ftc.teamcode.old.m1.Functions.OuttakeSystem;
 
 @Autonomous(name = "A_2_AUTON_SPECIMEN")
 public class A_2_AUTON_SPECIMEN extends LinearOpMode {

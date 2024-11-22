@@ -1,17 +1,12 @@
-package org.firstinspires.ftc.teamcode.Autonomous;
-//import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
-//import org.firstinspires.ftc.teamcode.Functions.IntakeSystem;
-import org.firstinspires.ftc.teamcode.Functions.OuttakeSystem;
+package org.firstinspires.ftc.teamcode.old.m1.Autonomous;
+//import org.firstinspires.ftc.teamcode.old.m1.Functions.IntakeSystem;
+//import org.firstinspires.ftc.teamcode.old.m1.Functions.IntakeSystem;
+import org.firstinspires.ftc.teamcode.old.m1.Functions.OuttakeSystem;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
 
 @Config()
 @Autonomous(name = "SpecimenMainSpecimen")
