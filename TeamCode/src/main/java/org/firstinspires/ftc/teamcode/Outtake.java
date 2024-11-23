@@ -9,6 +9,7 @@ public class Outtake {
     private Servo elbow; // subset U-D
     private Servo wrist; // L-R
     private Servo claw;
+
 //TODO: FIND ALL SERVO VALUES
     private final double SHOULDER_L_OUT = 0.0;//arm outside robot
     private final double SHOULDER_L_IN = 0.0;//arm in robot
