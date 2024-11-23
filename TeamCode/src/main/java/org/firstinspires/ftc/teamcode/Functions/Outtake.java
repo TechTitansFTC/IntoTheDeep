@@ -33,23 +33,46 @@ public class Outtake {
         this.claw = m.servo.get("claw");
     }
 
-    //MINOR FUNCTIONS(INDUVIDUAL)
+    
 
-    public void shoulder(double shoulderLP, double shoulderRP){
-        shoulderL.setPosition(shoulderLP);
-        shoulderR.setPosition(shoulderRP);
+    public void shoulderOut(){
+        shoulderL.setPosition(SHOULDER_L_OUT);
+        shoulderR.setPosition(SHOULDER_R_OUT);
+    }
+    public void shoulderN(){
+        shoulderL.setPosition(SHOULDER_L_N);
+        shoulderR.setPosition(SHOULDER_R_N);
+    }
+    public void shoulderIn(){
+        shoulderL.setPosition(SHOULDER_L_IN);
+        shoulderR.setPosition(SHOULDER_R_IN);
     }
 
-    public void elbow(double elbowP){
-        elbow.setPosition(elbowP);
+    public void elbowIn(){
+        elbow.setPosition(ELBOW_IN);
+    }
+    public void elbowOut(){
+        elbow.setPosition(ELBOW_OUT);
+    }
+    public void elbowN(){
+        elbow.setPosition(ELBOW_N);
+    }
+    public void elbowAng(){
+        elbow.setPosition(ELBOW_ANG);
     }
 
-    public void wrist(double wristP){
-        wrist.setPosition(wristP);
+    public void wristPro(){
+        wrist.setPosition(WRIST_PRO);
+    }
+    public void wristSup(){
+        wrist.setPosition(WRIST_SUP);
     }
 
-    public void claw(double clawP){
-        claw.setPosition(clawP);
+    public void clawClose(){
+        claw.setPosition(CLAW_CLOSE);
+    }
+    public void clawOpen(){
+        claw.setPosition(CLAW_OPEN);
     }
     
 }
