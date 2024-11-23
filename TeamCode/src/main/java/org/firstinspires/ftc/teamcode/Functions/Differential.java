@@ -3,11 +3,11 @@ package org.firstinspires.ftc.teamcode.Functions;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class differential {
+public class Differential {
     private DcMotorEx motorL;
     private DcMotorEx motorR;
 
-    public differential (HardwareMap map) {
+    public Differential(HardwareMap map) {
         this.motorL = (DcMotorEx) map.get("difL");
         this.motorR = (DcMotorEx) map.get("difR");
     }
