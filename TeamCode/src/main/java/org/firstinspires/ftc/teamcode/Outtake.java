@@ -1,14 +1,26 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Outtake {
+    Differential slides;
     private Servo shoulderL; // main U-D
     private Servo shoulderR; // main U-D
     private Servo elbow; // subset U-D
     private Servo wrist; // L-R
     private Servo claw;
+
+    public enum SpecimenState {
+        SPECIMEN_START,
+        SPECIMEN_EXTEND,
+        SPECIMEN_PICKUP,
+        SPECIMEN_RETRACT,
+        SPECIMEN_RAISE,
+        SPECIMEN_PREP
+    };
+    SpecimenState specimen = SpecimenState.SPECIMEN_START;
 
 //TODO: FIND ALL SERVO VALUES
     private final double SHOULDER_L_OUT = 0.0;//arm outside robot
@@ -32,6 +44,7 @@ public class Outtake {
         this.elbow = m.servo.get("elbow");
         this.wrist = m.servo.get("wrist");
         this.claw = m.servo.get("claw");
+        this.slides = new Differential(m);
     }
 
     public void init() {
@@ -40,6 +53,7 @@ public class Outtake {
         elbow.setPosition(ELBOW_N);
         wrist.setPosition(WRIST_PRO);
         claw.setPosition(CLAW_OPEN);
+        slides.init();
     }
 
     public void shoulderOut(){
@@ -81,5 +95,50 @@ public class Outtake {
     public void clawOpen(){
         claw.setPosition(CLAW_OPEN);
     }
-    
+
+    //TODO: code extend and retract positions
+    //TODO: code scoring position
+
+
+    /*
+    code for FSM -
+    start -> send to down (need to change function)
+    extend -> need code
+    pickup -> if within range (probably needs to be moved to extend), then if extended, then close the claw
+    retract -> need code (bring the outtake back into the robot with specimen on)
+    raise -> send up (need to change function)
+    prep -> prep for scoring (needs code)
+     */
+    public void specimenPickUp(boolean start) {
+        switch (specimen) {
+            case SPECIMEN_START:
+                if (start) {
+                    slides.outtakeDown();
+                    specimen = SpecimenState.SPECIMEN_EXTEND;
+                }
+                break;
+            case SPECIMEN_EXTEND:
+                //TODO: add the code to extend
+                specimen = SpecimenState.SPECIMEN_PICKUP;
+                break;
+            case SPECIMEN_PICKUP:
+                //TODO: implement differential encoder vars
+                if (slides.withinRange(1000, 10, true) && slides.withinRange(1000, 10, false)) {
+                    clawClose();
+                    specimen = SpecimenState.SPECIMEN_RETRACT;
+                }
+                break;
+            case SPECIMEN_RETRACT:
+                //TODO: add the code to retract
+                break;
+            case SPECIMEN_RAISE:
+                slides.outtakeUp();
+                specimen = SpecimenState.SPECIMEN_PREP;
+                break;
+            case SPECIMEN_PREP:
+                //TODO: prep for scoring
+                specimen = SpecimenState.SPECIMEN_START;
+                break;
+        }
+    }
 }
