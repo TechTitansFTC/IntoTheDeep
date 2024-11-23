@@ -1,13 +1,13 @@
-package org.firstinspires.ftc.teamcode.Functions;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Outtake {
-    private Servo shoulderL;
-    private Servo shoulderR;
-    private Servo elbow;
-    private Servo wrist;
+    private Servo shoulderL; // main U-D
+    private Servo shoulderR; // main U-D
+    private Servo elbow; // subset U-D
+    private Servo wrist; // L-R
     private Servo claw;
 //TODO: FIND ALL SERVO VALUES
     private final double SHOULDER_L_OUT = 0.0;//arm outside robot
@@ -33,7 +33,13 @@ public class Outtake {
         this.claw = m.servo.get("claw");
     }
 
-    
+    public void init() {
+        shoulderL.setPosition(SHOULDER_L_N);
+        shoulderR.setPosition(SHOULDER_R_N);
+        elbow.setPosition(ELBOW_N);
+        wrist.setPosition(WRIST_PRO);
+        claw.setPosition(CLAW_OPEN);
+    }
 
     public void shoulderOut(){
         shoulderL.setPosition(SHOULDER_L_OUT);

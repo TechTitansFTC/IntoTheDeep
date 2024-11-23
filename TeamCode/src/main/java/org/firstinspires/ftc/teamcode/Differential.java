@@ -12,6 +12,11 @@ public class Differential {
         this.motorR = (DcMotorEx) map.get("difR");
     }
 
+    public void init() {
+        motorR.setPower(0);
+        motorL.setPower(0);
+    }
+
     public void outtakeUp() {
         motorR.setPower(-1);
         motorL.setPower(1);
