@@ -33,10 +33,10 @@ public class Outtake {
     private final double ELBOW_IN = 0.0;//forearm in(towards robot)
     private final double ELBOW_N = 0.0;//forearm straight
     private final double ELBOW_ANG = 0.0;//forearm slight angle away for clipping
-    private final double WRIST_PRO = 0.0;//pronated wrist(faces away robot)
-    private final double WRIST_SUP = 0.0;//supinated wrist(faces towards robot)
-    private final double CLAW_CLOSE = 0.0;//closes claw
-    private final double CLAW_OPEN = 0.0;//open claw
+    private final double WRIST_PRO = 0.75;//pronated wrist(faces away robot)
+    private final double WRIST_SUP = 0.1;//supinated wrist(faces towards robot)
+    private final double CLAW_CLOSE = 0.6;//closes claw
+    private final double CLAW_OPEN = 0.45;//open claw
 
     public Outtake(HardwareMap m){
         this.shoulderL = m.servo.get("rotateML");

@@ -10,7 +10,8 @@ public class simpleServo extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Servo servo = hardwareMap.get(Servo.class, "servo");
         ElapsedTime timer = new ElapsedTime();
-
+        servo.setPosition(0);
+        servo.setDirection(Servo.Direction.FORWARD);
         waitForStart();
         if (isStopRequested()) {return;}
         timer.reset();
