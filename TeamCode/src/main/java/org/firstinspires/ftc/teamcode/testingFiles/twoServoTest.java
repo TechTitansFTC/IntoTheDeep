@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.testingFiles;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -12,6 +14,7 @@ public class twoServoTest extends LinearOpMode {
         ElapsedTime timer = new ElapsedTime();
         Servo servo1 = hardwareMap.servo.get("servo1");
         Servo servo2 = hardwareMap.servo.get("servo2");
+        servo1.setDirection(Servo.Direction.REVERSE);
         double val = 0.1;
         double val2 = 0.1;
         waitForStart();
@@ -29,26 +32,13 @@ public class twoServoTest extends LinearOpMode {
                 }
                 timer.reset();
             }
-            if (val > 0.04 && val < 0.96) {
+            if (val > -1 && val < 1.1) {
                 servo1.setPosition(val);
-            }
-            if (timer.milliseconds() > 250) {
-                if (gamepad1.a) {
-                    val2 += 0.1;
-                } else if (gamepad1.b) {
-                    val2 += 0.05;
-                } else if (gamepad1.x) {
-                    val2 -= 0.1;
-                } else if (gamepad1.y) {
-                    val2 -= 0.05;
-                }
-                timer.reset();
-            }
-            if (val2 > 0.04 && val2 < 0.96) {
                 servo2.setPosition(val);
             }
-            telemetry.addData("pos = ", val);
-            telemetry.addData("pos2 = ", val2);
+
+            telemetry.addData("pos = ", servo1.getPosition());
+            telemetry.addData("pos2 = ", servo2.getPosition());
             telemetry.update();
         }
     }
