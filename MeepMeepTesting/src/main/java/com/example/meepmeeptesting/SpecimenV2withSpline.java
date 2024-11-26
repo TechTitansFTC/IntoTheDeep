@@ -6,7 +6,7 @@ import com.noahbres.meepmeep.MeepMeep;
 import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
-public class SpecimenV2 {
+public class SpecimenV2withSpline {
     public static void main(String[] args) {
 
         Vector2d pos1 = new Vector2d(35,-15);
@@ -24,7 +24,7 @@ public class SpecimenV2 {
 
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                .setConstraints(100, 100, Math.toRadians(270), Math.toRadians(270), 15)
+                .setConstraints(250, 250, Math.toRadians(270), Math.toRadians(270), 15)
                 .build();
 
 
@@ -60,37 +60,37 @@ public class SpecimenV2 {
                 .splineTo(chamberLoc,Math.toRadians(-90))
                 .waitSeconds(0.0001)
                 .lineToY(-34)
-                .waitSeconds(0.0001)
+                .waitSeconds(0.5)
                 .lineToY(-40)
                 .splineTo(spot,Math.toRadians(90))
                 .waitSeconds(0.0001)
                 .lineToY(-65)
-                .waitSeconds(0.0001)
+                .waitSeconds(0.5)
                 //drop2
                 .splineTo(chamberLoc,Math.toRadians(-90))
                 .waitSeconds(0.0001)
                 .lineToY(-34)
-                .waitSeconds(0.0001)
+                .waitSeconds(0.5)
                 .lineToY(-40)
                 .splineTo(spot,Math.toRadians(90))
                 .waitSeconds(0.0001)
                 .lineToY(-65)
-                .waitSeconds(0.0001)
+                .waitSeconds(0.5)
                 //drop3
                 .splineTo(chamberLoc,Math.toRadians(-90))
                 .waitSeconds(0.0001)
                 .lineToY(-34)
-                .waitSeconds(0.0001)
+                .waitSeconds(0.5)
                 .lineToY(-40)
                 .splineTo(spot,Math.toRadians(90))
                 .waitSeconds(0.0001)
                 .lineToY(-65)
-                .waitSeconds(0.0001)
+                .waitSeconds(0.5)
                 //drop4
                 .splineTo(chamberLoc,Math.toRadians(-90))
                 .waitSeconds(0.0001)
                 .lineToY(-34)
-                .waitSeconds(0.0001)
+                .waitSeconds(0.5)
                 .lineToY(-40)
                 .splineTo(spot,Math.toRadians(90))
                 .waitSeconds(0.0001)
