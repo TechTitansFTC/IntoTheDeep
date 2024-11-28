@@ -30,6 +30,7 @@ public class SpecimenV2withSpline {
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(10, -60, Math.toRadians(-90)))
 
+                //drop1
                 .lineToY(-33)
                 .waitSeconds(0.0001)
                 .splineTo(pos1,Math.toRadians(90))
@@ -56,16 +57,6 @@ public class SpecimenV2withSpline {
                 .waitSeconds(0.0001)
                 .lineToY(-65)
                 .waitSeconds(0.0001)
-                //drop1
-                .splineTo(chamberLoc,Math.toRadians(-90))
-                .waitSeconds(0.0001)
-                .lineToY(-34)
-                .waitSeconds(0.5)
-                .lineToY(-40)
-                .splineTo(spot,Math.toRadians(90))
-                .waitSeconds(0.0001)
-                .lineToY(-65)
-                .waitSeconds(0.5)
                 //drop2
                 .splineTo(chamberLoc,Math.toRadians(-90))
                 .waitSeconds(0.0001)
@@ -87,6 +78,16 @@ public class SpecimenV2withSpline {
                 .lineToY(-65)
                 .waitSeconds(0.5)
                 //drop4
+                .splineTo(chamberLoc,Math.toRadians(-90))
+                .waitSeconds(0.0001)
+                .lineToY(-34)
+                .waitSeconds(0.5)
+                .lineToY(-40)
+                .splineTo(spot,Math.toRadians(90))
+                .waitSeconds(0.0001)
+                .lineToY(-65)
+                .waitSeconds(0.5)
+                //drop5
                 .splineTo(chamberLoc,Math.toRadians(-90))
                 .waitSeconds(0.0001)
                 .lineToY(-34)
