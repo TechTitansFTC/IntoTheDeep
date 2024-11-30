@@ -33,6 +33,10 @@ public class teleop extends LinearOpMode {
 
         waitForStart();
 
+        slides.init();
+        outtake.init();
+        intake.init();
+
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
