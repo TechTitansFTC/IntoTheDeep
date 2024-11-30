@@ -45,23 +45,23 @@ public class Differential {
     }
 
     public void outtakeUp() {
-        motorR.setPower(-1);
-        motorL.setPower(1);
+        motorR.setPower(0.6);
+        motorL.setPower(-0.6);
     }
 
     public void outtakeDown() {
-        motorR.setPower(1);
-        motorL.setPower(-1);
+        motorR.setPower(-0.6);
+        motorL.setPower(0.6);
     }
 
     public void intakeOut() {
-        motorR.setPower(1);
-        motorL.setPower(1);
+        motorR.setPower(-0.6);
+        motorL.setPower(-0.6);
     }
 
     public void intakeIn() {
-        motorR.setPower(0);
-        motorL.setPower(0);
+        motorR.setPower(0.6);
+        motorL.setPower(0.6);
     }
 
     public void slidesOff() {
