@@ -38,13 +38,13 @@ public class Outtake {
     private final double CLAW_CLOSE = 0.6;//closes claw
     private final double CLAW_OPEN = 0.45;//open claw
 
-    public Outtake(HardwareMap m){
+    public Outtake(HardwareMap m, Differential slides){
         this.shoulderL = m.servo.get("rotateML");
         this.shoulderR = m.servo.get("rotateMR");
         this.elbow = m.servo.get("elbow");
         this.wrist = m.servo.get("wrist");
         this.claw = m.servo.get("claw");
-        this.slides = new Differential(m);
+        this.slides = slides;
     }
 
     public void init() {
