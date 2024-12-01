@@ -6,7 +6,7 @@ import com.noahbres.meepmeep.MeepMeep;
 import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
-public class SpecimenV2Strafe {
+public class SpecimenV2REDStrafe {
     public static void main(String[] args) {
 
         Vector2d pos1 = new Vector2d(35,-15);
