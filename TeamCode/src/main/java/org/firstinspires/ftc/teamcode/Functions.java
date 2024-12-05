@@ -108,4 +108,8 @@ public class Functions {
                 break;
         }
     }
+
+    public void slideControl (boolean up, boolean down, boolean out, boolean in) {
+        slides.slidesControl(up, down, out, in);
+    }
 }

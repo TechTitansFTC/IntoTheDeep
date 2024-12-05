@@ -27,15 +27,11 @@ public class teleop extends LinearOpMode {
         // Without this, the REV Hub's orientation is assumed to be logo up / USB forward
         imu.initialize(parameters);
 
-        Differential slides = new Differential(hardwareMap);
-        Outtake outtake = new Outtake(hardwareMap);
-        Intake intake = new Intake(hardwareMap);
+        Functions robot = new Functions(hardwareMap);
 
         waitForStart();
 
-        slides.init();
-        outtake.init();
-        intake.init();
+        robot.init();
 
         if (isStopRequested()) return;
 
@@ -73,7 +69,7 @@ public class teleop extends LinearOpMode {
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
 
-            slides.slidesControl(gamepad1.dpad_up, gamepad1.dpad_down, gamepad1.dpad_right, gamepad1.dpad_left);
+            robot.slideControl(gamepad1.dpad_up, gamepad1.dpad_down, gamepad1.dpad_right, gamepad1.dpad_left);
         }
     }
 }
