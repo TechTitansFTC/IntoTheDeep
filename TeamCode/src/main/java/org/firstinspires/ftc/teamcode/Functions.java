@@ -1,0 +1,77 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
+public class Functions {
+    private Outtake outtake;
+    private Intake intake;
+    private Hang hang;
+    private Differential slides;
+
+    public enum SpecimenState {
+        SPECIMEN_START,
+        SPECIMEN_EXTEND,
+        SPECIMEN_PICKUP,
+        SPECIMEN_RETRACT,
+        SPECIMEN_RAISE,
+        SPECIMEN_PREP
+    };
+    SpecimenState specimen = SpecimenState.SPECIMEN_START;
+
+    public Functions (HardwareMap map) {
+        slides = new Differential(map);
+        intake = new Intake(map);
+        hang = new Hang(map);
+        outtake = new Outtake(map);
+    }
+
+    public void init() {
+        slides.init();
+        hang.init();
+        intake.init();
+        outtake.init();
+    }
+
+
+    /*
+    code for FSM -
+    start -> send to down (need to change function)
+    extend -> need code
+    pickup -> if within range (probably needs to be moved to extend), then if extended, then close the claw
+    retract -> need code (bring the outtake back into the robot with specimen on)
+    raise -> send up (need to change function)
+    prep -> prep for scoring (needs code)
+     */
+    public void specimenPickUp(boolean start) {
+        switch (specimen) {
+            case SPECIMEN_START:
+                if (start) {
+                    slides.outtakeDown();
+                    specimen = SpecimenState.SPECIMEN_EXTEND;
+                }
+                break;
+            case SPECIMEN_EXTEND:
+                //TODO: add the code to extend
+                specimen = SpecimenState.SPECIMEN_PICKUP;
+                break;
+            case SPECIMEN_PICKUP:
+                //TODO: implement differential encoder vars
+                if (slides.withinRange(1000, 10, true) && slides.withinRange(1000, 10, false)) {
+                    outtake.clawClose();
+                    specimen = SpecimenState.SPECIMEN_RETRACT;
+                }
+                break;
+            case SPECIMEN_RETRACT:
+                //TODO: add the code to retract
+                break;
+            case SPECIMEN_RAISE:
+                slides.outtakeUp();
+                specimen = SpecimenState.SPECIMEN_PREP;
+                break;
+            case SPECIMEN_PREP:
+                //TODO: prep for scoring
+                specimen = SpecimenState.SPECIMEN_START;
+                break;
+        }
+    }
+}
