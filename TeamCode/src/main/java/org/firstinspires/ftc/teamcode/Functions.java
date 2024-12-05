@@ -8,7 +8,7 @@ public class Functions {
     private Hang hang;
     private Differential slides;
 
-    public enum SpecimenState {
+    public enum SpecimenPickupState {
         SPECIMEN_START,
         SPECIMEN_EXTEND,
         SPECIMEN_PICKUP,
@@ -16,7 +16,15 @@ public class Functions {
         SPECIMEN_RAISE,
         SPECIMEN_PREP
     };
-    SpecimenState specimen = SpecimenState.SPECIMEN_START;
+    SpecimenPickupState specimenPickup = SpecimenPickupState.SPECIMEN_START;
+
+    public enum SpecimenScoreState {
+        SPECIMEN_PREP,
+        SPECIMEN_LOWER,
+        SPECIMEN_RELEASE,
+        SPECIMEN_RETRACT
+    };
+    SpecimenScoreState specimenScore = SpecimenScoreState.SPECIMEN_PREP;
 
     public Functions (HardwareMap map) {
         slides = new Differential(map);
@@ -34,7 +42,6 @@ public class Functions {
 
 
     /*
-    code for FSM -
     start -> send to down (need to change function)
     extend -> need code
     pickup -> if within range (probably needs to be moved to extend), then if extended, then close the claw
@@ -43,22 +50,22 @@ public class Functions {
     prep -> prep for scoring (needs code)
      */
     public void specimenPickUp(boolean start) {
-        switch (specimen) {
+        switch (specimenPickup) {
             case SPECIMEN_START:
                 if (start) {
                     slides.outtakeDown();
-                    specimen = SpecimenState.SPECIMEN_EXTEND;
+                    specimenPickup = SpecimenPickupState.SPECIMEN_EXTEND;
                 }
                 break;
             case SPECIMEN_EXTEND:
                 //TODO: add the code to extend
-                specimen = SpecimenState.SPECIMEN_PICKUP;
+                specimenPickup = SpecimenPickupState.SPECIMEN_PICKUP;
                 break;
             case SPECIMEN_PICKUP:
                 //TODO: implement differential encoder vars
                 if (slides.withinRange(1000, 10, true) && slides.withinRange(1000, 10, false)) {
                     outtake.clawClose();
-                    specimen = SpecimenState.SPECIMEN_RETRACT;
+                    specimenPickup = SpecimenPickupState.SPECIMEN_RETRACT;
                 }
                 break;
             case SPECIMEN_RETRACT:
@@ -66,11 +73,31 @@ public class Functions {
                 break;
             case SPECIMEN_RAISE:
                 slides.outtakeUp();
-                specimen = SpecimenState.SPECIMEN_PREP;
+                specimenPickup = SpecimenPickupState.SPECIMEN_PREP;
                 break;
             case SPECIMEN_PREP:
                 //TODO: prep for scoring
-                specimen = SpecimenState.SPECIMEN_START;
+                specimenPickup = SpecimenPickupState.SPECIMEN_START;
+                break;
+        }
+    }
+
+
+    /*
+    prep - position from pickup
+    lower - get the specimen onto bar
+    release - release it
+    retract - retract to position for pickup start
+     */
+    public void specimenScore(boolean start) {
+        switch (specimenScore) {
+            case SPECIMEN_PREP:
+                break;
+            case SPECIMEN_LOWER:
+                break;
+            case SPECIMEN_RELEASE:
+                break;
+            case SPECIMEN_RETRACT:
                 break;
         }
     }
