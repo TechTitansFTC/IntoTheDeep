@@ -92,12 +92,19 @@ public class Functions {
     public void specimenScore(boolean start) {
         switch (specimenScore) {
             case SPECIMEN_PREP:
+                if (start) {
+                    specimenScore = SpecimenScoreState.SPECIMEN_LOWER;
+                }
                 break;
             case SPECIMEN_LOWER:
+                //TODO: slightly lower the slides
                 break;
             case SPECIMEN_RELEASE:
+                outtake.clawOpen();
+                specimenScore = SpecimenScoreState.SPECIMEN_RETRACT;
                 break;
             case SPECIMEN_RETRACT:
+                //TODO: add the code to retract to pos where pickup starts from
                 break;
         }
     }
