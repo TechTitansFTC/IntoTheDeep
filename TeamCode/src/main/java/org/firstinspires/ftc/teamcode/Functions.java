@@ -26,6 +26,17 @@ public class Functions {
     };
     SpecimenScoreState specimenScore = SpecimenScoreState.SPECIMEN_PREP;
 
+    public enum FSM {
+        SPECIMEN_SETUP,
+        SPECIMEN_SCORE,
+        NEUTRAL,
+        SAMPLE_ACCEPT,
+        SAMPLE_HOLD,
+        SAMPLE_RAISE,
+        SAMPLE_SCORE;
+    };
+    FSM fsmstate = FSM.NEUTRAL;
+
     public Functions (HardwareMap map) {
         slides = new Differential(map);
         intake = new Intake(map);
