@@ -28,7 +28,7 @@ public class teleop extends LinearOpMode {
         imu.initialize(parameters);
 
         Differential slides = new Differential(hardwareMap);
-        Outtake outtake = new Outtake(hardwareMap, slides);
+        Outtake outtake = new Outtake(hardwareMap);
         Intake intake = new Intake(hardwareMap);
 
         waitForStart();
