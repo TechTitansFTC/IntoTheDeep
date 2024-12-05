@@ -123,4 +123,12 @@ public class Functions {
     public void slideControl (boolean up, boolean down, boolean out, boolean in) {
         slides.slidesControl(up, down, out, in);
     }
+
+    public void specimenSetup(){
+        switch(fsmstate){
+            case NEUTRAL:
+                outtake.clawClose();
+                slides.outtakeUp();
+        }
+    }
 }

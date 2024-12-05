@@ -44,14 +44,26 @@ public class Differential {
         }
     }
 
-    public void outtakeUp() {
+    public void outtakeUp(int t) {
+        timer.reset();
         motorR.setPower(0.6);
         motorL.setPower(-0.6);
+        while (timer.milliseconds() <= t){
+
+        }
+        motorR.setPower(0);
+        motorL.setPower(0);
     }
 
-    public void outtakeDown() {
+    public void outtakeDown(int t) {
+        timer.reset();
         motorR.setPower(-0.6);
         motorL.setPower(0.6);
+        while (timer.milliseconds() <= t){
+
+        }
+        motorR.setPower(0);
+        motorL.setPower(0);
     }
 
     public void intakeOut() {
