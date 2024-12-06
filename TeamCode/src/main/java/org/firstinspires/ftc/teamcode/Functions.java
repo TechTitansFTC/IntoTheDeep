@@ -128,7 +128,24 @@ public class Functions {
         switch(fsmstate){
             case NEUTRAL:
                 outtake.clawClose();
-                slides.outtakeUp();
+                slides.outtakeUp(0);
+                outtake.shoulderOut();
+                fsmstate = FSM.SPECIMEN_SETUP;
+                break;
+        }
+    }
+
+    public void score(){
+        switch(fsmstate){
+            case SPECIMEN_SETUP:
+                slides.outtakeDown(0);
+                outtake.clawOpen();
+                fsmstate = FSM.SPECIMEN_SCORE;
+                break;
+            case SPECIMEN_SCORE:
+                outtake.shoulderIn();
+                slides.outtakeDown(0);
+                fsmstate = FSM.NEUTRAL;
         }
     }
 }
