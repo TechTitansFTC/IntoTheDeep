@@ -15,18 +15,20 @@ public class twoServoTest extends LinearOpMode {
         Servo servo1 = hardwareMap.servo.get("servo1");
         Servo servo2 = hardwareMap.servo.get("servo2");
         servo1.setDirection(Servo.Direction.REVERSE);
-        double val = 0.1;
-        double val2 = 0.1;
+        double val = 0;
+        double val2 = 1;
         waitForStart();
         if(isStopRequested()) return;
         while (opModeIsActive()) {
             if (timer.milliseconds() > 250) {
                 if (gamepad1.dpad_up) {
                     val += 0.1;
+                    val2 -= 0.1;
                 } else if (gamepad1.dpad_right) {
                     val += 0.05;
                 } else if (gamepad1.dpad_down) {
-                    val -= 0.1;
+                    val += 0.1;
+                    val2 -= 0.1;
                 } else if (gamepad1.dpad_left) {
                     val -= 0.05;
                 }
@@ -34,7 +36,7 @@ public class twoServoTest extends LinearOpMode {
             }
             if (val > -1 && val < 1.1) {
                 servo1.setPosition(val);
-                servo2.setPosition(val);
+                servo2.setPosition(val2);
             }
 
             telemetry.addData("pos = ", servo1.getPosition());

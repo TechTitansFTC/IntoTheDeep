@@ -6,14 +6,15 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(group = "testing")
-public class outtakeTest extends LinearOpMode {
+public class OuttakeTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Servo shoulderL = hardwareMap.get(Servo.class, "rotateML"); // main U-D
         Servo shoulderR = hardwareMap.get(Servo.class, "rotateMR"); // main U-D
-        Servo elbow = hardwareMap.get(Servo.class, "elbow"); // subset U-D
+        Servo elbowL = hardwareMap.get(Servo.class, "elbowL"); // subset U-D
+        Servo elbowR = hardwareMap.get(Servo.class, "elbowR");
         Servo wrist = hardwareMap.get(Servo.class, "wrist"); // L-R
         Servo claw = hardwareMap.get(Servo.class, "claw");
-        Servo[] servos = {shoulderL, shoulderR, elbow, wrist, claw};
+        Servo[] servos = {shoulderL, shoulderR, elbowL, elbowR, wrist, claw};
         ElapsedTime timer = new ElapsedTime();
 
         waitForStart();
@@ -45,7 +46,7 @@ public class outtakeTest extends LinearOpMode {
 
             telemetry.addData("pos", shoulderL.getPosition());
             telemetry.addData("pos", shoulderR.getPosition());
-            telemetry.addData("pos", elbow.getPosition());
+            telemetry.addData("pos", elbowL.getPosition());
             telemetry.addData("pos", wrist.getPosition());
             telemetry.addData("pos", claw.getPosition());
             telemetry.update();

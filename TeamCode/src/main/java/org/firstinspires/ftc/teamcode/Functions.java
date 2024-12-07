@@ -64,7 +64,7 @@ public class Functions {
         switch (specimenPickup) {
             case SPECIMEN_START:
                 if (start) {
-                    slides.outtakeDown();
+                    slides.outtakeDown(0);
                     specimenPickup = SpecimenPickupState.SPECIMEN_EXTEND;
                 }
                 break;
@@ -83,7 +83,7 @@ public class Functions {
                 //TODO: add the code to retract
                 break;
             case SPECIMEN_RAISE:
-                slides.outtakeUp();
+                slides.outtakeUp(0);
                 specimenPickup = SpecimenPickupState.SPECIMEN_PREP;
                 break;
             case SPECIMEN_PREP:
@@ -121,7 +121,7 @@ public class Functions {
     }
 
     public void slideControl (boolean up, boolean down, boolean out, boolean in) {
-        slides.slidesControl(up, down, out, in);
+//        slides.slidesControl(up, down, out, in);
     }
 
     public void specimenSetup(){

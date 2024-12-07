@@ -4,6 +4,10 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+/*
+elbow r = eh 0
+elbow l = ch 3
+ */
 public class Differential {
     private DcMotorEx motorL;
     private DcMotorEx motorR;
@@ -24,25 +28,25 @@ public class Differential {
         timer.reset();
     }
 
-    public void slidesControl(boolean up, boolean down, boolean out, boolean in) {
-        boolean inputReceived = up || down || out || in;
-        if (timer.milliseconds() > 500) {
-            if (inputReceived) {
-                if (up) {
-                    outtakeUp();
-                } else if (down) {
-                    outtakeDown();
-                } else if (out) {
-                    intakeOut();
-                } else {
-                    intakeIn();
-                }
-                timer.reset();
-            } else {
-                slidesOff();
-            }
-        }
-    }
+//    public void slidesControl(boolean up, boolean down, boolean out, boolean in) {
+//        boolean inputReceived = up || down || out || in;
+//        if (timer.milliseconds() > 500) {
+//            if (inputReceived) {
+//                if (up) {
+//                    outtakeUp();
+//                } else if (down) {
+//                    outtakeDown();
+//                } else if (out) {
+//                    intakeOut();
+//                } else {
+//                    intakeIn();
+//                }
+//                timer.reset();
+//            } else {
+//                slidesOff();
+//            }
+//        }
+//    }
 
     public void outtakeUp(int t) {
         timer.reset();
