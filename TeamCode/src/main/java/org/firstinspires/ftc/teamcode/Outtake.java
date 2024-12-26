@@ -4,101 +4,89 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Outtake {
-    private Servo shoulderL; // main U-D
-    private Servo shoulderR; // main U-D
-    private Servo elbowL; // subset U-D
-    private Servo elbowR;
-    private Servo wrist; // L-R
-    private Servo claw;
+    public Servo shoulderL; // main U-D
+    public Servo shoulderR; // main U-D
+    public Servo elbow; // subset U-D
+    public Servo wrist; // L-R
+    public Servo claw;
 
-    //TODO: FIND ALL SERVO VALUES
-    private final double SHOULDER_L_OUT = 0.0;//arm outside robot
-    private final double SHOULDER_L_IN = 0.0;//arm in robot
-    private final double SHOULDER_L_N = 0.0;//arm perpendicular
-    private final double SHOULDER_R_OUT = 0.0;//same but with other arm
-    private final double SHOULDER_R_IN = 0.0;
-    private final double SHOULDER_R_N = 0.0;
-    private final double ELBOW_L_OUT = 0.0;//forearm out(away from robot)
-    private final double ELBOW_L_IN = 0.0;//forearm in(towards robot)
-    private final double ELBOW_R_OUT = 0.0;
-    private final double ELBOW_R_IN = 0.0;
-    private final double WRIST_UP = .75;
-    private final double WRIST_DOWN = 0.1;
-    private final double CLAW_CLOSE = 0.6;//closes claw
-    private final double CLAW_OPEN = 0.45;//open claw
+
+    public final double SHOULDER_L_SCORE = 0.75;
+    public final double SHOULDER_R_SCORE = 0.25;
+    public final double ELBOW_SCORE= 0.3;
+    public final double WRIST_SCORE = 1;
+    //CLAW - OPEN
+
+
+    public final double SHOULDER_L_START = 0;
+    public final double SHOULDER_R_START = 1;
+    public final double ELBOW_START= 0.85;
+    public final double WRIST_START = 0.35;
+    //CLAW - OPEN
+
+    public final double SHOULDER_L_PULLDOWN = 1;
+    public final double SHOULDER_R_PULLDOWN = 0;
+    public final double ELBOW_PULLDOWN = 0.05;
+    public final double WRIST_PULLDOWN = 1;
+    //CLAW - CLOSED
+
+    public final double CLAW_CLOSE = 0.5;
+    public final double CLAW_OPEN = 0.0;
 
     public Outtake(HardwareMap m){
-        this.shoulderL = m.servo.get("rotateML"); //port 4 CH
-        this.shoulderR = m.servo.get("rotateMR"); //port 1 EH
-        this.elbowL = m.servo.get("elbowL"); //port 5 CH
-        this.elbowR = m.servo.get("elbowR"); //port 0 EH
-        this.wrist = m.servo.get("wrist"); //port 1 CH
-        this.claw = m.servo.get("claw"); //port 2 CH
+        this.shoulderL = m.servo.get("rotateML"); //port 6 CH
+        this.shoulderR = m.servo.get("rotateMR"); //port 0 EH
+        this.elbow = m.servo.get("elbow"); //port 5 CH
+        this.wrist = m.servo.get("wrist"); //port 2 CH
+        this.claw = m.servo.get("claw"); //port 1 CH
     }
 
-    public void init() {
-        shoulderL.setPosition(SHOULDER_L_N);
-        shoulderR.setPosition(SHOULDER_R_N);
-        elbowL.setPosition(ELBOW_L_IN);
-        elbowR.setPosition(ELBOW_R_IN);
-        wrist.setPosition(WRIST_UP);
-        claw.setPosition(CLAW_OPEN);
-    }
-
-    public void shoulderOut(){
-        shoulderL.setPosition(SHOULDER_L_OUT);
-        shoulderR.setPosition(SHOULDER_R_OUT);
-    }
-    public void shoulderIn(){
-        shoulderL.setPosition(SHOULDER_L_IN);
-        shoulderR.setPosition(SHOULDER_R_IN);
-    }
-
-    public void elbowIn(){
-        elbowL.setPosition(ELBOW_L_IN);elbowR.setPosition(ELBOW_R_IN);
-    }
-
-    /**
-     * set elbow to a specific spot
-     * @param input - within range
-     * @// TODO: 12/5/2024 make sure all the values work
-     */
-    public void setElbow(int input) {
-
-    }
-
-    public boolean checkElbow(int input) {
-        return true;
-    }
-    public void elbowOut(){
-        elbowL.setPosition(ELBOW_L_OUT);
-        elbowR.setPosition(ELBOW_R_OUT);
-    }
-
-    public void wristUp(){
-        wrist.setPosition(WRIST_UP);
-    }
-    public void wristDown(){
-        wrist.setPosition(WRIST_DOWN);
-    }
-
-    public void clawClose(){
+    public void init(){
+        shoulderL.setPosition(SHOULDER_L_START);
+        shoulderR.setPosition(SHOULDER_R_START);
+        wrist.setPosition(WRIST_START);
         claw.setPosition(CLAW_CLOSE);
+        elbow.setPosition(ELBOW_START);
     }
+
+
+
+    public void shoulderScore(){
+        shoulderL.setPosition(SHOULDER_L_SCORE);
+        shoulderR.setPosition(SHOULDER_R_SCORE);
+    }
+    public void shoulderStart(){
+        shoulderL.setPosition(SHOULDER_L_START);
+        shoulderR.setPosition(SHOULDER_R_START);
+    }
+    public void shoulderPullDown(){
+        shoulderL.setPosition(SHOULDER_L_PULLDOWN);
+        shoulderR.setPosition(SHOULDER_R_PULLDOWN);
+    }
+    public void wristScore(){
+        wrist.setPosition(WRIST_SCORE);
+    }
+    public void wristStart(){
+        wrist.setPosition(WRIST_START);
+    }
+    public void wristPulldown(){
+        wrist.setPosition(WRIST_PULLDOWN);
+    }
+
+    public void clawClose() { claw.setPosition(CLAW_CLOSE); }
     public void clawOpen(){
         claw.setPosition(CLAW_OPEN);
     }
 
-    public boolean getClawClosed() {
-        if (claw.getPosition() == CLAW_CLOSE) {
-            return true;
-        }
-        return false;
+    public void elbowStart(){
+        elbow.setPosition(ELBOW_START);
     }
-
-    //TODO: code extend and retract positions
-    //TODO: code scoring position
-
+    public void elbowScore(){
+        elbow.setPosition(ELBOW_SCORE);
+    }
+    public void elbowPulldown(){
+        elbow.setPosition(ELBOW_PULLDOWN);
+    }
 
 
 }

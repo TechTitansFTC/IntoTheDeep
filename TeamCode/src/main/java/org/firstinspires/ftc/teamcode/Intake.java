@@ -5,52 +5,42 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Intake {
-    private CRServo geckoL;
-    private CRServo geckoR;
-    private Servo armL;
-    private Servo armR;
-    private Servo elbow;
+    private Servo inClaw;
+    private Servo lRotate;
+//    private Servo rRotate;
 
     //TODO: find intake servo values
     //TODO: finalize intake PIVs
-    private final double ARM_L_IN = 0;
-    private final double ARM_L_OUT = 0;
-    private final double ARM_R_IN = 0;
-    private final double ARM_R_OUT = 0;
-    private final double ELBOW_BASE = 0;
-    private final double ELBOW_EXTENDED = 0;
+    public final double IN_CLAW_CLOSED = 0.15;
+    public final double IN_CLAW_OPEN = 0.5;
+    public final double IN_L_START = 0.35;
+    public final double IN_L_PICK = 0.7;
+//    public final double IN_R_START = 0.65;
+//    public final double IN_R_PICK = 0.32;
 
     public Intake (HardwareMap map) {
-        this.geckoL = (CRServo) map.get("geckoL");
-        this.geckoR = (CRServo) map.get("geckoR");
-        this.armL = (Servo) map.get("intakeL");
-        this.armR = (Servo) map.get("intakeR");
-        this.elbow = (Servo) map.get("intake");
+        this.inClaw = (Servo) map.get("inClaw");
+        this.lRotate = (Servo) map.get("inL");
+//        this.rRotate = (Servo) map.get("inR");
     }
 
     public void init () {
-        geckoL.setPower(0);
-        geckoR.setPower(0);
-        armL.setPosition(ARM_L_IN);
-        armR.setPosition(ARM_R_IN);
-        elbow.setPosition(ELBOW_BASE);
+        inClaw.setPosition(IN_CLAW_OPEN);
+        lRotate.setPosition(IN_L_START);
+//        rRotate.setPosition(IN_R_START);
     }
 
-    public void intakeOn() {geckoL.setPower(-1);geckoR.setPower(1);}
+    public void inClawClosed() {inClaw.setPosition(IN_CLAW_CLOSED);}
 
-    public void intakeOff() {geckoL.setPower(0);geckoR.setPower(0);}
+    public void inClawOpen() {inClaw.setPosition(IN_CLAW_OPEN);}
 
-    public void armIn() {
-        armL.setPosition(ARM_L_IN);
-        armR.setPosition(ARM_R_IN);
+    public void inArmUp() {
+        lRotate.setPosition(IN_L_START);
+//        rRotate.setPosition(IN_R_START);
     }
 
-    public void armOut() {
-        armL.setPosition(ARM_L_OUT);
-        armR.setPosition(ARM_R_OUT);
+    public void inArmOut() {
+        lRotate.setPosition(IN_L_PICK);
+//        rRotate.setPosition(IN_R_PICK);
     }
-
-    public void elbowOut() {elbow.setPosition(ELBOW_EXTENDED);}
-
-    public void elbowIn() {elbow.setPosition(ELBOW_BASE);}
 }

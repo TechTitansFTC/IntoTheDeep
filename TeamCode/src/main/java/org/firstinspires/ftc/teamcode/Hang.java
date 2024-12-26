@@ -18,8 +18,8 @@ public class Hang {
     public Hang(HardwareMap m){
         this.leftUp = (DcMotorEx) m.get("leftActuator");
         this.rightUp = (DcMotorEx) m.get("rightActuator");
-        this.hookL = m.servo.get("elbow");
-        this.hookR = m.servo.get("wrist");
+        this.hookL = m.servo.get("hookL"); //port 0 CH
+        this.hookR = m.servo.get("hookR"); //port 6 EH
     }
 
     public void init () {
