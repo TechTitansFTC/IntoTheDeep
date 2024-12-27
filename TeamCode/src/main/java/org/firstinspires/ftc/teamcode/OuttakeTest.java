@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Outtake;
 @TeleOp(group = "testing")
-public class outtakeTest extends LinearOpMode {
+public class OuttakeTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Servo shoulderL = hardwareMap.get(Servo.class, "rotateML"); // main U-D
         Servo shoulderR = hardwareMap.get(Servo.class, "rotateMR"); // main U-D
