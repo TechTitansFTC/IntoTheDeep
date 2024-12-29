@@ -12,10 +12,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 public class Ateleop extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeftMotor");
-        DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeftMotor");
-        DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRightMotor");
-        DcMotor backRightMotor = hardwareMap.dcMotor.get("backRightMotor");
+        DcMotor frontLeftMotor = hardwareMap.dcMotor.get("leftFront");
+        DcMotor backLeftMotor = hardwareMap.dcMotor.get("leftBack");
+        DcMotor frontRightMotor = hardwareMap.dcMotor.get("rightFront");
+        DcMotor backRightMotor = hardwareMap.dcMotor.get("rightBack");
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
