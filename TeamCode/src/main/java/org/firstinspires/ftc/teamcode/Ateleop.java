@@ -68,34 +68,43 @@ public class Ateleop extends LinearOpMode {
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
 
-            if (gamepad1.y || gamepad2.y){
+            if (gamepad1.y){
                 robot.score();
             }
-            if (gamepad1.b| gamepad2.b) {
+            if (gamepad1.b) {
                 robot.pulldown();
             }
-            if (gamepad1.x || gamepad2.x) {
+            if (gamepad1.x) {
                 robot.start();
             }
-//            if (gamepad1.left_bumper || gamepad2.left_bumper) {
-//                robot.inOpenClaw();
-//            }
-//            if (gamepad1.right_bumper || gamepad2.right_bumper) {
-//                robot.inCloseClaw();
-//            }
-//            if (gamepad1.dpad_up || gamepad2.dpad_up) {
-//                robot.inUp();
-//            }
-//            if (gamepad1.dpad_down || gamepad2.dpad_down) {
-//                robot.inOut();
-//            }
-            if (gamepad1.left_trigger > 0 || gamepad2.left_trigger > 0) {
+            if (gamepad1.left_trigger > 0 ) {
                 robot.openClaw();
             }
-            if (gamepad1.right_trigger > 0 || gamepad2.right_trigger > 0) {
+            if (gamepad1.right_trigger > 0 ) {
                 robot.closeClaw();
             }
 
+
+            if(gamepad2.left_stick_y > 0.3 || gamepad2.left_stick_y < -0.3){
+                robot.manualSlides(gamepad2.left_stick_y);
+            }
+            if(gamepad2.y){
+                robot.samplePick();
+            }
+            if(gamepad2.a){
+                robot.sampleHold();
+            }
+
+
+            if(gamepad2.right_stick_y>=0.3){
+                robot.inWheelOut();
+            }
+            if(gamepad2.right_stick_y<=-0.3){
+                robot.inWheelIn();
+            }
+            if (gamepad2.right_stick_button){
+                robot.inWheelOff();
+            }
         }
     }
 }

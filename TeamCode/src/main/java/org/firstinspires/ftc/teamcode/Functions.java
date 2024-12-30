@@ -7,7 +7,7 @@ import java.util.Timer;
 
 public class Functions {
     private Outtake outtake;
-//    private Intake intake;
+    private Intake intake;
     private Differential slides;
 
     public enum SpecimenPickupState {
@@ -37,6 +37,19 @@ public class Functions {
 
     SpecimenScoreState specimenScore = SpecimenScoreState.SCORE_SHOULDER;
 
+    public enum SamplePickState {
+        PICK_ROTATE,
+        PICK_WHEEL
+    }
+    SamplePickState samplePick = SamplePickState.PICK_ROTATE;
+
+    public enum SampleHoldState {
+        HOLD_ROTATE,
+        HOLD_WHEEL,
+        HOLD_SLIDES
+    }
+    SampleHoldState sampleHold = SampleHoldState.HOLD_ROTATE;
+
     public final String[] MAKESHIFT = {"DOWN", "CLOSE", "UP", "SCORE"};
     ElapsedTime timer = new ElapsedTime();
 
@@ -44,13 +57,13 @@ public class Functions {
 
     public Functions(HardwareMap map) {
 
-//        intake = new Intake(map);
+        intake = new Intake(map);
         outtake = new Outtake(map);
     }
 
     public void init() {
 
-//        intake.init();
+        intake.init();
         outtake.init();
         timer.reset();
     }
@@ -156,16 +169,47 @@ public class Functions {
     public void closeClaw() {
         outtake.clawClose();
     }
-//    public void inOpenClaw() {
-//        intake.inClawOpen();
-//    }
-//    public void inCloseClaw() {
-//        intake.inClawClosed();
-//    }
-//    public void inOut() {
-//        intake.inArmOut();
-//    }
-//    public void inUp() { intake.inArmUp(); }
 
+    public void samplePick(){
+        switch (samplePick){
+            case PICK_ROTATE:
+                intake.armOut();
+                samplePick = SamplePickState.PICK_WHEEL;
+                break;
+            case  PICK_WHEEL:
+                intake.wheelIn();
+                samplePick = SamplePickState.PICK_WHEEL;
+                break;
+        }
+    }
+
+    public void sampleHold(){
+        switch (sampleHold){
+            case HOLD_ROTATE:
+                intake.armUp();
+                sampleHold = SampleHoldState.HOLD_WHEEL;
+                break;
+            case  HOLD_WHEEL:
+                intake.wheelIn();
+                sampleHold = SampleHoldState.HOLD_SLIDES;
+                break;
+            case  HOLD_SLIDES:
+                intake.slidesPos(0);
+                sampleHold = SampleHoldState.HOLD_SLIDES;
+                break;
+        }
+    }
+    public void inWheelOut() {
+        intake.wheelOut();
+    }
+    public void inWheelIn() {
+        intake.wheelIn();
+    }
+    public void inOut() {
+        intake.armOut();
+    }
+    public void inUp() { intake.armUp(); }
+    public void inWheelOff(){intake.wheelOff();}
+    public void manualSlides(double pwr){intake.manualSlides(pwr);}
 
 }
