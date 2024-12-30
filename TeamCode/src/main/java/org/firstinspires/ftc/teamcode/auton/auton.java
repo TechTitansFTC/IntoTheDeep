@@ -77,9 +77,9 @@ public class auton extends LinearOpMode {
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
         Func rb = new Func(hardwareMap);
         Vector2d entry = new Vector2d(38,-36);
-        Vector2d s1 = new Vector2d(48,-10);
+        Vector2d s1 = new Vector2d(50,-10);
         Vector2d s2 = new Vector2d(58,-10);
-        Vector2d s3 = new Vector2d(62,-10);
+        Vector2d s3 = new Vector2d(65,-10);
         Vector2d end = new Vector2d(60,-60);
         Vector2d accept = new Vector2d(35,-62);
         Vector2d target2 =   new Vector2d(7,-33);
@@ -88,11 +88,11 @@ public class auton extends LinearOpMode {
         Vector2d target5 =   new Vector2d(-2,-33);
 
         // vision here that outputs position
-        int visionOutputPosition = 1;
+
 
         TrajectoryActionBuilder score1 = drive.actionBuilder(initialPose)
                 .lineToY(-33)
-                .waitSeconds(1);
+                .waitSeconds(0.5);
         TrajectoryActionBuilder accept2 = drive.actionBuilder(initialPose)
                 
                 .strafeTo(entry)
