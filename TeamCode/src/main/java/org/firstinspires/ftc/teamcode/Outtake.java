@@ -13,25 +13,25 @@ public class Outtake {
 
     public final double SHOULDER_L_SCORE = 0.75;
     public final double SHOULDER_R_SCORE = 0.25;
-    public final double ELBOW_SCORE= 0.3;
-    public final double WRIST_SCORE = 1;
+    public final double ELBOW_SCORE= 0.1;
+    public final double WRIST_SCORE = 0.25;
     //CLAW - OPEN
 
 
     public final double SHOULDER_L_START = 0;
     public final double SHOULDER_R_START = 1;
-    public final double ELBOW_START= 0.85;
-    public final double WRIST_START = 0.35;
+    public final double ELBOW_START= 0.75;
+    public final double WRIST_START = 0.95;
     //CLAW - OPEN
 
     public final double SHOULDER_L_PULLDOWN = 1;
     public final double SHOULDER_R_PULLDOWN = 0;
-    public final double ELBOW_PULLDOWN = 0.05;
-    public final double WRIST_PULLDOWN = 1;
+    public final double ELBOW_PULLDOWN = 0.1;
+    public final double WRIST_PULLDOWN = 0.25;
     //CLAW - CLOSED
 
-    public final double CLAW_CLOSE = 0.5;
-    public final double CLAW_OPEN = 0.0;
+    public final double CLAW_CLOSE = 0.8;
+    public final double CLAW_OPEN = 0.4;
 
     public Outtake(HardwareMap m){
         this.shoulderL = m.servo.get("rotateML"); //port 6 CH

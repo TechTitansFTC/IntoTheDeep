@@ -7,8 +7,7 @@ import java.util.Timer;
 
 public class Functions {
     private Outtake outtake;
-    private Intake intake;
-    private Hang hang;
+//    private Intake intake;
     private Differential slides;
 
     public enum SpecimenPickupState {
@@ -27,7 +26,7 @@ public class Functions {
         PULLDOWN_CLAW
     }
 
-    SpecimenPulldownState specimenPulldown = SpecimenPulldownState.PULLDOWN_SHOULDER;
+    SpecimenPulldownState specimenPulldown = SpecimenPulldownState.PULLDOWN_WRIST;
 
     public enum SpecimenScoreState {
         SCORE_SHOULDER,
@@ -45,13 +44,13 @@ public class Functions {
 
     public Functions(HardwareMap map) {
 
-        intake = new Intake(map);
+//        intake = new Intake(map);
         outtake = new Outtake(map);
     }
 
     public void init() {
 
-        intake.init();
+//        intake.init();
         outtake.init();
         timer.reset();
     }
@@ -86,15 +85,6 @@ public class Functions {
 
     public void pulldown() {
         switch (specimenPulldown) {
-            case PULLDOWN_ELBOW:
-                outtake.elbowPulldown();
-                specimenPulldown = SpecimenPulldownState.PULLDOWN_WRIST;
-                break;
-            case PULLDOWN_SHOULDER:
-                outtake.shoulderPullDown();
-                specimenPulldown = SpecimenPulldownState.PULLDOWN_ELBOW;
-                break;
-
             case PULLDOWN_WRIST:
                 outtake.wristPulldown();
                 specimenPulldown = SpecimenPulldownState.PULLDOWN_CLAW;
@@ -103,6 +93,17 @@ public class Functions {
                 outtake.clawClose();
                 specimenPulldown = SpecimenPulldownState.PULLDOWN_SHOULDER;
                 break;
+            case PULLDOWN_ELBOW:
+                outtake.elbowPulldown();
+                specimenPulldown = SpecimenPulldownState.PULLDOWN_WRIST;
+                break;
+            case PULLDOWN_SHOULDER:
+
+                outtake.shoulderPullDown();
+                specimenPulldown = SpecimenPulldownState.PULLDOWN_ELBOW;
+                break;
+
+
         }
     }
 
@@ -155,16 +156,16 @@ public class Functions {
     public void closeClaw() {
         outtake.clawClose();
     }
-    public void inOpenClaw() {
-        intake.inClawOpen();
-    }
-    public void inCloseClaw() {
-        intake.inClawClosed();
-    }
-    public void inOut() {
-        intake.inArmOut();
-    }
-    public void inUp() { intake.inArmUp(); }
+//    public void inOpenClaw() {
+//        intake.inClawOpen();
+//    }
+//    public void inCloseClaw() {
+//        intake.inClawClosed();
+//    }
+//    public void inOut() {
+//        intake.inArmOut();
+//    }
+//    public void inUp() { intake.inArmUp(); }
 
 
 }

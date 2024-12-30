@@ -21,7 +21,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @Config
-@Autonomous(name = "BLUE_TEST_AUTO_PIXEL", group = "Autonomous")
+@Autonomous(name = "NIKESH DOND PLAY THE FOOL WITH ME", group = "Autonomous")
 public class auton extends LinearOpMode {
     public class Func {
         private Functions bot;

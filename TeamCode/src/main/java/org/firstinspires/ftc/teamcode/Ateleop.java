@@ -68,27 +68,27 @@ public class Ateleop extends LinearOpMode {
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
 
-            if (gamepad1.b || gamepad2.b){
+            if (gamepad1.y || gamepad2.y){
                 robot.score();
             }
-            if (gamepad1.a || gamepad2.a) {
+            if (gamepad1.b| gamepad2.b) {
                 robot.pulldown();
             }
             if (gamepad1.x || gamepad2.x) {
                 robot.start();
             }
-            if (gamepad1.left_bumper || gamepad2.left_bumper) {
-                robot.inOpenClaw();
-            }
-            if (gamepad1.right_bumper || gamepad2.right_bumper) {
-                robot.inCloseClaw();
-            }
-            if (gamepad1.dpad_up || gamepad2.dpad_up) {
-                robot.inUp();
-            }
-            if (gamepad1.dpad_down || gamepad2.dpad_down) {
-                robot.inOut();
-            }
+//            if (gamepad1.left_bumper || gamepad2.left_bumper) {
+//                robot.inOpenClaw();
+//            }
+//            if (gamepad1.right_bumper || gamepad2.right_bumper) {
+//                robot.inCloseClaw();
+//            }
+//            if (gamepad1.dpad_up || gamepad2.dpad_up) {
+//                robot.inUp();
+//            }
+//            if (gamepad1.dpad_down || gamepad2.dpad_down) {
+//                robot.inOut();
+//            }
             if (gamepad1.left_trigger > 0 || gamepad2.left_trigger > 0) {
                 robot.openClaw();
             }
