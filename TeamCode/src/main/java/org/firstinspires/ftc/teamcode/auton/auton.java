@@ -76,7 +76,7 @@ public class auton extends LinearOpMode {
         Pose2d initialPose = new Pose2d(10, -60, Math.toRadians(90));
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
         Func rb = new Func(hardwareMap);
-        Vector2d entry = new Vector2d(35,-36);
+        Vector2d entry = new Vector2d(38,-36);
         Vector2d s1 = new Vector2d(48,-10);
         Vector2d s2 = new Vector2d(58,-10);
         Vector2d s3 = new Vector2d(62,-10);
@@ -94,46 +94,45 @@ public class auton extends LinearOpMode {
                 .lineToY(-33)
                 .waitSeconds(1);
         TrajectoryActionBuilder accept2 = drive.actionBuilder(initialPose)
-                .lineToY(-36)
-                .waitSeconds(0.01)
+                
                 .strafeTo(entry)
-                .waitSeconds(0.01)
+                .waitSeconds(0.25)
                 .lineToY(-10)
-                .waitSeconds(0.01)
+                .waitSeconds(0.25)
                 .strafeTo(s1)
-                .waitSeconds(0.01)
+                .waitSeconds(0.25)
                 .lineToY(-60)
-                .waitSeconds(0.01)
+                .waitSeconds(0.1)
                 .lineToY(-10)
-                .waitSeconds(0.01)
+                .waitSeconds(0.25)
                 .strafeTo(s2)
-                .waitSeconds(0.01)
+                .waitSeconds(0.25)
                 .lineToY(-60)
-                .waitSeconds(0.01)
+                .waitSeconds(0.1)
                 .lineToY(-10)
-                .waitSeconds(0.01)
+                .waitSeconds(0.25)
                 .strafeTo(s3)
-                .waitSeconds(0.01)
+                .waitSeconds(0.25)
                 .lineToY(-60)
-                .waitSeconds(0.01)
-                .lineToY(-50)
-                .waitSeconds(0.01)
+                .waitSeconds(0.1)
+                .lineToY(-40)
+                .waitSeconds(0.25)
                 .strafeTo(accept);
         TrajectoryActionBuilder score2 = drive.actionBuilder(initialPose)
                 .strafeTo(target2)
-                .waitSeconds(1);
+                .waitSeconds(0.5);
         TrajectoryActionBuilder acceptall= drive.actionBuilder(initialPose)
                 .strafeTo(accept)
-                .waitSeconds(1);
+                .waitSeconds(0.5);
         TrajectoryActionBuilder score3 = drive.actionBuilder(initialPose)
                 .strafeTo(target3)
-                .waitSeconds(1);
+                .waitSeconds(0.5);
         TrajectoryActionBuilder score4 = drive.actionBuilder(initialPose)
                 .strafeTo(target4)
-                .waitSeconds(1);
+                .waitSeconds(0.5);
         TrajectoryActionBuilder score5 = drive.actionBuilder(initialPose)
                 .strafeTo(target5)
-                .waitSeconds(1);
+                .waitSeconds(0.5);
         Action fin = score1.endTrajectory().fresh()
                 .strafeTo(end)
                 .build();
