@@ -67,6 +67,19 @@ public class auton extends LinearOpMode {
             return new PullDown();
         }
 
+        public class init implements Action {
+
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                bot.sinit();
+
+                return false;
+            }
+        }
+        public Action ini() {
+            return new init();
+        }
+
     }
 
 
@@ -77,68 +90,49 @@ public class auton extends LinearOpMode {
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
         Func rb = new Func(hardwareMap);
         Vector2d entry = new Vector2d(38,-36);
-        Vector2d s1 = new Vector2d(50,-10);
-        Vector2d s2 = new Vector2d(58,-10);
-        Vector2d s3 = new Vector2d(65,-10);
+        Vector2d s1 = new Vector2d(52,-10);
+        Vector2d s2 = new Vector2d(62,-10);
+        Vector2d s3 = new Vector2d(72,-10);
         Vector2d end = new Vector2d(60,-60);
-        Vector2d accept = new Vector2d(35,-62);
-        Vector2d target2 =   new Vector2d(7,-33);
-        Vector2d target3 =   new Vector2d(4,-33);
-        Vector2d target4 =   new Vector2d(1,-33);
-        Vector2d target5 =   new Vector2d(-2,-33);
+        Vector2d accept = new Vector2d(40,-60);
+        Vector2d target2 =   new Vector2d(7,-30);
+
 
         // vision here that outputs position
 
 
         TrajectoryActionBuilder score1 = drive.actionBuilder(initialPose)
-                .lineToY(-33)
-                .waitSeconds(0.5);
-        TrajectoryActionBuilder accept2 = drive.actionBuilder(initialPose)
-                
-                .strafeTo(entry)
-                .waitSeconds(0.25)
-                .lineToY(-10)
-                .waitSeconds(0.25)
-                .strafeTo(s1)
-                .waitSeconds(0.25)
-                .lineToY(-60)
-                .waitSeconds(0.1)
-                .lineToY(-10)
-                .waitSeconds(0.25)
-                .strafeTo(s2)
-                .waitSeconds(0.25)
-                .lineToY(-60)
-                .waitSeconds(0.1)
-                .lineToY(-10)
-                .waitSeconds(0.25)
-                .strafeTo(s3)
-                .waitSeconds(0.25)
-                .lineToY(-60)
-                .waitSeconds(0.1)
+                .lineToY(-30);
+       TrajectoryActionBuilder accept2 = drive.actionBuilder(new Pose2d(10, -30, Math.toRadians(90)))
                 .lineToY(-40)
-                .waitSeconds(0.25)
-                .strafeTo(accept);
-        TrajectoryActionBuilder score2 = drive.actionBuilder(initialPose)
-                .strafeTo(target2)
-                .waitSeconds(0.5);
-        TrajectoryActionBuilder acceptall= drive.actionBuilder(initialPose)
+                .strafeTo(entry)
+                .strafeTo(s1)
+               .waitSeconds(0.01)
+                .lineToY(-60)
+               .waitSeconds(0.01)
+               .strafeTo(s2)
+               .waitSeconds(0.01)
+                .lineToY(-60)
+               .waitSeconds(0.01)
+                .strafeTo(s3)
+               .waitSeconds(0.01)
+                .lineToY(-60)
+                .lineToY(-40)
                 .strafeTo(accept)
-                .waitSeconds(0.5);
-        TrajectoryActionBuilder score3 = drive.actionBuilder(initialPose)
-                .strafeTo(target3)
-                .waitSeconds(0.5);
-        TrajectoryActionBuilder score4 = drive.actionBuilder(initialPose)
-                .strafeTo(target4)
-                .waitSeconds(0.5);
-        TrajectoryActionBuilder score5 = drive.actionBuilder(initialPose)
-                .strafeTo(target5)
-                .waitSeconds(0.5);
+                .waitSeconds(1);
+        TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(35, -60, Math.toRadians(90)))
+                .strafeTo(target2)
+                .waitSeconds(1);
+        TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(7, -33, Math.toRadians(90)))
+                .strafeTo(accept)
+                .waitSeconds(1);
         Action fin = score1.endTrajectory().fresh()
                 .strafeTo(end)
                 .build();
 
         // actions that need to happen on init; for instance, a claw tightening.
-        Actions.runBlocking(rb.start());
+        Actions.runBlocking(rb.ini());
+
 
 
 
@@ -162,17 +156,17 @@ public class auton extends LinearOpMode {
                         rb.start(),
                         acceptall.build(),
                         rb.score(),
-                        score3.build(),
+                        score2.build(),
                         rb.pulldown(),
                         rb.start(),
                         acceptall.build(),
                         rb.score(),
-                        score4.build(),
+                        score2.build(),
                         rb.pulldown(),
                         rb.start(),
                         acceptall.build(),
                         rb.score(),
-                        score5.build(),
+                        score2.build(),
                         rb.pulldown(),
                         rb.start(),
                         fin

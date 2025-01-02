@@ -49,7 +49,13 @@ public class Outtake {
         elbow.setPosition(ELBOW_START);
     }
 
-
+    public void sinit(){
+        shoulderL.setPosition(SHOULDER_L_START);
+        shoulderR.setPosition(SHOULDER_R_START);
+        wrist.setPosition(WRIST_START);
+        claw.setPosition(CLAW_CLOSE);
+        elbow.setPosition(ELBOW_START+0.2);
+    }
 
     public void shoulderScore(){
         shoulderL.setPosition(SHOULDER_L_SCORE);

@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Intake {
-    private CRServo inClaw;
+    private Servo inClaw;
     private Servo lRotate;
     private DcMotorEx inSlides;
     private Servo rRotate;
@@ -19,24 +19,25 @@ public class Intake {
     public final double IN_L_PICK = 0.7;
     public final double IN_R_START = 0.65;
     public final double IN_R_PICK = 0.32;
+    public final double WHEEL_IN = 0.32;
+    public final double WHEEL_OUT = 0.32;
 
     public Intake (HardwareMap map) {
-        this.inClaw = (CRServo) map.get("inClaw");
+        this.inClaw = (Servo) map.get("inClaw");
         this.lRotate = (Servo) map.get("inL");
         this.rRotate = (Servo) map.get("inR");
         this.inSlides = (DcMotorEx) map.get("inSlides");
     }
 
     public void init () {
-        inClaw.setPower(0);
+        inClaw.setPosition(WHEEL_OUT);
         lRotate.setPosition(IN_L_START);
         rRotate.setPosition(IN_R_START);
         inSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
-    public void wheelIn() {inClaw.setPower(1);}
-    public void wheelOff() {inClaw.setPower(0);}
-    public void wheelOut() {inClaw.setPower(-1);}
+    public void wheelIn() {inClaw.setPosition(WHEEL_IN);}
+    public void wheelOut() {inClaw.setPosition(WHEEL_OUT);}
 
     public void armUp() {
         lRotate.setPosition(IN_L_START);

@@ -85,9 +85,9 @@ public class Ateleop extends LinearOpMode {
             }
 
 
-            if(gamepad2.left_stick_y > 0.3 || gamepad2.left_stick_y < -0.3){
-                robot.manualSlides(gamepad2.left_stick_y);
-            }
+//            if(gamepad2.left_stick_y > 0.3 || gamepad2.left_stick_y < -0.3){
+//                robot.manualSlides(gamepad2.left_stick_y);
+//            }
             if(gamepad2.y){
                 robot.samplePick();
             }
@@ -102,9 +102,7 @@ public class Ateleop extends LinearOpMode {
             if(gamepad2.right_stick_y<=-0.3){
                 robot.inWheelIn();
             }
-            if (gamepad2.right_stick_button){
-                robot.inWheelOff();
-            }
+
         }
     }
 }

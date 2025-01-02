@@ -67,6 +67,12 @@ public class Functions {
         outtake.init();
         timer.reset();
     }
+    public void sinit() {
+
+        intake.init();
+        outtake.sinit();
+        timer.reset();
+    }
 
     //left bumper - claw open
     //right bumper - claw close
@@ -209,7 +215,7 @@ public class Functions {
         intake.armOut();
     }
     public void inUp() { intake.armUp(); }
-    public void inWheelOff(){intake.wheelOff();}
     public void manualSlides(double pwr){intake.manualSlides(pwr);}
+//
 
 }
