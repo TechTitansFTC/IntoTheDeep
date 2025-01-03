@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 @TeleOp
@@ -22,7 +24,7 @@ public class Ateleop extends LinearOpMode {
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-
+        ElapsedTime timer = new ElapsedTime();
         IMU imu = hardwareMap.get(IMU.class, "imu");
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
                 RevHubOrientationOnRobot.LogoFacingDirection.UP,
@@ -85,21 +87,19 @@ public class Ateleop extends LinearOpMode {
             }
 
 
-//            if(gamepad2.left_stick_y > 0.3 || gamepad2.left_stick_y < -0.3){
-//                robot.manualSlides(gamepad2.left_stick_y);
-//            }
+
             if(gamepad2.y){
-                robot.samplePick();
+                robot.inUp();
             }
             if(gamepad2.a){
-                robot.sampleHold();
+                robot.inDown();
             }
 
 
-            if(gamepad2.right_stick_y>=0.3){
+            if(gamepad2.left_trigger > 0.5){
                 robot.inWheelOut();
             }
-            if(gamepad2.right_stick_y<=-0.3){
+            else if(gamepad2.right_trigger > 0.5){
                 robot.inWheelIn();
             }
 

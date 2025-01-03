@@ -176,44 +176,18 @@ public class Functions {
         outtake.clawClose();
     }
 
-    public void samplePick(){
-        switch (samplePick){
-            case PICK_ROTATE:
-                intake.armOut();
-                samplePick = SamplePickState.PICK_WHEEL;
-                break;
-            case  PICK_WHEEL:
-                intake.wheelIn();
-                samplePick = SamplePickState.PICK_WHEEL;
-                break;
-        }
-    }
 
-    public void sampleHold(){
-        switch (sampleHold){
-            case HOLD_ROTATE:
-                intake.armUp();
-                sampleHold = SampleHoldState.HOLD_WHEEL;
-                break;
-            case  HOLD_WHEEL:
-                intake.wheelIn();
-                sampleHold = SampleHoldState.HOLD_SLIDES;
-                break;
-            case  HOLD_SLIDES:
-                intake.slidesPos(0);
-                sampleHold = SampleHoldState.HOLD_SLIDES;
-                break;
-        }
-    }
     public void inWheelOut() {
         intake.wheelOut();
     }
     public void inWheelIn() {
         intake.wheelIn();
     }
-    public void inOut() {
-        intake.armOut();
+    public void inWheelOff() {
+        intake.wheelOff();
     }
+    public void inDown() { intake.armOut(); }
+
     public void inUp() { intake.armUp(); }
     public void manualSlides(double pwr){intake.manualSlides(pwr);}
 //
