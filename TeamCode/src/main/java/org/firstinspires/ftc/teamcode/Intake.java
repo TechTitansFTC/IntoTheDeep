@@ -18,9 +18,9 @@ public class Intake {
     //TODO: find intake servo values
     //TODO: finalize intake PIVs
 
-    public final double IN_L_START = 0.4;
+    public final double IN_L_START = 0.6;
     public final double IN_L_PICK = 0.8;
-    public final double IN_R_START = 0.6;
+    public final double IN_R_START = 0.4;
     public final double IN_R_PICK = 0.2;
 
     public Intake (HardwareMap map) {

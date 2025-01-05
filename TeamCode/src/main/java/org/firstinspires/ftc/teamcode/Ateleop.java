@@ -44,6 +44,21 @@ public class Ateleop extends LinearOpMode {
             double y = - gamepad1.left_stick_y - gamepad1.right_stick_y; // Remember, Y stick value is reversed
             double x = gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
+            if(gamepad1.left_bumper){
+                y*=0.5;
+                x*=0.5;
+                rx*=0.5;
+            }
+            if(gamepad1.right_bumper){
+                y*=1;
+                x*=1;
+                rx*=1;
+            }
+            else {
+                y*=0.8;
+                x*=0.8;
+                rx*=0.8;
+            }
 
             // This button choice was made so that it is hard to hit on accident,
             // it can be freely changed based on preference.
@@ -70,13 +85,13 @@ public class Ateleop extends LinearOpMode {
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
 
-            if (gamepad1.y){
+            if (gamepad2.dpad_up){
                 robot.score();
             }
-            if (gamepad1.b) {
+            if (gamepad2.dpad_right) {
                 robot.pulldown();
             }
-            if (gamepad1.x) {
+            if (gamepad2.dpad_left) {
                 robot.start();
             }
             if (gamepad1.left_trigger > 0 ) {
@@ -85,6 +100,7 @@ public class Ateleop extends LinearOpMode {
             if (gamepad1.right_trigger > 0 ) {
                 robot.closeClaw();
             }
+
 
 
 

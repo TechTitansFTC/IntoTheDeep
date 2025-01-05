@@ -5,6 +5,7 @@ import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
@@ -35,6 +36,7 @@ public class auton extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 bot.autoScore();
+                sleep(1000);
                 return false;
             }
         }
@@ -47,6 +49,7 @@ public class auton extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 bot.autoStart();
+                sleep(1000);
                 return false;
             }
         }
@@ -92,22 +95,18 @@ public class auton extends LinearOpMode {
         Vector2d entry = new Vector2d(42,-36);
         Vector2d s1 = new Vector2d(55,0);
         Vector2d s2 = new Vector2d(64,0);
-        Vector2d s3 = new Vector2d(72,0);
         Vector2d end = new Vector2d(60,-60);
-        Vector2d accept = new Vector2d(50,-59);
-        Vector2d target2 =   new Vector2d(7,-29);
-
-
+        Vector2d accept = new Vector2d(45,-59);
+        Vector2d target2 =   new Vector2d(7,-28);
         // vision here that outputs position
 
 
         TrajectoryActionBuilder score1 = drive.actionBuilder(initialPose)
-                .lineToY(-28);
+                .lineToY(-28)
+                .waitSeconds(1);
        TrajectoryActionBuilder accept2 = drive.actionBuilder(new Pose2d(10, -28, Math.toRadians(90)))
                 .lineToY(-40)
                 .strafeTo(entry)
-               .waitSeconds(0.01)
-               .lineToY(-5)
                .waitSeconds(0.01)
                 .strafeTo(s1)
                .waitSeconds(0.01)
@@ -119,23 +118,14 @@ public class auton extends LinearOpMode {
                .waitSeconds(0.01)
                 .lineToY(-60)
                .waitSeconds(0.01)
-//               .lineToY(-5)
-//               .waitSeconds(0.01)
-//                .strafeTo(s3)
-//               .waitSeconds(0.5)
-//                .lineToY(-60)
-//               .waitSeconds(0.01)
-//               .strafeTo(new Vector2d(60,-60))
-//               .waitSeconds(0.01)
                .lineToY(-40)
-                .strafeTo(accept)
-                .waitSeconds(1);
-        TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(50, -59, Math.toRadians(90)))
-                .strafeTo(target2)
-                .waitSeconds(1);
-        TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(7, -29, Math.toRadians(90)))
-                .strafeTo(accept)
-                .waitSeconds(3);
+               .lineToY(-60);
+        TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(64, -62, Math.toRadians(90)))
+                .strafeTo(target2);
+        TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(90)))
+                .strafeTo(target2);
+        TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(7, -28, Math.toRadians(90)))
+                .strafeTo(accept);
         Action fin = score1.endTrajectory().fresh()
                 .strafeTo(end)
                 .build();
@@ -159,28 +149,38 @@ public class auton extends LinearOpMode {
                         score1.build(),
                         rb.pulldown(),
                         rb.start(),
-                        accept2.build(),
+                        accept2.build()
+                )
+
+
+        );
+        Actions.runBlocking(new SleepAction(1));
+        Actions.runBlocking(new SequentialAction(
+                rb.score(),
+                score.build(),
+                rb.pulldown(),
+                rb.start(),
+                acceptall.build()
+                )
+        );
+        Actions.runBlocking(new SleepAction(1));
+        Actions.runBlocking(new SequentialAction(
                         rb.score(),
                         score2.build(),
                         rb.pulldown(),
                         rb.start(),
-                        acceptall.build(),
+                        acceptall.build()
+                )
+        );
+        Actions.runBlocking(new SleepAction(1));
+        Actions.runBlocking(new SequentialAction(
                         rb.score(),
                         score2.build(),
                         rb.pulldown(),
                         rb.start(),
-                        acceptall.build(),
-                        rb.score(),
-                        score2.build(),
-                        rb.pulldown(),
-                        rb.start(),
-//                        acceptall.build(),
-//                        rb.score(),
-//                        score2.build(),
-//                        rb.pulldown(),
-//                        rb.start(),
                         fin
                 )
         );
+
     }
 }
