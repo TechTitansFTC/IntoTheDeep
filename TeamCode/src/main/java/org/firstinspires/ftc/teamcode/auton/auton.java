@@ -92,7 +92,7 @@ public class auton extends LinearOpMode {
         Pose2d initialPose = new Pose2d(10, -60, Math.toRadians(90));
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
         Func rb = new Func(hardwareMap);
-        Vector2d entry = new Vector2d(42,-36);
+        Vector2d entry = new Vector2d(40,-36);
         Vector2d s1 = new Vector2d(55,0);
         Vector2d s2 = new Vector2d(64,0);
         Vector2d end = new Vector2d(60,-60);
@@ -102,8 +102,9 @@ public class auton extends LinearOpMode {
 
 
         TrajectoryActionBuilder score1 = drive.actionBuilder(initialPose)
-                .lineToY(-28)
-                .waitSeconds(1);
+                .lineToY(-24)
+                .waitSeconds(0.01);
+
        TrajectoryActionBuilder accept2 = drive.actionBuilder(new Pose2d(10, -28, Math.toRadians(90)))
                 .lineToY(-40)
                 .strafeTo(entry)
@@ -120,6 +121,8 @@ public class auton extends LinearOpMode {
                .waitSeconds(0.01)
                .lineToY(-40)
                .lineToY(-60);
+
+
         TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(64, -62, Math.toRadians(90)))
                 .strafeTo(target2);
         TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(90)))
@@ -154,7 +157,7 @@ public class auton extends LinearOpMode {
 
 
         );
-        Actions.runBlocking(new SleepAction(1));
+        Actions.runBlocking(new SleepAction(0.2));
         Actions.runBlocking(new SequentialAction(
                 rb.score(),
                 score.build(),
@@ -163,7 +166,7 @@ public class auton extends LinearOpMode {
                 acceptall.build()
                 )
         );
-        Actions.runBlocking(new SleepAction(1));
+        Actions.runBlocking(new SleepAction(0.2));
         Actions.runBlocking(new SequentialAction(
                         rb.score(),
                         score2.build(),
@@ -172,7 +175,7 @@ public class auton extends LinearOpMode {
                         acceptall.build()
                 )
         );
-        Actions.runBlocking(new SleepAction(1));
+        Actions.runBlocking(new SleepAction(0.2));
         Actions.runBlocking(new SequentialAction(
                         rb.score(),
                         score2.build(),
