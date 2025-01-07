@@ -147,7 +147,7 @@ public class auton extends LinearOpMode {
                 new SequentialAction(
                         rb.score(),
                         score1.build(),
-                        rb.pulldown(),
+                        rb.pulldown(),//score 1
                         rb.start(),
                         accept2.build()
                 )
@@ -158,7 +158,7 @@ public class auton extends LinearOpMode {
         Actions.runBlocking(new SequentialAction(
                 rb.score(),
                 score.build(),
-                rb.pulldown(),
+                rb.pulldown(),//score 2
                 rb.start(),
                 acceptall.build()
                 )
@@ -167,7 +167,7 @@ public class auton extends LinearOpMode {
         Actions.runBlocking(new SequentialAction(
                         rb.score(),
                         score2.build(),
-                        rb.pulldown(),
+                        rb.pulldown(),//score3
                         rb.start(),
                         acceptall.build()
                 )
@@ -176,7 +176,7 @@ public class auton extends LinearOpMode {
         Actions.runBlocking(new SequentialAction(
                         rb.score(),
                         score2.build(),
-                        rb.pulldown(),
+                        rb.pulldown(),//score 4
                         rb.start(),
                         fin
                 )
