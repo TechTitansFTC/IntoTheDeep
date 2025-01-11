@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.auton;
+package org.firstinspires.ftc.teamcode.v2.auton;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.Functions;
+import org.firstinspires.ftc.teamcode.v2.Functions;
 
 
 @Autonomous(name = "A_4_AUTON_SPECIMEN")
