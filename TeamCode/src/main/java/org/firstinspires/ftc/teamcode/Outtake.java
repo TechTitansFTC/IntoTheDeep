@@ -14,7 +14,7 @@ public class Outtake {
     public DcMotorEx slidesL;
     public DcMotorEx slidesR;
 
-    double ticks = 384.5
+    double ticks = 384.5;
 
     public final double SHOULDER_L_SCORE = 0.75;
     public final double SHOULDER_R_SCORE = 0.25;
