@@ -28,19 +28,17 @@ public class inAuton {
                .lineToY(-50)
                 .waitSeconds(0.1)
 
-                .splineTo(new Vector2d(40,-30),Math.toRadians(0))
+                .splineTo(new Vector2d(35,-40),Math.toRadians(45))
                 //pick 1
-                .turn(Math.toRadians(-90))
+                .turn(Math.toRadians(-135))
                 //turn 90 and extend and drop
                 //retract a bit
-                .turn(Math.toRadians(90))
-                //extend and pick 2
-                .turn(Math.toRadians(-90))
+                .splineTo(new Vector2d(42,-40),Math.toRadians(45))                //extend and pick 2
+                .turn(Math.toRadians(-135))
                 //extend and drop
                 //retract a vit
-                .turn(Math.toRadians(90))
-                //extend and pick 3
-                .turn(Math.toRadians(-90))
+                .splineTo(new Vector2d(50,-40),Math.toRadians(45))                //extend and pick 3
+                .turn(Math.toRadians(-135))
                 //drop and retract
                 .splineTo(new Vector2d(40,-60),Math.toRadians(90))
                 .strafeTo(new Vector2d(10,-33))

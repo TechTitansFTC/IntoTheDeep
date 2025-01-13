@@ -47,13 +47,13 @@ public class Atelop extends LinearOpMode {
             double x = gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
             if (gamepad1.left_bumper){
-                y*=0.3;
-                x*=0.3;
-                rx*=0.3;
+                y*=0.4;
+                x*=0.4;
+                rx*=0.4;
             }else if (!gamepad1.right_bumper){
-                y*=0.7;
-                x*=0.7;
-                rx*=0.7;
+                y*=0.8;
+                x*=0.8;
+                rx*=0.8;
             }
 
             // This button choice was made so that it is hard to hit on accident,
