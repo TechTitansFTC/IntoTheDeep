@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(group = "testing")
-public class simpleServoTest extends LinearOpMode {
+public class  simpleServoTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Servo servo = hardwareMap.get(Servo.class, "servo");
         ElapsedTime timer = new ElapsedTime();
@@ -18,9 +18,9 @@ public class simpleServoTest extends LinearOpMode {
         while (opModeIsActive()) {
             if (timer.milliseconds() > 300) {
                 if (gamepad1.dpad_up) {
-                    servo.setPosition(servo.getPosition() + 0.05);
+                    servo.setPosition(servo.getPosition() + 0.01);
                 } else if (gamepad1.dpad_down) {
-                    servo.setPosition(servo.getPosition() - 0.05);
+                    servo.setPosition(servo.getPosition() - 0.01);
                 }
                 timer.reset();
             }

@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class Functions {
     private Outtake outtake;
-    private Intake intake;
+//    private Intake intake;
 
     public enum SpecimenPickupState {
         START_SHOULDER,

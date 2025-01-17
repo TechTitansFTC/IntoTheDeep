@@ -11,32 +11,32 @@ public class Outtake {
     public Servo elbow; // subset U-D
     public Servo wrist; // L-R
     public Servo claw;
-    public DcMotorEx slidesL;
-    public DcMotorEx slidesR;
+//    public DcMotorEx slidesL;
+//    public DcMotorEx slidesR;
 
     double ticks = 384.5;
 
-    public final double SHOULDER_L_SCORE = 0.75;
-    public final double SHOULDER_R_SCORE = 0.25;
-    public final double ELBOW_SCORE= 0.1;
-    public final double WRIST_SCORE = 0.95;
+    public final double SHOULDER_L_SCORE = 0.36; //CH 4
+    public final double SHOULDER_R_SCORE = 0.64; // CH 5
+    public final double ELBOW_SCORE= 0.45; //EH 2
+    public final double WRIST_SCORE = 0.7;
     //CLAW - OPEN
 
 
-    public final double SHOULDER_L_START = 0;
-    public final double SHOULDER_R_START = 1;
-    public final double ELBOW_START= 0.825;
-    public final double WRIST_START = 0.3;
+    public final double SHOULDER_L_START = 0; //CH 4
+    public final double SHOULDER_R_START = 1; // CH 5
+    public final double ELBOW_START= 0.55; //EH 2
+    public final double WRIST_START = 0;
     //CLAW - OPEN
 
-    public final double SHOULDER_L_PULLDOWN = 1;
-    public final double SHOULDER_R_PULLDOWN = 0;
-    public final double ELBOW_PULLDOWN = 0.1;
-    public final double WRIST_PULLDOWN = 0.95;
+    public final double SHOULDER_L_PULLDOWN = 0.53; //CH 4
+    public final double SHOULDER_R_PULLDOWN = 0.47; // CH 5
+    public final double ELBOW_PULLDOWN = 0.55; //EH 2
+    public final double WRIST_PULLDOWN = 0.7;
     //CLAW - CLOSED
 
-    public final double CLAW_CLOSE = 1;
-    public final double CLAW_OPEN = 0.4;
+    public final double CLAW_CLOSE = 0.4;
+    public final double CLAW_OPEN = 0.7;
 
     public Outtake(HardwareMap m){
         this.shoulderL = m.servo.get("rotateML"); //port 6 CH
@@ -44,8 +44,8 @@ public class Outtake {
         this.elbow = m.servo.get("elbow"); //port 5 CH
         this.wrist = m.servo.get("wrist"); //port 2 CH
         this.claw = m.servo.get("claw"); //port 1 CH
-        this.slidesL = (DcMotorEx) m.get("slidesL");
-        this.slidesR = (DcMotorEx) m.get("slidesR");
+//        this.slidesL = (DcMotorEx) m.get("slidesL");
+//        this.slidesR = (DcMotorEx) m.get("slidesR");
 
     }
 
@@ -55,20 +55,20 @@ public class Outtake {
         wrist.setPosition(WRIST_START);
         claw.setPosition(CLAW_CLOSE);
         elbow.setPosition(ELBOW_START);
-        slidesL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        slidesR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        slidesL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        slidesR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-    public void slides(double turn,double p){
-        slidesL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        slidesR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        int runpos = (int) (ticks*turn);
-        slidesR.setTargetPosition(runpos);
-        slidesL.setTargetPosition(runpos);
-        slidesL.setPower(p);
-        slidesR.setPower(p);
-        slidesL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        slidesR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    }
+//    public void slides(double turn,double p){
+//        slidesL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        slidesR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        int runpos = (int) (ticks*turn);
+//        slidesR.setTargetPosition(runpos);
+//        slidesL.setTargetPosition(runpos);
+//        slidesL.setPower(p);
+//        slidesR.setPower(p);
+//        slidesL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        slidesR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//    }
 
     public void shoulderScore(){
         shoulderL.setPosition(SHOULDER_L_SCORE);
