@@ -17,16 +17,17 @@ public class MotorPower  {
 
 
     public MotorPower(HardwareMap map) {
-        this.FL = (DcMotor) map.get("frontLeftMotor");
-        this.FR = (DcMotor) map.get("frontRightMotor");
-        this.BR = (DcMotor) map.get("backRightMotor");
-        this.BL = (DcMotor) map.get("backLeftMotor");
+        this.FL = (DcMotor) map.get("leftFront");
+        this.FR = (DcMotor) map.get("rightFront");
+        this.BR = (DcMotor) map.get("rightBack");
+        this.BL = (DcMotor) map.get("leftBack");
         FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FL.setDirection(DcMotorSimple.Direction.REVERSE);
-        BL.setDirection(DcMotorSimple.Direction.REVERSE);
+        BR.setDirection(DcMotorSimple.Direction.FORWARD);
+        FR.setDirection(DcMotorSimple.Direction.FORWARD);
 
     }
 
