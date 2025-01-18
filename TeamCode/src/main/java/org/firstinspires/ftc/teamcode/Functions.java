@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class Functions {
     private Outtake outtake;
-//    private Intake intake;
+    private Intake intake;
 
     public enum SpecimenPickupState {
         START_SHOULDER,
@@ -33,8 +33,29 @@ public class Functions {
     }
 
     SpecimenScoreState specimenScore = SpecimenScoreState.SCORE_SHOULDER;
+/////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////
+    public enum inExtend {
+        LIFTUP,
+        OPEN,
+        EXTEND,
+        DOWN;
 
-
+    }
+    inExtend inetend = inExtend.LIFTUP;
+    public enum inHold {
+        CLOSE,
+        LIFTUP,
+        STRAIGHTEN;
+    }
+    public enum inDrop{
+        OPEN,
+        RETRACT,
+        LIFTDOWN,
+        CLOSE;
+    }
 
 
     ElapsedTime timer = new ElapsedTime();
@@ -42,13 +63,15 @@ public class Functions {
     public Functions(HardwareMap map) {
 
         outtake = new Outtake(map);
+        intake = new Intake(map);
     }
 
     public void init() {
 
-
+        intake.init();
         outtake.init();
         timer.reset();
+
     }
 
 
@@ -153,6 +176,11 @@ public class Functions {
     public void closeClaw() {
         outtake.clawClose();
     }
+/////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////
+
 
 
 
