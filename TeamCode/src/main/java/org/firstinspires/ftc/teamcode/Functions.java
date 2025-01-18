@@ -138,11 +138,16 @@ public class Functions {
                 specimenScore = SpecimenScoreState.SCORE_WRIST;
                 break;
             case SCORE_WRIST:
+                while (timer.milliseconds() <200){
+
+                }
                 outtake.wristScore();
                 specimenScore = SpecimenScoreState.SCORE_CLAW;
                 break;
             case SCORE_CLAW:
                 outtake.clawClose();
+                timer.reset();
+
                 specimenScore = SpecimenScoreState.SCORE_SHOULDER;
                 break;
         }

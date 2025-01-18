@@ -48,11 +48,11 @@ public class Atelop extends LinearOpMode {
             double y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
             double x = gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
-            if (gamepad1.left_bumper){
+            if (gamepad2.left_bumper){
                 y*=0.4;
                 x*=0.4;
                 rx*=0.4;
-            }else if (!gamepad1.right_bumper){
+            }else if (gamepad2.right_bumper){
                 y*=0.8;
                 x*=0.8;
                 rx*=0.8;
