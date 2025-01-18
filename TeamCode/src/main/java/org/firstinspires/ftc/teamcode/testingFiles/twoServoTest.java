@@ -26,11 +26,13 @@ public class twoServoTest extends LinearOpMode {
                     val2 -= 0.1;
                 } else if (gamepad1.dpad_right) {
                     val += 0.05;
+                    val2 -= 0.05;
                 } else if (gamepad1.dpad_down) {
                     val += 0.1;
                     val2 -= 0.1;
                 } else if (gamepad1.dpad_left) {
                     val -= 0.05;
+                    val2 -= 0.05;
                 }
                 timer.reset();
             }
