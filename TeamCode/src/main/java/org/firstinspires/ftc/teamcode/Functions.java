@@ -32,7 +32,7 @@ public class Functions {
         SCORE_CLAW
     }
 
-    SpecimenScoreState specimenScore = SpecimenScoreState.SCORE_SHOULDER;
+    SpecimenScoreState specimenScore = SpecimenScoreState.SCORE_CLAW;
 /////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ public class Functions {
         DOWN;
 
     }
-    inExtend inetend = inExtend.LIFTUP;
+    inExtend inextend = inExtend.LIFTUP;
     public enum inHold {
         CLOSE,
         LIFTUP,
@@ -63,12 +63,12 @@ public class Functions {
     public Functions(HardwareMap map) {
 
         outtake = new Outtake(map);
-        intake = new Intake(map);
+//        intake = new Intake(map);
     }
 
     public void init() {
 
-        intake.init();
+//        intake.init();
         outtake.init();
         timer.reset();
 
@@ -180,6 +180,27 @@ public class Functions {
     ////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////
+public void inExtend() {
+    switch (inextend) {
+        case LIFTUP:
+
+            inextend = inExtend.OPEN;
+            break;
+        case OPEN:
+            outtake.shoulderStart();
+            specimenPickup = SpecimenPickupState.START_ELBOW;
+            break;
+        case EXTEND:
+            outtake.elbowStart();
+            specimenPickup = SpecimenPickupState.START_WRIST;
+            break;
+        case DOWN:
+            outtake.wristStart();
+            specimenPickup = SpecimenPickupState.START_CLAW;
+            break;
+
+    }
+}
 
 
 

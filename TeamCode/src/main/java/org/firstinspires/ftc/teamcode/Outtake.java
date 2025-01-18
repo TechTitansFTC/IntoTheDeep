@@ -16,26 +16,26 @@ public class Outtake {
 
     double ticks = 384.5;
 
-    public final double SHOULDER_L_SCORE = 0.36; //CH 4
-    public final double SHOULDER_R_SCORE = 0.64; // CH 5
+    public final double SHOULDER_L_SCORE = 0.6; //CH 4
+    public final double SHOULDER_R_SCORE = 0.4; // CH 5
     public final double ELBOW_SCORE= 0.45; //EH 2
     public final double WRIST_SCORE = 0.7;
     //CLAW - OPEN
 
 
-    public final double SHOULDER_L_START = 0; //CH 4
-    public final double SHOULDER_R_START = 1; // CH 5
-    public final double ELBOW_START= 0.55; //EH 2
+    public final double SHOULDER_L_START = 0.95; //CH 4
+    public final double SHOULDER_R_START = 0.05; // CH 5
+    public final double ELBOW_START= 0.60; //EH 2
     public final double WRIST_START = 0;
     //CLAW - OPEN
 
-    public final double SHOULDER_L_PULLDOWN = 0.53; //CH 4
-    public final double SHOULDER_R_PULLDOWN = 0.47; // CH 5
+    public final double SHOULDER_L_PULLDOWN = 0.3; //CH 4
+    public final double SHOULDER_R_PULLDOWN = 0.7; // CH 5
     public final double ELBOW_PULLDOWN = 0.55; //EH 2
     public final double WRIST_PULLDOWN = 0.7;
     //CLAW - CLOSED
 
-    public final double CLAW_CLOSE = 0.4;
+    public final double CLAW_CLOSE = 0.2;
     public final double CLAW_OPEN = 0.7;
 
     public Outtake(HardwareMap m){
