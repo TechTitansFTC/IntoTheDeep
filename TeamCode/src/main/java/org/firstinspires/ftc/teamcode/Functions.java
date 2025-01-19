@@ -58,7 +58,7 @@ public class Functions {
         LIFTDOWN,
         CLOSE;
     }
-
+    inDrop indrop = inDrop.OPEN;
 
     ElapsedTime timer = new ElapsedTime();
 
@@ -194,17 +194,33 @@ public void inExtend() {
             inextend = inExtend.OPEN;
             break;
         case OPEN:
-            outtake.shoulderStart();
-            specimenPickup = SpecimenPickupState.START_ELBOW;
+
+            inextend = inExtend.EXTEND;
             break;
         case EXTEND:
-            outtake.elbowStart();
-            specimenPickup = SpecimenPickupState.START_WRIST;
+
+            inextend = inExtend.DOWN;
             break;
         case DOWN:
-            outtake.wristStart();
-            specimenPickup = SpecimenPickupState.START_CLAW;
+
+            inextend = inExtend.LIFTUP;
             break;
+
+    }
+    switch (inhold) {
+        case CLOSE:
+
+            inhold = inHold.LIFTUP;
+            break;
+        case LIFTUP:
+
+            inhold = inHold.STRAIGHTEN;
+            break;
+        case STRAIGHTEN:
+
+            inhold = inHold.CLOSE;
+            break;
+
 
     }
 }
