@@ -38,13 +38,13 @@ public class Functions {
     //////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////
     public enum inExtend {
-        LIFTUP,
+
         OPEN,
         EXTEND,
         DOWN;
 
     }
-    inExtend inextend = inExtend.LIFTUP;
+    inExtend inextend = inExtend.EXTEND;
     public enum inHold {
         CLOSE,
         LIFTUP,
@@ -55,22 +55,40 @@ public class Functions {
     public enum inDrop{
         OPEN,
         RETRACT,
-        LIFTDOWN,
         CLOSE;
     }
     inDrop indrop = inDrop.OPEN;
+
+    public enum transfer{
+
+        OPENCLAW,
+        START_SHOULDER,
+        START_ELBOW,
+        START_WRIST,
+        RETRACT,
+        CLOSECLAW,
+        OPENINTAKE,
+        SCORE_SHOULDER,
+        SCORE_ELBOW,
+        SCORE_WRIST,
+
+
+
+    }
+    transfer Transfer = transfer.OPENCLAW;
+
 
     ElapsedTime timer = new ElapsedTime();
 
     public Functions(HardwareMap map) {
 
         outtake = new Outtake(map);
-//        intake = new Intake(map);
+        intake = new Intake(map);
     }
 
     public void init() {
 
-//        intake.init();
+        intake.init();
         outtake.init();
         timer.reset();
 
@@ -189,35 +207,45 @@ public class Functions {
     ///////////////////////////////////////////////////////////////////////////////
 public void inExtend() {
     switch (inextend) {
-        case LIFTUP:
 
-            inextend = inExtend.OPEN;
-            break;
         case OPEN:
-
-            inextend = inExtend.EXTEND;
-            break;
-        case EXTEND:
-
+            intake.clawopen();
             inextend = inExtend.DOWN;
             break;
+        case EXTEND:
+            intake.extendOut();
+            inextend = inExtend.OPEN;
+            break;
         case DOWN:
+            timer.reset();
+            while (timer.milliseconds()<500){
 
-            inextend = inExtend.LIFTUP;
+            }
+            intake.liftdown();
+            inextend = inExtend.EXTEND;
             break;
 
     }
+
+}
+
+public void inHold(){
     switch (inhold) {
         case CLOSE:
+            intake.clawclose();
+            timer.reset();
+            while (timer.milliseconds()<200){
 
+            }
             inhold = inHold.LIFTUP;
             break;
         case LIFTUP:
 
+            intake.liftup();
             inhold = inHold.STRAIGHTEN;
             break;
         case STRAIGHTEN:
-
+            intake.wristDef();
             inhold = inHold.CLOSE;
             break;
 
@@ -225,8 +253,81 @@ public void inExtend() {
     }
 }
 
+    public void inDrop(){
+        switch (indrop) {
+            case OPEN:
+                intake.clawopen();
+                indrop = inDrop.RETRACT;
+                break;
+            case RETRACT:
+                timer.reset();
+                while (timer.milliseconds()<500){
+
+                }
+                intake.extendIn();
+                indrop = inDrop.OPEN;
+                break;
 
 
+        }
+    }
+    public void changeWrist(double increment){
+        intake.wristM(increment);
+    }
 
+    //under construction
+    public void transfer(){
+        switch (Transfer) {
+
+            case OPENCLAW:
+                outtake.clawOpen();
+                Transfer = transfer.START_SHOULDER;
+                break;
+            case START_SHOULDER:
+
+                outtake.shoulderTR();
+                Transfer = transfer.START_WRIST;
+                break;
+            case START_WRIST:
+                outtake.wristStart();
+                Transfer = transfer.START_ELBOW;
+                break;
+            case START_ELBOW:
+                outtake.elbowTr();
+                Transfer = transfer.RETRACT;
+                break;
+            case RETRACT:
+
+                intake.extendIn();
+                Transfer = transfer.CLOSECLAW;
+                break;
+            case CLOSECLAW:
+
+                outtake.clawClose();
+                Transfer = transfer.OPENINTAKE;
+                break;
+            case OPENINTAKE:
+
+                intake.clawopen();
+                Transfer = transfer.SCORE_SHOULDER;
+                break;
+            case SCORE_SHOULDER:
+                timer.reset();
+
+                outtake.shoulderScore();
+                Transfer = transfer.SCORE_ELBOW;
+                break;
+            case SCORE_ELBOW:
+
+                outtake.elbowScore();
+                Transfer = transfer.SCORE_WRIST;
+                break;
+            case SCORE_WRIST:
+
+                outtake.wristScore();
+                Transfer = transfer.OPENCLAW;
+                break;
+        }
+    }
 
 }

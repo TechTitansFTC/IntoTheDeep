@@ -22,6 +22,9 @@ public class Outtake {
     public final double WRIST_SCORE = 0.69;
     //CLAW - OPEN
 
+    public final double SHOULDER_L_TR = 1; //CH 4
+    public final double SHOULDER_R_TR = 0; // CH 5
+    public final double ELBOWTR= 0.6; //EH 2
 
     public final double SHOULDER_L_START = 0.9; //CH 4
     public final double SHOULDER_R_START = 0.1; // CH 5
@@ -77,6 +80,13 @@ public class Outtake {
     public void shoulderStart(){
         shoulderL.setPosition(SHOULDER_L_START);
         shoulderR.setPosition(SHOULDER_R_START);
+    }
+    public void shoulderTR(){
+        shoulderL.setPosition(SHOULDER_L_TR);
+        shoulderR.setPosition(SHOULDER_R_TR);
+    }
+    public void elbowTr(){
+        elbow.setPosition(ELBOWTR);
     }
     public void shoulderPullDown(){
         shoulderL.setPosition(SHOULDER_L_PULLDOWN);

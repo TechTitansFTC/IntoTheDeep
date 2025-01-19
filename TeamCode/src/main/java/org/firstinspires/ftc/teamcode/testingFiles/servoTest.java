@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class servoTest extends LinearOpMode{
     public void runOpMode() throws InterruptedException {
         Servo servo = hardwareMap.servo.get("servo");
+        servo.setDirection(Servo.Direction.FORWARD);
         double currentPos = 0.0; 
         boolean isOn = true;
         double baseValue = 0.0;

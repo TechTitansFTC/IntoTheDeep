@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Functions;
 
@@ -15,6 +17,7 @@ public class Atelop extends LinearOpMode {
 
     public void runOpMode() throws InterruptedException {
         Functions r = new Functions(hardwareMap);
+        ElapsedTime timer = new ElapsedTime();
         // Declare our motors
         // Make sure your ID's match your configuration
         DcMotor leftFront = hardwareMap.dcMotor.get("leftFront");
@@ -26,9 +29,15 @@ public class Atelop extends LinearOpMode {
         // If your robot moves backwards when commanded to go forwards,
         // reverse the left side instead.
         // See the note about this earlier on this page.
+        leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
         rightBack.setDirection(DcMotorSimple.Direction.FORWARD);
         rightFront.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // Retrieve the IMU from the hardware map
         IMU imu = hardwareMap.get(IMU.class, "imu");
@@ -95,6 +104,31 @@ public class Atelop extends LinearOpMode {
             }
             if (gamepad2.b){
                 r.pulldown();
+            }
+            if (gamepad2.dpad_down){
+                r.inDrop();
+            }
+            if (gamepad2.dpad_left){
+                r.inExtend();
+            }
+            if (gamepad2.dpad_up){
+                r.inHold();            }
+            if (gamepad2.dpad_right){
+//                r.transfer();
+                }
+                if(gamepad2.left_trigger>0.2){
+                    r.changeWrist(-0.1);
+                    timer.reset();
+                    while (timer.milliseconds()<200){
+
+                    }
+                }
+            if(gamepad2.right_trigger>0.2){
+                r.changeWrist(0.1);
+                timer.reset();
+                while (timer.milliseconds()<100){
+
+                }
             }
         }
     }
