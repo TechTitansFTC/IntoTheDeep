@@ -50,6 +50,8 @@ public class Functions {
         LIFTUP,
         STRAIGHTEN;
     }
+    inHold inhold = inHold.CLOSE;
+
     public enum inDrop{
         OPEN,
         RETRACT,
