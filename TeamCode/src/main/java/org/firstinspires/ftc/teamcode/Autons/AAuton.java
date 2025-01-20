@@ -94,8 +94,8 @@ public class AAuton extends LinearOpMode {
         Vector2d s1 = new Vector2d(50,0);
         Vector2d s2 = new Vector2d(58,0);
         Vector2d end = new Vector2d(60,-55);
-        Vector2d accept = new Vector2d(45,-59);
-        Vector2d target2 =   new Vector2d(0,-30);
+        Vector2d accept = new Vector2d(45,-45);
+        Vector2d target2 =   new Vector2d(0,-45);
         // vision here that outputs position
 
 
@@ -117,15 +117,18 @@ public class AAuton extends LinearOpMode {
                 .waitSeconds(0.0001)
                 .lineToY(-50)
                 .lineToY(-40)
-                .lineToY(-59, new TranslationalVelConstraint(18.0));
+                .lineToY(-59, new TranslationalVelConstraint(30));
 
         TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
-                .strafeTo(target2);
+                .strafeTo(target2)
+                .lineToY(-25, new TranslationalVelConstraint(40));
 
         TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(45, -58, Math.toRadians(-90)))
-                .strafeTo(target2, new TranslationalVelConstraint(40));
-        TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(0, -30, Math.toRadians(-90)))
-                .strafeTo(accept, new TranslationalVelConstraint(30));
+                .strafeTo(target2)
+        .lineToY(-25, new TranslationalVelConstraint(40));
+        TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(0, -25, Math.toRadians(-90)))
+                .strafeTo(accept)
+                .lineToY(-59, new TranslationalVelConstraint(40));
         Action fin = score1.endTrajectory().fresh()
                 .strafeTo(end)
                 .build();
