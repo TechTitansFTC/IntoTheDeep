@@ -20,8 +20,8 @@ import org.firstinspires.ftc.teamcode.MecanumDrive;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 @Config
-@Autonomous(name = "RoboPlayersPlaigerism", group = "Autonomous")
-public class AAuton extends LinearOpMode {
+@Autonomous(name = "voyagerCarrying", group = "Autonomous")
+public class voyegercarryaution extends LinearOpMode {
     public class Func {
         private Functions bot;
 
@@ -68,17 +68,17 @@ public class AAuton extends LinearOpMode {
             return new PullDown();
         }
 
-        public class closeclaw implements Action {
+        public class init implements Action {
 
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                bot.closeClaw();
+                bot.init();
 
                 return false;
             }
         }
-        public Action clawclose() {
-            return new closeclaw();
+        public Action ini() {
+            return new init();
         }
 
 
@@ -87,55 +87,51 @@ public class AAuton extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        Pose2d initialPose = new Pose2d(0, -58, Math.toRadians(-90));
+        Pose2d initialPose = new Pose2d(-10, -60, Math.toRadians(-90));
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
         Func rb = new Func(hardwareMap);
-        Vector2d entry = new Vector2d(38,-36);
-        Vector2d s1 = new Vector2d(50,0);
-        Vector2d s2 = new Vector2d(58,0);
-        Vector2d end = new Vector2d(60,-55);
-        Vector2d accept = new Vector2d(45,-45);
-        Vector2d target2 =   new Vector2d(0,-45);
+        Vector2d spec1 = new Vector2d(45,-15);
+        Vector2d spec2 = new Vector2d(55,-15);
+
+        Vector2d spot = new Vector2d(45,-50);
+        Vector2d chamberLoc = new Vector2d(10,-40);
         // vision here that outputs position
 
 
-        TrajectoryActionBuilder score1 = drive.actionBuilder(initialPose)
-                .lineToY(-24, new TranslationalVelConstraint(30));
-        TrajectoryActionBuilder accept2 = drive.actionBuilder(new Pose2d(0, -24, Math.toRadians(-90)))
-                .lineToY(-36)
+        TrajectoryActionBuilder push = drive.actionBuilder(initialPose)
+                .splineToConstantHeading(spec1,-90)
                 .waitSeconds(0.0001)
-                .strafeTo(entry)
+                .lineToY(-60)
                 .waitSeconds(0.0001)
-                .lineToY(-10)
+                .lineToY(-15)
                 .waitSeconds(0.0001)
-                .strafeTo(s1)
+                .strafeTo(spec2)
                 .waitSeconds(0.0001)
-                .lineToY(-50)
-                .lineToY(-10)
-                .waitSeconds(0.0001)
-                .strafeTo(s2)
+                .lineToY(-60)
+                .lineToY(-60)
                 .waitSeconds(0.0001)
                 .lineToY(-50)
+                .waitSeconds(0.0001)
+                .strafeTo(spot);
+        TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(0, -24, Math.toRadians(-90)))
+                . strafeTo(chamberLoc)
+                .waitSeconds(0.0001)
+                .lineToY(-34);
+
+        TrajectoryActionBuilder accept = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
                 .lineToY(-40)
-                .lineToY(-59, new TranslationalVelConstraint(30));
+                .strafeTo(spot)
+                .waitSeconds(0.0001)
+                .lineToY(-65);
 
-        TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
-                .strafeTo(target2)
-                .lineToY(-25, new TranslationalVelConstraint(40));
 
-        TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(45, -58, Math.toRadians(-90)))
-                .strafeTo(target2)
-                .lineToY(-25, new TranslationalVelConstraint(40));
-        TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(0, -25, Math.toRadians(-90)))
-                .strafeTo(accept)
-                .lineToY(-59, new TranslationalVelConstraint(40));
-        Action fin = score1.endTrajectory().fresh()
-                .strafeTo(end)
+        Action fin = push.endTrajectory().fresh()
+                .strafeTo(new Vector2d(60,-60))
                 .build();
 
         // actions that need to happen on init; for instance, a claw tightening.
-        Actions.runBlocking(rb.start());
-        Actions.runBlocking(rb.clawclose());
+        Actions.runBlocking(rb.ini());
+
 
 
 
@@ -149,40 +145,32 @@ public class AAuton extends LinearOpMode {
 
         Actions.runBlocking(
                 new SequentialAction(
-                        rb.score(),
-                        score1.build(),
-                        rb.pulldown(),//score 1
-                        rb.start(),
-                        accept2.build()
-                )
-
-
-        );
-        Actions.runBlocking(new SequentialAction(
+                        push.build(),
                         rb.score(),
                         score.build(),
-                        rb.pulldown(),//score 2
+                        rb.pulldown(),
                         rb.start(),
-                        acceptall.build()
-                )
-        );
-
-        Actions.runBlocking(new SequentialAction(
+                        accept.build(),
                         rb.score(),
-                        score2.build(),
-                        rb.pulldown(),//score3
+                        score.build(),
+                        rb.pulldown(),
                         rb.start(),
-                        acceptall.build()
-                )
-        );
-        Actions.runBlocking(new SequentialAction(
+                        accept.build(),
                         rb.score(),
-                        score2.build(),
-                        rb.pulldown(),//score 4
+                        score.build(),
+                        rb.pulldown(),
+                        rb.start(),
+                        accept.build(),
+                        rb.score(),
+                        score.build(),
+                        rb.pulldown(),
                         rb.start(),
                         fin
                 )
+
+
         );
+
 
     }
 }

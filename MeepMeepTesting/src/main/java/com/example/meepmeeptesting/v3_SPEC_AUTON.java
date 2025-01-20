@@ -31,9 +31,9 @@ public class v3_SPEC_AUTON {
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-10, -60, Math.toRadians(-90)))
 
 
-                .strafeTo(x)
-                .waitSeconds(0.0001)
-                .strafeTo(spec1)
+//                .strafeTo(x)
+//                .waitSeconds(0.0001)
+                .splineToConstantHeading(spec1,-90)
                 .waitSeconds(0.0001)
                 .lineToY(-60)
                 .waitSeconds(0.0001)

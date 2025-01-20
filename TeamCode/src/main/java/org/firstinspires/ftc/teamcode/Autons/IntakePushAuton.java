@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.MecanumDrive;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 @Config
-@Autonomous(name = "HAHAH", group = "Autonomous")
+@Autonomous(name = "intakepush", group = "Autonomous")
 public class IntakePushAuton extends LinearOpMode {
     public class Func {
         private Functions bot;
