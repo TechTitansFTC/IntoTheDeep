@@ -20,7 +20,7 @@ public class v3_SPEC_AUTON {
         Vector2d x = new Vector2d(36,-60);
 
 
-        MeepMeep meepMeep = new MeepMeep(700);
+        MeepMeep meepMeep = new MeepMeep(500);
 
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
@@ -31,7 +31,7 @@ public class v3_SPEC_AUTON {
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-10, -60, Math.toRadians(-90)))
 
 
-//                .strafeTo(x)
+                .strafeTo(x)
 //                .waitSeconds(0.0001)
                 .splineToConstantHeading(spec1,-90)
                 .waitSeconds(0.0001)
@@ -41,7 +41,6 @@ public class v3_SPEC_AUTON {
                 .waitSeconds(0.0001)
                 .strafeTo(spec2)
                 .waitSeconds(0.0001)
-                .lineToY(-60)
                 .lineToY(-60)
                 .waitSeconds(0.0001)
                 .lineToY(-50)

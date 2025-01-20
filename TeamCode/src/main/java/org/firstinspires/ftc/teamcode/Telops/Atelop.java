@@ -66,6 +66,11 @@ public class Atelop extends LinearOpMode {
                 x*=0.8;
                 rx*=0.8;
             }
+            if(r.isdeploy()){
+                y*=0.2;
+                x*=0.2;
+                rx*=0.2;
+            }
 
             // This button choice was made so that it is hard to hit on accident,
             // it can be freely changed based on preference.
@@ -96,40 +101,42 @@ public class Atelop extends LinearOpMode {
             rightFront.setPower(frontRightPower);
             rightBack.setPower(backRightPower);
 
-            if (gamepad2.x){
+            if (gamepad1.x){
                 r.start();
             }
-            if (gamepad2.y){
+            if (gamepad1.y){
                 r.score();
             }
-            if (gamepad2.b){
+            if (gamepad1.b){
                 r.pulldown();
             }
-            if (gamepad2.dpad_down){
+            if (gamepad1.dpad_down){
                 r.inDrop();
             }
-            if (gamepad2.dpad_left){
+            if (gamepad1.dpad_left){
                 r.inExtend();
             }
-            if (gamepad2.dpad_up){
+            if (gamepad1.dpad_up){
                 r.inHold();            }
-            if (gamepad2.dpad_right){
+            if (gamepad1.dpad_right){
 //                r.transfer();
                 }
-                if(gamepad2.left_trigger>0.2){
+                if(gamepad1.left_trigger>0.2){
                     r.changeWrist(-0.1);
                     timer.reset();
                     while (timer.milliseconds()<300){
 
                     }
                 }
-            if(gamepad2.right_trigger>0.2){
+            if(gamepad1.right_trigger>0.2){
                 r.changeWrist(0.1);
                 timer.reset();
                 while (timer.milliseconds()<300){
 
                 }
             }
+            telemetry.addData("isdeploy", r.isdeploy());
+            telemetry.update();
         }
     }
 }

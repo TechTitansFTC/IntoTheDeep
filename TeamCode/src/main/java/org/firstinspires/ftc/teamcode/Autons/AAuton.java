@@ -72,7 +72,7 @@ public class AAuton extends LinearOpMode {
 
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                bot.closeClaw();
+                bot.init();
 
                 return false;
             }
@@ -117,9 +117,9 @@ public class AAuton extends LinearOpMode {
                 .waitSeconds(0.0001)
                 .lineToY(-50)
                 .lineToY(-40)
-                .lineToY(-59, new TranslationalVelConstraint(30));
+                .lineToY(-60, new TranslationalVelConstraint(30));
 
-        TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
+        TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(64, -60, Math.toRadians(-90)))
                 .strafeTo(target2)
                 .lineToY(-25, new TranslationalVelConstraint(40));
 
@@ -134,7 +134,7 @@ public class AAuton extends LinearOpMode {
                 .build();
 
         // actions that need to happen on init; for instance, a claw tightening.
-        Actions.runBlocking(rb.start());
+
         Actions.runBlocking(rb.clawclose());
 
 

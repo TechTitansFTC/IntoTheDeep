@@ -111,42 +111,40 @@ public class IntakePushAuton extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        Pose2d initialPose = new Pose2d(0, -58, Math.toRadians(-90));
+        Pose2d initialPose = new Pose2d(-10, -60, Math.toRadians(-90));
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
-        Func rb = new Func(hardwareMap);
+        IntakePushAuton.Func rb = new IntakePushAuton.Func(hardwareMap);
 
+        Vector2d end = new Vector2d(60,-60);
+        Vector2d chamberLoc = new Vector2d(10,-40);
         // vision here that outputs position
 
 
-        TrajectoryActionBuilder score1 = drive.actionBuilder(initialPose)
-                .lineToY(-24);
+        TrajectoryActionBuilder start = drive.actionBuilder(initialPose)
+                .lineToY(-33)
+                .waitSeconds(0.0001)
+                .lineToY(-40)
+                .waitSeconds(0.0001);
+
+        TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(0, -24, Math.toRadians(-90)))
+                . strafeTo(chamberLoc)
+                .waitSeconds(0.0001)
+                .lineToY(-34);
+
+        TrajectoryActionBuilder accept = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
+                .lineToY(-40)
+                .strafeTo(spot)
+                .waitSeconds(0.0001)
+                .lineToY(-65);
 
 
-
-
-        TrajectoryActionBuilder go1 = drive.actionBuilder(new Pose2d(0, -24, Math.toRadians(-90)))
-                .splineTo(new Vector2d(35,-30),Math.toRadians(50));
-
-        TrajectoryActionBuilder push1 = drive.actionBuilder(new Pose2d(35, -30, Math.toRadians(50)))
-                .turn(Math.toRadians(-90));
-
-        TrajectoryActionBuilder go2 = drive.actionBuilder(new Pose2d(35, -30, Math.toRadians(-40)))
-                .splineTo(new Vector2d(40,-30),Math.toRadians(50));
-        TrajectoryActionBuilder push2 = drive.actionBuilder(new Pose2d(40, -30, Math.toRadians(50)))
-                .turn(Math.toRadians(-90));
-        TrajectoryActionBuilder accept2= drive.actionBuilder(new Pose2d(40, -30, Math.toRadians(-40)))
-                .splineTo(new Vector2d(35,-58),Math.toRadians(-90));
-        TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(0, -30, Math.toRadians(-90)))
-                .strafeTo(new Vector2d(35,-58));
-        TrajectoryActionBuilder scorall= drive.actionBuilder(new Pose2d(35, -58, Math.toRadians(-90)))
-                .strafeTo(new Vector2d(0,-30));
-        Action fin = score1.endTrajectory().fresh()
-                .strafeTo(new Vector2d(35,-58))
+        Action fin = push.endTrajectory().fresh()
+                .strafeTo(new Vector2d(60,-60))
                 .build();
 
         // actions that need to happen on init; for instance, a claw tightening.
+        Actions.runBlocking(rb.init());
 
-        Actions.runBlocking(rb.ini());
 
 
 
@@ -160,38 +158,32 @@ public class IntakePushAuton extends LinearOpMode {
 
         Actions.runBlocking(
                 new SequentialAction(
+                        push.build(),
                         rb.score(),
-                        score1.build(),
-                        rb.pulldown(),//score 1
-                        rb.start(),
-                        go1.build(),
-                        rb.intakeout(),
-                        push1.build(),
-                        go2.build(),
-                        push2.build(),
-                        accept2.build(),
-                        rb.score(),
-                        scorall.build(),
+                        score.build(),
                         rb.pulldown(),
                         rb.start(),
-                        acceptall.build(),
+                        accept.build(),
                         rb.score(),
-                        scorall.build(),
+                        score.build(),
                         rb.pulldown(),
                         rb.start(),
-                        acceptall.build(),
+                        accept.build(),
                         rb.score(),
-                        scorall.build(),
+                        score.build(),
+                        rb.pulldown(),
+                        rb.start(),
+                        accept.build(),
+                        rb.score(),
+                        score.build(),
                         rb.pulldown(),
                         rb.start(),
                         fin
-
-
-
-
                 )
 
+
         );
+
 
     }
 }

@@ -33,10 +33,6 @@ public class Functions {
     }
 
     SpecimenScoreState specimenScore = SpecimenScoreState.SCORE_CLAW;
-/////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////
     public enum inExtend {
 
         OPEN,
@@ -95,11 +91,13 @@ public class Functions {
     }
 
 
-    //left bumper - claw open
-    //right bumper - claw close
-    //pickup to ram position - a
-    // ram posiion to score - b
-    // score to start position - x;
+    /*
+    left bumper - claw open
+    right bumper - claw close
+    pickup to ram position - a
+     ram posiion to score - b
+     score to start position - x;
+     */
 
     public void start() {
         switch (specimenPickup) {
@@ -178,21 +176,18 @@ public class Functions {
         outtake.shoulderScore();
         outtake.elbowScore();
         outtake.wristScore();
-
     }
     public void autoPullDown(){
         outtake.clawClose();
         outtake.elbowPulldown();
         outtake.shoulderPullDown();
         outtake.wristPulldown();
-
     }
     public void autoStart(){
         outtake.clawOpen();
         outtake.shoulderStart();
         outtake.elbowStart();
         outtake.wristStart();
-
     }
 
     public void openClaw() {
@@ -201,10 +196,10 @@ public class Functions {
     public void closeClaw() {
         outtake.clawClose();
     }
-/////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////
+
+    /*
+    FSM for extending out intake slides to pickup from submersible
+     */
 public void inExtend() {
     switch (inextend) {
 
@@ -238,7 +233,7 @@ public void inHold(){
             break;
         case LIFTUP:
             timer.reset();
-            while (timer.milliseconds()<200){
+            while (timer.milliseconds()<400){
 
             }
             intake.liftup();
@@ -246,7 +241,7 @@ public void inHold(){
             break;
         case STRAIGHTEN:
             timer.reset();
-            while (timer.milliseconds()<200){
+            while (timer.milliseconds()<400){
 
             }
             intake.wristDef();
@@ -344,5 +339,7 @@ public void inHold(){
         intake.liftup();
         intake.extendIn();
     }
-
+    public boolean isdeploy(){
+        return intake.isDeploy();
+    }
 }

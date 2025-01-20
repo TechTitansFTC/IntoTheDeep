@@ -12,10 +12,10 @@ public class SpecimenRed {
         Vector2d home = new Vector2d(55,-42);
         Vector2d target = new Vector2d(10,-36);
         Vector2d end = new Vector2d(60,-60);
+        Vector2d chamberLoc = new Vector2d(10,-40);
 
 
-
-        MeepMeep meepMeep = new MeepMeep(700);
+        MeepMeep meepMeep = new MeepMeep(500);
 
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
@@ -26,17 +26,40 @@ public class SpecimenRed {
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(10, -60, Math.toRadians(-90)))
                 .lineToY(-33)
                 .waitSeconds(0.0001)
-                        .splineTo(new Vector2d(35,-30),Math.toRadians(50))
-                        .turn(Math.toRadians(-90))
-                .splineTo(new Vector2d(40,-30),Math.toRadians(50))
+                .lineToY(-40)
+                .waitSeconds(0.0001)
+
+                .strafeTo(new Vector2d(35,-25))
+                .turn(Math.toRadians(90))
+                .waitSeconds(1)
                 .turn(Math.toRadians(-90))
-                        .splineTo(new Vector2d(35,-58),Math.toRadians(-90))
-                        .strafeTo(new Vector2d(0,-30))
-                        .strafeTo(new Vector2d(35,-58))
-                .strafeTo(new Vector2d(0,-30))
-                .strafeTo(new Vector2d(35,-58))
-                .strafeTo(new Vector2d(0,-30))
-                .strafeTo(new Vector2d(35,-58))
+
+                .strafeTo(new Vector2d(40,-25))
+                .turn(Math.toRadians(90))
+                .waitSeconds(1)
+                .turn(Math.toRadians(-90))
+
+                .strafeTo(new Vector2d(45,-25))
+                .turn(Math.toRadians(90))
+                .waitSeconds(1)
+                .turn(Math.toRadians(-90))
+/////////////////////////////////////////////////////////////////////////////////////
+                .strafeTo(new Vector2d(45,-60))
+                .strafeTo(chamberLoc)
+                .waitSeconds(0.5)
+
+                .strafeTo(new Vector2d(45,-60))
+                .strafeTo(chamberLoc)
+                .waitSeconds(0.5)
+
+                .strafeTo(new Vector2d(45,-60))
+                .strafeTo(chamberLoc)
+                .waitSeconds(0.5)
+
+                .strafeTo(new Vector2d(45,-60))
+                .strafeTo(chamberLoc)
+                .waitSeconds(0.5)
+
 
                 .strafeTo(end)
                 .build());

@@ -9,8 +9,8 @@ public class Intake {
     private static final double LIFT_UP = 0.33;
     private static final double LIFT_DOWN = 0.01;
     private static final double WRIST_DEF = 0.52;
-    private static final double CLAW_CLOSE = 0;
-    private static final double CLAW_OPEN = 0.3;
+    private static final double CLAW_CLOSE = 0.1;
+    private static final double CLAW_OPEN = 0.45;
     private static final double EXTEND_L = 0.2;
     private static final double EXTEND_R = 1;
     private static final double RETRACT_L = 0.6;
@@ -26,6 +26,9 @@ public class Intake {
     private Servo extendL;
     private Servo extendR;
 
+    public boolean isDeploy(){
+        return lifter.getPosition()==LIFT_DOWN;
+    }
     public Intake(HardwareMap m){
         this.lifter = m.servo.get("lifter");
         this.extendL = m.servo.get("extendL");

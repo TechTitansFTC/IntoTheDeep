@@ -5,9 +5,7 @@ import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
-import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
-import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -77,7 +75,7 @@ public class voyegercarryaution extends LinearOpMode {
                 return false;
             }
         }
-        public Action ini() {
+        public Action init() {
             return new init();
         }
 
@@ -92,14 +90,16 @@ public class voyegercarryaution extends LinearOpMode {
         Func rb = new Func(hardwareMap);
         Vector2d spec1 = new Vector2d(45,-15);
         Vector2d spec2 = new Vector2d(55,-15);
-
+        Vector2d x = new Vector2d(36,-60);
         Vector2d spot = new Vector2d(45,-50);
         Vector2d chamberLoc = new Vector2d(10,-40);
         // vision here that outputs position
 
 
         TrajectoryActionBuilder push = drive.actionBuilder(initialPose)
-                .splineToConstantHeading(spec1,-90)
+                .strafeTo(x)
+
+                .strafeTo(spec1)
                 .waitSeconds(0.0001)
                 .lineToY(-60)
                 .waitSeconds(0.0001)
@@ -107,7 +107,6 @@ public class voyegercarryaution extends LinearOpMode {
                 .waitSeconds(0.0001)
                 .strafeTo(spec2)
                 .waitSeconds(0.0001)
-                .lineToY(-60)
                 .lineToY(-60)
                 .waitSeconds(0.0001)
                 .lineToY(-50)
@@ -130,7 +129,7 @@ public class voyegercarryaution extends LinearOpMode {
                 .build();
 
         // actions that need to happen on init; for instance, a claw tightening.
-        Actions.runBlocking(rb.ini());
+        Actions.runBlocking(rb.init());
 
 
 
