@@ -119,14 +119,14 @@ public class Atelop extends LinearOpMode {
                 if(gamepad2.left_trigger>0.2){
                     r.changeWrist(-0.1);
                     timer.reset();
-                    while (timer.milliseconds()<200){
+                    while (timer.milliseconds()<300){
 
                     }
                 }
             if(gamepad2.right_trigger>0.2){
                 r.changeWrist(0.1);
                 timer.reset();
-                while (timer.milliseconds()<100){
+                while (timer.milliseconds()<300){
 
                 }
             }

@@ -7,20 +7,17 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
+import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.teamcode.Functions;
-import org.firstinspires.ftc.teamcode.tuningVal.MecanumDrive;
+import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
 @Config
 @Autonomous(name = "RoboPlayersPlaigerism", group = "Autonomous")
@@ -50,7 +47,7 @@ public class AAuton extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 bot.autoStart();
-                sleep(1000);
+
                 return false;
             }
         }
@@ -63,7 +60,7 @@ public class AAuton extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 bot.autoPullDown();
-                sleep(1000);
+                sleep(500);
                 return false;
             }
         }
@@ -76,7 +73,7 @@ public class AAuton extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 bot.closeClaw();
-                sleep(1000);
+
                 return false;
             }
         }
@@ -90,46 +87,45 @@ public class AAuton extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        Pose2d initialPose = new Pose2d(10, -60, Math.toRadians(-90));
+        Pose2d initialPose = new Pose2d(0, -58, Math.toRadians(-90));
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
         Func rb = new Func(hardwareMap);
-        Vector2d entry = new Vector2d(40,-36);
-        Vector2d s1 = new Vector2d(55,0);
-        Vector2d s2 = new Vector2d(64,0);
-        Vector2d end = new Vector2d(60,-60);
+        Vector2d entry = new Vector2d(38,-36);
+        Vector2d s1 = new Vector2d(50,0);
+        Vector2d s2 = new Vector2d(58,0);
+        Vector2d end = new Vector2d(60,-55);
         Vector2d accept = new Vector2d(45,-59);
-        Vector2d target2 =   new Vector2d(7,-33);
+        Vector2d target2 =   new Vector2d(0,-30);
         // vision here that outputs position
 
 
         TrajectoryActionBuilder score1 = drive.actionBuilder(initialPose)
-                .lineToY(-33);
-        TrajectoryActionBuilder accept2 = drive.actionBuilder(new Pose2d(10, -33, Math.toRadians(-90)))
+                .lineToY(-24, new TranslationalVelConstraint(30));
+        TrajectoryActionBuilder accept2 = drive.actionBuilder(new Pose2d(0, -24, Math.toRadians(-90)))
                 .lineToY(-36)
-                .waitSeconds(0.01)
+                .waitSeconds(0.0001)
                 .strafeTo(entry)
-                .waitSeconds(0.01)
+                .waitSeconds(0.0001)
                 .lineToY(-10)
-                .waitSeconds(0.01)
+                .waitSeconds(0.0001)
                 .strafeTo(s1)
-                .waitSeconds(0.01)
+                .waitSeconds(0.0001)
                 .lineToY(-50)
-                .waitSeconds(0.01)
                 .lineToY(-10)
-                .waitSeconds(0.01)
+                .waitSeconds(0.0001)
                 .strafeTo(s2)
-                .waitSeconds(0.01)
+                .waitSeconds(0.0001)
                 .lineToY(-50)
                 .lineToY(-40)
-                .lineToY(-62);
+                .lineToY(-59, new TranslationalVelConstraint(18.0));
 
-        TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(64, -62, Math.toRadians(-90)))
+        TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
                 .strafeTo(target2);
 
-        TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
-                .strafeTo(target2);
-        TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(7, -33, Math.toRadians(-90)))
-                .strafeTo(accept);
+        TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(45, -58, Math.toRadians(-90)))
+                .strafeTo(target2, new TranslationalVelConstraint(40));
+        TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(0, -30, Math.toRadians(-90)))
+                .strafeTo(accept, new TranslationalVelConstraint(30));
         Action fin = score1.endTrajectory().fresh()
                 .strafeTo(end)
                 .build();
@@ -159,7 +155,6 @@ public class AAuton extends LinearOpMode {
 
 
         );
-        Actions.runBlocking(new SleepAction(0.2));
         Actions.runBlocking(new SequentialAction(
                         rb.score(),
                         score.build(),
@@ -168,7 +163,7 @@ public class AAuton extends LinearOpMode {
                         acceptall.build()
                 )
         );
-        Actions.runBlocking(new SleepAction(0.2));
+
         Actions.runBlocking(new SequentialAction(
                         rb.score(),
                         score2.build(),
@@ -177,7 +172,6 @@ public class AAuton extends LinearOpMode {
                         acceptall.build()
                 )
         );
-        Actions.runBlocking(new SleepAction(0.2));
         Actions.runBlocking(new SequentialAction(
                         rb.score(),
                         score2.build(),

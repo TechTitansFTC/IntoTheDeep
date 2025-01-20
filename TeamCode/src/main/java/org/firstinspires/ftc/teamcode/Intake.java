@@ -10,7 +10,7 @@ public class Intake {
     private static final double LIFT_DOWN = 0.01;
     private static final double WRIST_DEF = 0.52;
     private static final double CLAW_CLOSE = 0;
-    private static final double CLAW_OPEN = 0.2;
+    private static final double CLAW_OPEN = 0.3;
     private static final double EXTEND_L = 0.2;
     private static final double EXTEND_R = 1;
     private static final double RETRACT_L = 0.6;

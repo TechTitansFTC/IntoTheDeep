@@ -233,18 +233,22 @@ public void inHold(){
     switch (inhold) {
         case CLOSE:
             intake.clawclose();
+
+            inhold = inHold.LIFTUP;
+            break;
+        case LIFTUP:
             timer.reset();
             while (timer.milliseconds()<200){
 
             }
-            inhold = inHold.LIFTUP;
-            break;
-        case LIFTUP:
-
             intake.liftup();
             inhold = inHold.STRAIGHTEN;
             break;
         case STRAIGHTEN:
+            timer.reset();
+            while (timer.milliseconds()<200){
+
+            }
             intake.wristDef();
             inhold = inHold.CLOSE;
             break;
