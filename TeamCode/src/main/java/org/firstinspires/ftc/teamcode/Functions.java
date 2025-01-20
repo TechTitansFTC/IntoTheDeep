@@ -334,4 +334,15 @@ public void inHold(){
         }
     }
 
+    public void intakeout(){
+        intake.extendOut();
+        intake.liftdown();
+        intake.clawclose();
+    }
+    public void intakein(){
+        intake.clawopen();
+        intake.liftup();
+        intake.extendIn();
+    }
+
 }
