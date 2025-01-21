@@ -345,6 +345,56 @@ public void inHold(){
         intake.liftup();
 
     }
+    public void inExtendIn(){
+        intake.clawopen();
+        while (timer.milliseconds() <200){
+
+        }
+        intake.liftup();
+        while (timer.milliseconds() <200){
+
+        }
+        intake.extendIn();
+    }
+    public void inExtendOut(){
+        intake.extendOut();
+        while (timer.milliseconds() <300){
+
+        }
+        intake.liftdown();
+        while (timer.milliseconds() <200){
+
+        }
+        intake.clawopen();
+    }
+    public void inLiftUp(){
+        intake.clawclose();
+        while (timer.milliseconds() <200){
+
+        }
+        intake.wristDef();
+        while (timer.milliseconds() <200){
+
+        }
+        intake.liftup();
+
+    }
+    public void inLiftDown(){
+        intake.liftdown();
+        while (timer.milliseconds() <200){
+
+        }
+        intake.clawopen();
+
+    }
+
+    public void inClawOpen(){
+        intake.clawopen();
+    }
+
+    public void inClawClose(){
+        intake.clawclose();
+    }
     public boolean isdeploy(){
         return intake.isDeploy();
     }

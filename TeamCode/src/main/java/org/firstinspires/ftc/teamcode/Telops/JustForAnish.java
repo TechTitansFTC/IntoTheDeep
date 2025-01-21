@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Functions;
 
 
 @TeleOp
-public class Atelop extends LinearOpMode {
+public class JustForAnish extends LinearOpMode {
     @Override
 
     public void runOpMode() throws InterruptedException {
@@ -55,17 +55,17 @@ public class Atelop extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-            double y = -gamepad1.left_stick_y - gamepad1.right_stick_x; // Remember, Y stick value is reversed
+            double y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
             double x = gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
-            if (gamepad1.left_trigger > 0){
+            if (gamepad2.left_bumper){
                 y*=0.4;
                 x*=0.4;
                 rx*=0.4;
-            }else if (gamepad1.right_trigger > 0){
-                y*=1;
-                x*=1;
-                rx*=1;
+            }else if (gamepad2.right_bumper){
+                y*=0.8;
+                x*=0.8;
+                rx*=0.8;
             }
             if(r.isdeploy()){
                 y*=0.3;
@@ -102,45 +102,45 @@ public class Atelop extends LinearOpMode {
             rightFront.setPower(frontRightPower);
             rightBack.setPower(backRightPower);
 
-            if (gamepad2.x){
+            if (gamepad1.x){
                 r.start();
             }
-            if (gamepad2.y){
+            if (gamepad1.y){
                 r.score();
             }
-            if (gamepad2.b){
+            if (gamepad1.b){
                 r.pulldown();
 
             }
-            if (gamepad2.dpad_down){
+            if (gamepad1.dpad_down){
                 r.inLiftDown();
             }
-            if (gamepad2.dpad_left){
+            if (gamepad1.dpad_left){
                 r.inExtendOut();
             }
-            if (gamepad2.dpad_right){
+            if (gamepad1.dpad_right){
                 r.inExtendIn();
 
             }
-            if (gamepad2.dpad_up) {
+            if (gamepad1.dpad_up) {
                 r.inLiftUp();
 
             }
-            if (gamepad2.left_bumper){
+            if (gamepad1.left_bumper){
                 r.inClawOpen();
 
             }
-            if (gamepad2.right_bumper){
+            if (gamepad1.right_bumper){
                 r.inClawClose();
             }
-            if(gamepad2.left_trigger > 0){
+            if(gamepad1.left_trigger>0.2){
                 r.changeWrist(-0.1);
                 timer.reset();
                 while (timer.milliseconds()<300){
 
                 }
             }
-            if(gamepad2.right_trigger > 0){
+            if(gamepad1.right_trigger>0.2){
                 r.changeWrist(0.1);
                 timer.reset();
                 while (timer.milliseconds()<300){
