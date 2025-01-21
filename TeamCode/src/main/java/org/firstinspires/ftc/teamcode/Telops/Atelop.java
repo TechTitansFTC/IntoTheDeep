@@ -67,9 +67,9 @@ public class Atelop extends LinearOpMode {
                 rx*=0.8;
             }
             if(r.isdeploy()){
-                y*=0.2;
-                x*=0.2;
-                rx*=0.2;
+                y*=0.3;
+                x*=0.3;
+                rx*=0.3;
             }
 
             // This button choice was made so that it is hard to hit on accident,
@@ -101,41 +101,44 @@ public class Atelop extends LinearOpMode {
             rightFront.setPower(frontRightPower);
             rightBack.setPower(backRightPower);
 
-            if (gamepad1.x){
+            if (gamepad2.x){
                 r.start();
             }
-            if (gamepad1.y){
+            if (gamepad2.y){
                 r.score();
             }
-            if (gamepad1.b){
+            if (gamepad2.b){
                 r.pulldown();
             }
-            if (gamepad1.dpad_down){
+            if (gamepad2.dpad_down){
                 r.inDrop();
             }
-            if (gamepad1.dpad_left){
+            if (gamepad2.dpad_left){
                 r.inExtend();
             }
-            if (gamepad1.dpad_up){
-                r.inHold();            }
+            if (gamepad2.dpad_up) {
+                r.pick();
+
+            }
             if (gamepad1.dpad_right){
-//                r.transfer();
+                r.intakeclose();
+
                 }
-                if(gamepad1.left_trigger>0.2){
+                if(gamepad2.left_trigger>0.2){
                     r.changeWrist(-0.1);
                     timer.reset();
                     while (timer.milliseconds()<300){
 
                     }
                 }
-            if(gamepad1.right_trigger>0.2){
+            if(gamepad2.right_trigger>0.2){
                 r.changeWrist(0.1);
                 timer.reset();
                 while (timer.milliseconds()<300){
 
                 }
             }
-            telemetry.addData("isdeploy", r.isdeploy());
+            telemetry.addData("isdeploy:", r.isdeploy());
             telemetry.update();
         }
     }

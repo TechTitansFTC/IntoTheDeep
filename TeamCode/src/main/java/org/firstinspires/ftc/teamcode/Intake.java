@@ -27,7 +27,7 @@ public class Intake {
     private Servo extendR;
 
     public boolean isDeploy(){
-        return lifter.getPosition()==LIFT_DOWN;
+        return lifter.getPosition()!=LIFT_UP;
     }
     public Intake(HardwareMap m){
         this.lifter = m.servo.get("lifter");

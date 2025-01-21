@@ -88,8 +88,8 @@ public class voyegercarryaution extends LinearOpMode {
         Pose2d initialPose = new Pose2d(-10, -60, Math.toRadians(-90));
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
         Func rb = new Func(hardwareMap);
-        Vector2d spec1 = new Vector2d(45,-15);
-        Vector2d spec2 = new Vector2d(55,-15);
+        Vector2d spec1 = new Vector2d(50,-12);
+        Vector2d spec2 = new Vector2d(55,-12);
         Vector2d x = new Vector2d(36,-60);
         Vector2d spot = new Vector2d(45,-50);
         Vector2d chamberLoc = new Vector2d(10,-40);
@@ -101,13 +101,13 @@ public class voyegercarryaution extends LinearOpMode {
 
                 .strafeTo(spec1)
                 .waitSeconds(0.0001)
-                .lineToY(-60)
+                .lineToY(-50)
                 .waitSeconds(0.0001)
                 .lineToY(-15)
                 .waitSeconds(0.0001)
                 .strafeTo(spec2)
                 .waitSeconds(0.0001)
-                .lineToY(-60)
+                .lineToY(-50)
                 .waitSeconds(0.0001)
                 .lineToY(-50)
                 .waitSeconds(0.0001)

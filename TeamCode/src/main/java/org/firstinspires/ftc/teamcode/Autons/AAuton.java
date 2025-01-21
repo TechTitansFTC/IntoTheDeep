@@ -91,16 +91,16 @@ public class AAuton extends LinearOpMode {
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
         Func rb = new Func(hardwareMap);
         Vector2d entry = new Vector2d(38,-36);
-        Vector2d s1 = new Vector2d(50,0);
-        Vector2d s2 = new Vector2d(58,0);
+        Vector2d s1 = new Vector2d(50,-3);
+        Vector2d s2 = new Vector2d(58,-3);
         Vector2d end = new Vector2d(60,-55);
-        Vector2d accept = new Vector2d(45,-45);
-        Vector2d target2 =   new Vector2d(0,-45);
+        Vector2d accept = new Vector2d(45,-40);
+        Vector2d target2 =   new Vector2d(0,-40);
         // vision here that outputs position
 
 
         TrajectoryActionBuilder score1 = drive.actionBuilder(initialPose)
-                .lineToY(-24, new TranslationalVelConstraint(30));
+                .lineToY(-24, new TranslationalVelConstraint(40));
         TrajectoryActionBuilder accept2 = drive.actionBuilder(new Pose2d(0, -24, Math.toRadians(-90)))
                 .lineToY(-36)
                 .waitSeconds(0.0001)
@@ -117,18 +117,20 @@ public class AAuton extends LinearOpMode {
                 .waitSeconds(0.0001)
                 .lineToY(-50)
                 .lineToY(-40)
-                .lineToY(-60, new TranslationalVelConstraint(30));
+                .lineToY(-56, new TranslationalVelConstraint(30));
 
-        TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(64, -60, Math.toRadians(-90)))
+        TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(64, -56, Math.toRadians(-90)))
                 .strafeTo(target2)
-                .lineToY(-25, new TranslationalVelConstraint(40));
+                .waitSeconds(0.0001)
+                .lineToY(-28);
 
-        TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(45, -58, Math.toRadians(-90)))
+        TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(45, -56, Math.toRadians(-90)))
                 .strafeTo(target2)
-                .lineToY(-25, new TranslationalVelConstraint(40));
-        TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(0, -25, Math.toRadians(-90)))
+                .waitSeconds(0.0001)
+                .lineToY(-28);
+        TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(0, -28, Math.toRadians(-90)))
                 .strafeTo(accept)
-                .lineToY(-59, new TranslationalVelConstraint(40));
+                .lineToY(-56,new TranslationalVelConstraint(30));
         Action fin = score1.endTrajectory().fresh()
                 .strafeTo(end)
                 .build();

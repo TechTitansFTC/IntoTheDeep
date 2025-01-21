@@ -51,7 +51,7 @@ public class Functions {
     public enum inDrop{
         OPEN,
         RETRACT,
-        CLOSE;
+
     }
     inDrop indrop = inDrop.OPEN;
 
@@ -233,17 +233,13 @@ public void inHold(){
             break;
         case LIFTUP:
             timer.reset();
-            while (timer.milliseconds()<400){
 
-            }
             intake.liftup();
             inhold = inHold.STRAIGHTEN;
             break;
         case STRAIGHTEN:
             timer.reset();
-            while (timer.milliseconds()<400){
 
-            }
             intake.wristDef();
             inhold = inHold.CLOSE;
             break;
@@ -251,6 +247,9 @@ public void inHold(){
 
     }
 }
+    public void intakeclose(){
+    intake.clawclose();
+    }
 
     public void inDrop(){
         switch (indrop) {
@@ -330,14 +329,21 @@ public void inHold(){
     }
 
     public void intakeout(){
+        intake.clawopen();
         intake.extendOut();
         intake.liftdown();
-        intake.clawclose();
+
     }
-    public void intakein(){
+    public void pick(){
+        intake.clawclose();
+        intake.wristDef();
+        intake.liftup();
+
+    }
+    public void drop(){
         intake.clawopen();
         intake.liftup();
-        intake.extendIn();
+
     }
     public boolean isdeploy(){
         return intake.isDeploy();
