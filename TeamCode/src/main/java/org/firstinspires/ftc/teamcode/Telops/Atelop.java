@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Functions;
+import org.firstinspires.ftc.teamcode.Intake;
 
 @TeleOp
 public class Atelop extends LinearOpMode {
@@ -17,6 +18,7 @@ public class Atelop extends LinearOpMode {
 
     public void runOpMode() throws InterruptedException {
         Functions r = new Functions(hardwareMap);
+        Intake I = new Intake(hardwareMap);
         ElapsedTime timer = new ElapsedTime();
         // Declare our motors
         // Make sure your ID's match your configuration
@@ -57,11 +59,11 @@ public class Atelop extends LinearOpMode {
             double y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
             double x = gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
-            if (gamepad2.left_bumper){
+            if (gamepad1.left_bumper){
                 y*=0.4;
                 x*=0.4;
                 rx*=0.4;
-            }else if (gamepad2.right_bumper){
+            }else if (gamepad1.right_bumper){
                 y*=0.8;
                 x*=0.8;
                 rx*=0.8;
@@ -111,19 +113,25 @@ public class Atelop extends LinearOpMode {
                 r.pulldown();
             }
             if (gamepad2.dpad_down){
-                r.inDrop();
+                I.liftdown();
             }
             if (gamepad2.dpad_left){
-                r.inExtend();
+                I.extendOut();
+            }
+            if (gamepad2.dpad_right){
+                I.extendIn();
             }
             if (gamepad2.dpad_up) {
-                r.pick();
+                I.liftup();
 
             }
-            if (gamepad1.dpad_right){
-                r.intakeclose();
+            if (gamepad2.left_bumper){
+                I.clawopen();
 
                 }
+            if (gamepad2.right_bumper){
+                I.clawclose();
+            }
                 if(gamepad2.left_trigger>0.2){
                     r.changeWrist(-0.1);
                     timer.reset();
