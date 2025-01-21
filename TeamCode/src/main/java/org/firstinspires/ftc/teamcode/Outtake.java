@@ -32,8 +32,8 @@ public class Outtake {
     public final double WRIST_START = 0.01;
     //CLAW - OPEN
 
-    public final double SHOULDER_L_PULLDOWN = 0.5; //CH 4
-    public final double SHOULDER_R_PULLDOWN = 0.5; // CH 5
+    public final double SHOULDER_L_PULLDOWN = 0.4; //CH 4
+    public final double SHOULDER_R_PULLDOWN = 0.6; // CH 5
     public final double ELBOW_PULLDOWN = 1; //EH 2
     public final double WRIST_PULLDOWN = 0.69;
     //CLAW - CLOSED
