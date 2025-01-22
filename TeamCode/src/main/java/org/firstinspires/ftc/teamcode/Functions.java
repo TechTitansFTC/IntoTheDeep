@@ -358,7 +358,7 @@ public void inHold(){
     }
     public void inExtendOut(){
         intake.extendOut();
-        while (timer.milliseconds() <300){
+        while (timer.milliseconds() <1000){
 
         }
         intake.liftdown();

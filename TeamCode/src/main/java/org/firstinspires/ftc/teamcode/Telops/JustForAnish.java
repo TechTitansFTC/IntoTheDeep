@@ -55,9 +55,9 @@ public class JustForAnish extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-            double y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
-            double x = gamepad1.left_stick_x;
-            double rx = gamepad1.right_stick_x;
+            double y = -gamepad1.left_stick_y - gamepad1.right_stick_y - gamepad2.left_stick_y - gamepad2.right_stick_y; // Remember, Y stick value is reversed
+            double x = gamepad1.left_stick_x + gamepad2.left_stick_x;
+            double rx = gamepad1.right_stick_x + gamepad2.right_stick_x;
             if (gamepad2.left_bumper){
                 y*=0.4;
                 x*=0.4;
@@ -116,7 +116,7 @@ public class JustForAnish extends LinearOpMode {
                 r.inLiftDown();
             }
             if (gamepad1.dpad_left){
-                r.inExtendOut();
+                r.inExtend();
             }
             if (gamepad1.dpad_right){
                 r.inExtendIn();

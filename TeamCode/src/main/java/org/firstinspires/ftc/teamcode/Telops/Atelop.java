@@ -54,18 +54,20 @@ public class Atelop extends LinearOpMode {
 
         if (isStopRequested()) return;
 
+
+
         while (opModeIsActive()) {
-            double y = -gamepad1.left_stick_y - gamepad1.right_stick_x; // Remember, Y stick value is reversed
+            double y = -gamepad1.left_stick_y - gamepad1.right_stick_y ; // Remember, Y stick value is reversed
             double x = gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
-            if (gamepad1.left_trigger > 0){
+            if (gamepad2.left_bumper){
                 y*=0.4;
                 x*=0.4;
                 rx*=0.4;
-            }else if (gamepad1.right_trigger > 0){
-                y*=1;
-                x*=1;
-                rx*=1;
+            }else if (gamepad2.right_bumper){
+                y*=0.8;
+                x*=0.8;
+                rx*=0.8;
             }
             if(r.isdeploy()){
                 y*=0.3;
@@ -116,7 +118,7 @@ public class Atelop extends LinearOpMode {
                 r.inLiftDown();
             }
             if (gamepad2.dpad_left){
-                r.inExtendOut();
+                r.inExtend();
             }
             if (gamepad2.dpad_right){
                 r.inExtendIn();
@@ -133,14 +135,14 @@ public class Atelop extends LinearOpMode {
             if (gamepad2.right_bumper){
                 r.inClawClose();
             }
-            if(gamepad2.left_trigger > 0){
+            if(gamepad2.left_trigger>0.2){
                 r.changeWrist(-0.1);
                 timer.reset();
                 while (timer.milliseconds()<300){
 
                 }
             }
-            if(gamepad2.right_trigger > 0){
+            if(gamepad2.right_trigger>0.2){
                 r.changeWrist(0.1);
                 timer.reset();
                 while (timer.milliseconds()<300){
