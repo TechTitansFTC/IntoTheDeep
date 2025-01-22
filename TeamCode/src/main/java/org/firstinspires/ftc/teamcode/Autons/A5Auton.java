@@ -173,7 +173,6 @@ public class A5Auton extends LinearOpMode {
         );
 
         Actions.runBlocking(new SequentialAction(
-                        rb.score(),
                         score2.build(),
                         rb.pulldown(),//score 2
                         rb.start(),
@@ -182,22 +181,27 @@ public class A5Auton extends LinearOpMode {
         );
 
         Actions.runBlocking(new SequentialAction(
-                        rb.score(),
                         score3.build(),
                         rb.pulldown(),//score3
+                        rb.start(),
+                        acceptall.build()
+                )
+        );
+
+        Actions.runBlocking(new SequentialAction(
+                        score4.build(),
+                        rb.pulldown(),//score 4
                         rb.start(),
                         acceptlast.build()
                 )
         );
 
         Actions.runBlocking(new SequentialAction(
-                        rb.score(),
-                        score4.build(),
-                        rb.pulldown(),//score 4
+                        score5.build(),
+                        rb.pulldown(),//score 5
                         rb.start(),
                         fin
                 )
         );
-
     }
 }
