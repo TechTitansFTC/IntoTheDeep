@@ -32,7 +32,7 @@ public class voyegercarryaution extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 bot.autoScore();
-                sleep(1000);
+
                 return false;
             }
         }
