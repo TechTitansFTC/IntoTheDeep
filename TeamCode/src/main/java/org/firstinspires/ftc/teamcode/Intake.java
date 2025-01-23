@@ -62,6 +62,9 @@ public class Intake {
     public void clawclose(){
         claw.setPosition(CLAW_CLOSE);
     }
+    public void extendInP(){
+        extendL.setPosition(.55);
+    }
     public void extendOut(){
         extendL.setPosition(EXTEND_L);
         extendR.setPosition(EXTEND_R);

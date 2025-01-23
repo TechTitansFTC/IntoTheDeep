@@ -377,6 +377,24 @@ public void inHold(){
     public void inClawClose(){
         intake.clawclose();
     }
+    
+    public void inExtendPick(){
+        intake.clawclose();
+        while (timer.milliseconds() <400){
+
+        }
+        intake.wristDef();
+        while (timer.milliseconds() < 200){
+
+        }
+
+        intake.liftup();
+        while (timer.milliseconds() < 200){
+
+        }
+        intake.extendInP();
+
+    }
     public boolean isdeploy(){
         return intake.isDeploy();
     }
