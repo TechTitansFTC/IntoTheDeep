@@ -328,23 +328,7 @@ public void inHold(){
         }
     }
 
-    public void intakeout(){
-        intake.clawopen();
-        intake.extendOut();
-        intake.liftdown();
 
-    }
-    public void pick(){
-        intake.clawclose();
-        intake.wristDef();
-        intake.liftup();
-
-    }
-    public void drop(){
-        intake.clawopen();
-        intake.liftup();
-
-    }
     public void inExtendIn(){
         intake.clawopen();
         while (timer.milliseconds() <200){
@@ -369,13 +353,11 @@ public void inHold(){
     }
     public void inLiftUp(){
         intake.clawclose();
-        while (timer.milliseconds() <200){
+        while (timer.milliseconds() <400){
 
         }
         intake.wristDef();
-        while (timer.milliseconds() <200){
 
-        }
         intake.liftup();
 
     }
