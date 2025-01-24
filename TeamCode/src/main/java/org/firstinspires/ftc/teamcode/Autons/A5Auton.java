@@ -100,7 +100,7 @@ public class A5Auton extends LinearOpMode {
 
         TrajectoryActionBuilder score1 = drive.actionBuilder(initialPose)
                 .lineToY(-24, new TranslationalVelConstraint(40))
-                .afterDisp(1, rb.score());
+                .afterDisp(0, rb.score());
 
         TrajectoryActionBuilder push = drive.actionBuilder(new Pose2d(0, -24, Math.toRadians(-90)))
                 .lineToY(-36)
@@ -127,19 +127,19 @@ public class A5Auton extends LinearOpMode {
 
         TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
                 .strafeTo(new Vector2d(3,-28))
-                .afterDisp(1, rb.score());
+                .afterDisp(0, rb.score());
 
         TrajectoryActionBuilder score3 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
                 .strafeTo(new Vector2d(3,-28))
-                .afterDisp(1, rb.score());
+                .afterDisp(0, rb.score());
 
         TrajectoryActionBuilder score4 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
                 .strafeTo(new Vector2d(8,-28))
-                .afterDisp(1, rb.score());
+                .afterDisp(0, rb.score());
 
         TrajectoryActionBuilder score5 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
                 .strafeTo(new Vector2d(10,-28))
-                .afterDisp(1, rb.score());
+                .afterDisp(0, rb.score());
 
         TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(3, -28, Math.toRadians(-90)))
                 .strafeTo(accept)

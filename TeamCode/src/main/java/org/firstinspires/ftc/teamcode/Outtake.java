@@ -16,11 +16,9 @@ public class Outtake {
 
     double ticks = 384.5;
 
-    public final double SHOULDER_L_SCORE = 0.6; //CH 4
-    public final double SHOULDER_R_SCORE = 0.4; // CH 5
-    public final double shoulderRNew = 0.6;
-    public final double shoulderLNew = 0.4;
-    public final double elbowNew = .35;
+    public final double SHOULDER_L_SCORE = 0.4; //CH 4
+    public final double SHOULDER_R_SCORE = 0.6; // CH 5
+
 
     public final double ELBOW_SCORE= 0.4; //EH 2
     public final double WRIST_SCORE = 0.69;
@@ -30,15 +28,15 @@ public class Outtake {
     public final double SHOULDER_R_TR = 0; // CH 5
     public final double ELBOWTR= 0.6; //EH 2
 
-    public final double SHOULDER_L_START = 0.9; //CH 4
-    public final double SHOULDER_R_START = 0.1; // CH 5
+    public final double SHOULDER_L_START = 0.72; //CH 4
+    public final double SHOULDER_R_START = 0.28; // CH 5
     public final double ELBOW_START= 0.55; //EH 2
     public final double WRIST_START = 0.01;
     //CLAW - OPEN
 
-    public final double SHOULDER_L_PULLDOWN = 0.4; //CH 4
-    public final double SHOULDER_R_PULLDOWN = 0.6; // CH 5
-    public final double ELBOW_PULLDOWN = 1; //EH 2
+    public final double SHOULDER_L_PULLDOWN = 0.2; //CH 4
+    public final double SHOULDER_R_PULLDOWN = 0.8; // CH 5
+    public final double ELBOW_PULLDOWN = 0.8 ; //EH 2
     public final double WRIST_PULLDOWN = 0.69;
     //CLAW - CLOSED
 
@@ -96,10 +94,7 @@ public class Outtake {
         shoulderL.setPosition(SHOULDER_L_PULLDOWN);
         shoulderR.setPosition(SHOULDER_R_PULLDOWN);
     }
-    public void newShoulderScore(){
-        shoulderL.setPosition(shoulderLNew);
-        shoulderR.setPosition(shoulderRNew);
-    }
+
     public void wristScore(){
         wrist.setPosition(WRIST_SCORE);
     }
@@ -124,6 +119,5 @@ public class Outtake {
     public void elbowPulldown(){
         elbow.setPosition(ELBOW_PULLDOWN);
     }
-    public void newElbowScore(){elbow.setPosition(elbowNew);}
 
 }
