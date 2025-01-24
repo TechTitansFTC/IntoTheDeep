@@ -5,7 +5,6 @@ import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
-import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.Vector2d;
@@ -20,8 +19,8 @@ import org.firstinspires.ftc.teamcode.MecanumDrive;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 @Config
-@Autonomous(name = "RoboPlayersPlaigerism", group = "Autonomous")
-public class A4Auton extends LinearOpMode {
+@Autonomous(name = "A3Auton", group = "Autonomous")
+public class A3Auton extends LinearOpMode {
     public class Func {
         private Functions bot;
 
@@ -111,11 +110,11 @@ public void runOpMode() {
             .strafeTo(s1)
             .waitSeconds(0.0001)
             .lineToY(-45)
-            .waitSeconds(0.0001)
-            .lineToY(-10)
-            .strafeTo(new Vector2d(58,-3))
-            .waitSeconds(0.0001)
-            .lineToY(-45)
+//            .waitSeconds(0.0001)
+//            .lineToY(-10);
+//            .strafeTo(new Vector2d(58,-3))
+//            .waitSeconds(0.0001)
+//            .lineToY(-45)
             .lineToY(-40)
             .lineToY(-59, new TranslationalVelConstraint(30));
     TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
@@ -148,15 +147,9 @@ public void runOpMode() {
 
     Actions.runBlocking(rb.clawclose());
 
-
-
-
     waitForStart();
 
     if (isStopRequested()) return;
-
-
-
 
     Actions.runBlocking(
             new SequentialAction(
@@ -183,17 +176,18 @@ public void runOpMode() {
             score2.build(),
             rb.pulldown(),//score3
             rb.start(),
-                    acceptlast.build()
+                    acceptlast.build(),
+            fin
             )
     );
-    Actions.runBlocking(new SequentialAction(
-            rb.score(),
-                    scorelast.build(),
-                    rb.pulldown(),//score 4
-                    rb.start(),
-                    fin
-            )
-    );
+//    Actions.runBlocking(new SequentialAction(
+//            rb.score(),
+//                    scorelast.build(),
+//                    rb.pulldown(),//score 4
+//                    rb.start(),
+//                    fin
+//            )
+//    );
 
 }
 }
