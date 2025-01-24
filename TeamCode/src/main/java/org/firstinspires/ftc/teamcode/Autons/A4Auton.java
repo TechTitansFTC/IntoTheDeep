@@ -33,7 +33,7 @@ public class A4Auton extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 bot.autoScore();
-                sleep(500);
+                sleep(700);
                 return false;
             }
         }
