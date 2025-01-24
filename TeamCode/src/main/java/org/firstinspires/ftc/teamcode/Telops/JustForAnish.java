@@ -112,6 +112,9 @@ public class JustForAnish extends LinearOpMode {
                 r.pulldown();
 
             }
+            if (gamepad1.a){
+                r.inExtendPick();
+            }
             if (gamepad1.dpad_down){
                 r.inLiftDown();
             }
