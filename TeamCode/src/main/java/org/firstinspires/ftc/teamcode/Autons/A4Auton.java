@@ -33,6 +33,7 @@ public class A4Auton extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 bot.autoScore();
+                sleep(500);
                 return false;
             }
         }
@@ -98,8 +99,8 @@ public class A4Auton extends LinearOpMode {
 
 
         TrajectoryActionBuilder score1 = drive.actionBuilder(initialPose)
-                .lineToY(-24, new TranslationalVelConstraint(40));
-        TrajectoryActionBuilder accept2 = drive.actionBuilder(new Pose2d(0, -24, Math.toRadians(-90)))
+                .lineToY(-27, new TranslationalVelConstraint(40));
+        TrajectoryActionBuilder accept2 = drive.actionBuilder(new Pose2d(0, -27, Math.toRadians(-90)))
                 .lineToY(-36)
                 .waitSeconds(0.0001)
                 .strafeTo(entry)
@@ -118,24 +119,25 @@ public class A4Auton extends LinearOpMode {
                 .lineToY(-59, new TranslationalVelConstraint(30));
 
         TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
-                .strafeTo(new Vector2d(3,-28));
+                .strafeTo(new Vector2d(0,-28));
 
 
         TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
 
-                .strafeTo(new Vector2d(3,-28));
+                .strafeTo(new Vector2d(0,-28));
+
         TrajectoryActionBuilder scorelast = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
 
                 .strafeTo(new Vector2d(8,-28));
 
 
-        TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(3, -28, Math.toRadians(-90)))
+        TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(0, -28, Math.toRadians(-90)))
 
                 .strafeTo(accept)
                 .waitSeconds(0.0001)
                 .lineToY(-59,new TranslationalVelConstraint(30));
 
-        TrajectoryActionBuilder acceptlast= drive.actionBuilder(new Pose2d(3, -28, Math.toRadians(-90)))
+        TrajectoryActionBuilder acceptlast= drive.actionBuilder(new Pose2d(0, -28, Math.toRadians(-90)))
 
                 .strafeTo(accept)
                 .waitSeconds(0.0001)
