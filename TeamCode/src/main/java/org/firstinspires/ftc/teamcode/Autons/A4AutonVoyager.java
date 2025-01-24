@@ -33,9 +33,12 @@ public class A4AutonVoyager extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 bot.autoScore();
+                sleep(1000);
                 return false;
             }
         }
+
+
         public Action score() {
             return new Score();
         }
@@ -101,35 +104,31 @@ public class A4AutonVoyager extends LinearOpMode {
 
         TrajectoryActionBuilder push = drive.actionBuilder(new Pose2d(0, -24, Math.toRadians(-90)))
                 .strafeTo(entry)
-//                .waitSeconds(0.0001)
+                .waitSeconds(0.0001)
                 .lineToY(-10)
-//                .waitSeconds(0.0001)
+                .waitSeconds(0.0001)
                 .strafeTo(s1)
-//                .waitSeconds(0.0001)
+                .waitSeconds(0.0001)
                 .lineToY(-45)
                 .lineToY(-10)
-//                .waitSeconds(0.0001)
+                .waitSeconds(0.0001)
                 .strafeTo(s2)
-//                .waitSeconds(0.0001)
+                .waitSeconds(0.0001)
                 .lineToY(-45)
                 .lineToY(-40)
                 .lineToY(-59, new TranslationalVelConstraint(30));
 
         TrajectoryActionBuilder score1 = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
-                .strafeTo(new Vector2d(3,-28))
-                .afterDisp(1, rb.score());
+                .strafeTo(new Vector2d(3,-28));
 
         TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
-                .strafeTo(new Vector2d(3,-28))
-                .afterDisp(1, rb.score());
+                .strafeTo(new Vector2d(3,-28));
 
         TrajectoryActionBuilder score3 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
-                .strafeTo(new Vector2d(8,-28))
-                .afterDisp(1, rb.score());
+                .strafeTo(new Vector2d(8,-28));
 
         TrajectoryActionBuilder score4 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
-                .strafeTo(new Vector2d(10,-28))
-                .afterDisp(1, rb.score());
+                .strafeTo(new Vector2d(10,-28));
 
         TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(3, -28, Math.toRadians(-90)))
                 .strafeTo(accept)
@@ -160,7 +159,17 @@ public class A4AutonVoyager extends LinearOpMode {
         );
 
         Actions.runBlocking(new SequentialAction(
+                        rb.score(),
                         score1.build(),
+                        rb.pulldown(),//score 1
+                        rb.start(),
+                        acceptall.build()
+                )
+        );
+
+        Actions.runBlocking(new SequentialAction(
+                        rb.score(),
+                        score2.build(),
                         rb.pulldown(),//score 2
                         rb.start(),
                         acceptall.build()
@@ -168,24 +177,18 @@ public class A4AutonVoyager extends LinearOpMode {
         );
 
         Actions.runBlocking(new SequentialAction(
-                        score2.build(),
-                        rb.pulldown(),//score3
-                        rb.start(),
-                        acceptall.build()
-                )
-        );
-
-        Actions.runBlocking(new SequentialAction(
+                        rb.score(),
                         score3.build(),
-                        rb.pulldown(),//score 4
+                        rb.pulldown(),//score 3
                         rb.start(),
                         acceptlast.build()
                 )
         );
 
         Actions.runBlocking(new SequentialAction(
+                        rb.score(),
                         score4.build(),
-                        rb.pulldown(),//score 5
+                        rb.pulldown(),//score 4
                         rb.start(),
                         fin
                 )
