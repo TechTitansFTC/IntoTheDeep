@@ -33,7 +33,7 @@ public class A4Auton extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 bot.autoScore();
-                sleep(800);
+                sleep(700);
                 return false;
             }
         }
@@ -61,7 +61,7 @@ public class PullDown implements Action {
     @Override
     public boolean run(@NonNull TelemetryPacket packet) {
         bot.autoPullDown();
-        sleep(500);
+        sleep(700);
         return false;
     }
 }
@@ -92,7 +92,7 @@ public void runOpMode() {
     MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
     Func rb = new Func(hardwareMap);
     Vector2d entry = new Vector2d(38,-36);
-    Vector2d s1 = new Vector2d(50,-5);
+    Vector2d s1 = new Vector2d(50,0);
     Vector2d s2 = new Vector2d(58,-5);
     Vector2d end = new Vector2d(60,-55);
     Vector2d accept = new Vector2d(45,-50);
@@ -111,36 +111,42 @@ public void runOpMode() {
             .waitSeconds(0.0001)
             .lineToY(-45)
             .lineToY(-10)
-            .strafeTo(new Vector2d(60,-5))
+            .strafeTo(new Vector2d(60,0))
             .waitSeconds(0.0001)
             .lineToY(-45)
             .lineToY(-40)
-            .lineToY(-59, new TranslationalVelConstraint(30));
+            .lineToY(-59, new TranslationalVelConstraint(20));
     TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
-            .strafeTo(new Vector2d(6,-28))
-            .lineToY(-22);
+            .strafeTo(new Vector2d(7,-28));
+
+
+
+
 
     TrajectoryActionBuilder score3 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
-            .strafeTo(new Vector2d(7,-28))
-            .lineToY(-22);
+            .strafeTo(new Vector2d(-3,-28));
+
+
 
     TrajectoryActionBuilder score4 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
-            .strafeTo(new Vector2d(8,-28))
-            .lineToY(-22);
+            .strafeTo(new Vector2d(8,-28));
 
-    TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(3, -28, Math.toRadians(-90)))
+
+
+
+    TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(7, -28, Math.toRadians(-90)))
             .lineToY(-30)
             .strafeTo(accept)
             .waitSeconds(0.0001)
             .lineToY(-59,new TranslationalVelConstraint(30));
 
-    TrajectoryActionBuilder acceptlast= drive.actionBuilder(new Pose2d(3, -28, Math.toRadians(-90)))
+    TrajectoryActionBuilder accept3= drive.actionBuilder(new Pose2d(-3, -28, Math.toRadians(-90)))
             .lineToY(-30)
             .strafeTo(accept)
             .waitSeconds(0.0001)
             .lineToY(-59,new TranslationalVelConstraint(30));
     Action fin = score1.endTrajectory().fresh()
-            .strafeTo(new Vector2d( 40,-80))
+            .strafeTo(new Vector2d( 40,-60))
             .build();
 
     // actions that need to happen on init; for instance, a claw tightening.
@@ -177,7 +183,7 @@ public void runOpMode() {
             score3.build(),
             rb.pulldown(),//score3
             rb.start(),
-            acceptall.build()
+            accept3.build()
 
             )
     );

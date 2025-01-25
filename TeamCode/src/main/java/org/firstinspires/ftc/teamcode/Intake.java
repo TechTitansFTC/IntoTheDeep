@@ -15,7 +15,7 @@ public class Intake {
     private static final double EXTEND_R = 1;
 
     private static final double START_L = 0.25;
-    private static final double START_R = 0.94;
+    private static final double START_R = 0.95;
     private static final double TRANSFERL = 0.2;
     private static final double TRANSFERR = 0.6;
 
