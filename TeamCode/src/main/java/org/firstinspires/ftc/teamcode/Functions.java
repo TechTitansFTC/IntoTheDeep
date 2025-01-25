@@ -352,14 +352,8 @@ public void inHold(){
         intake.clawopen();
     }
     public void inLiftUp(){
-        intake.clawclose();
-        while (timer.milliseconds() <600){
 
-        }
         intake.wristDef();
-        while (timer.milliseconds() <600){
-
-        }
         intake.liftup();
 
     }
