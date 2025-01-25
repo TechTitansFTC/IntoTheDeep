@@ -20,10 +20,10 @@ public class MotorPowerAuton extends LinearOpMode {
         if (isStopRequested()) return;
         //1
         r.autoScore();
-        m.move(.7,700);
+        m.move(-.7,700);
         sleep(300);
         r.autoPullDown();
-        sleep(100);
+        sleep(500);
         r.autoStart();
 
         m.move(0.5,150);
@@ -32,10 +32,10 @@ public class MotorPowerAuton extends LinearOpMode {
         m.strafe(-1,300);
         m.move(1,750);
         m.move(-1,800);
-        m.strafe(-1,200);
+        m.strafe(-1,300);
         m.move(1,800);
         sleep(200);
-        m.turnP(-1,100);
+
         m.move(-1,200);
         sleep(300);
         m.move(1,330);

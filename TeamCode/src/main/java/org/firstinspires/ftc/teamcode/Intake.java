@@ -11,12 +11,11 @@ public class Intake {
     private static final double WRIST_DEF = 0.52;
     private static final double CLAW_CLOSE = 0.1;
     private static final double CLAW_OPEN = 0.45;
-    private static final double EXTEND_L = 0.2;
+    private static final double EXTEND_L = 0;
     private static final double EXTEND_R = 1;
-    private static final double RETRACT_L = 0.6;
-    private static final double RETRACT_R = 1;
-    private static final double START_L = 0.4;
-    private static final double START_R = 0.95;
+
+    private static final double START_L = 0.25;
+    private static final double START_R = 0.94;
     private static final double TRANSFERL = 0.2;
     private static final double TRANSFERR = 0.6;
 
@@ -70,8 +69,7 @@ public class Intake {
         extendR.setPosition(EXTEND_R);
     }
     public void extendIn() {
-        extendL.setPosition(RETRACT_L);
-        extendR.setPosition(RETRACT_R);
+
         extendL.setPosition(START_L);
         extendR.setPosition(START_R);
     }

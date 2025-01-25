@@ -33,7 +33,7 @@ public class A4Auton extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 bot.autoScore();
-                sleep(500);
+                sleep(800);
                 return false;
             }
         }
@@ -111,30 +111,31 @@ public void runOpMode() {
             .waitSeconds(0.0001)
             .lineToY(-45)
             .lineToY(-10)
-            .strafeTo(new Vector2d(58,-5))
+            .strafeTo(new Vector2d(60,-5))
             .waitSeconds(0.0001)
             .lineToY(-45)
             .lineToY(-40)
             .lineToY(-59, new TranslationalVelConstraint(30));
     TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
-            .strafeTo(new Vector2d(3,-28));
-
+            .strafeTo(new Vector2d(6,-28))
+            .lineToY(-22);
 
     TrajectoryActionBuilder score3 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
+            .strafeTo(new Vector2d(7,-28))
+            .lineToY(-22);
 
-            .strafeTo(new Vector2d(3,-28));
     TrajectoryActionBuilder score4 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
-
-            .strafeTo(new Vector2d(8,-28));
-
+            .strafeTo(new Vector2d(8,-28))
+            .lineToY(-22);
 
     TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(3, -28, Math.toRadians(-90)))
+            .lineToY(-30)
             .strafeTo(accept)
             .waitSeconds(0.0001)
             .lineToY(-59,new TranslationalVelConstraint(30));
 
     TrajectoryActionBuilder acceptlast= drive.actionBuilder(new Pose2d(3, -28, Math.toRadians(-90)))
-
+            .lineToY(-30)
             .strafeTo(accept)
             .waitSeconds(0.0001)
             .lineToY(-59,new TranslationalVelConstraint(30));

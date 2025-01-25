@@ -107,41 +107,45 @@ public class Atelop extends LinearOpMode {
             rightFront.setPower(frontRightPower);
             rightBack.setPower(backRightPower);
 
-            if (gamepad2.x){
+            if (gamepad2.x || gamepad1.x){
                 r.start();
             }
-            if (gamepad2.y){
+            if (gamepad2.y || gamepad1.y){
                 r.score();
             }
-            if (gamepad2.b){
+            if (gamepad2.b || gamepad1.b){
                 r.pulldown();
             }
-            if (gamepad2.dpad_down){
+            if (gamepad2.dpad_down || gamepad1.dpad_down){
                 r.inLiftDown();
             }
-            if (gamepad2.dpad_left){
+            if (gamepad2.dpad_left || gamepad1.dpad_left){
                 r.inExtend();
             }
-            if (gamepad2.dpad_right){
+            if (gamepad2.dpad_right || gamepad1.dpad_right){
                 r.inDrop();
             }
-            if (gamepad2.dpad_up) {
+            if (gamepad2.dpad_up || gamepad1.dpad_up) {
                 r.inClawClose();
+                timer.reset();
+                while(timer.milliseconds() < 200){
+
+                }
                 r.inLiftUp();
             }
-            if (gamepad2.left_bumper){
+            if (gamepad2.left_bumper || gamepad1.left_bumper){
                 r.inClawOpen();
             }
-            if (gamepad2.right_bumper){
+            if (gamepad2.right_bumper || gamepad1.right_bumper){
                 r.inClawClose();
             }
-            if(gamepad2.left_trigger > 0){
+            if(gamepad2.left_trigger > 0 || gamepad1.left_trigger > 0){
                 r.changeWrist(-0.1);
                 timer.reset();
                 while (timer.milliseconds()<300){
                 }
             }
-            if(gamepad2.right_trigger > 0){
+            if(gamepad2.right_trigger > 0 || gamepad1.right_trigger > 0){
                 r.changeWrist(0.1);
                 timer.reset();
                 while (timer.milliseconds()<300){
