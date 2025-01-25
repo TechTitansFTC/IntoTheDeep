@@ -123,7 +123,7 @@ public class Atelop extends LinearOpMode {
                 r.inExtend();
             }
             if (gamepad2.dpad_right){
-                r.inExtendIn();
+                r.inDrop();
             }
             if (gamepad2.dpad_up) {
                 r.inLiftUp();

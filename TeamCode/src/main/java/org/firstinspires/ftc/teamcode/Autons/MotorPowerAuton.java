@@ -14,28 +14,33 @@ public class MotorPowerAuton extends LinearOpMode {
     public void runOpMode() throws InterruptedException{
         Functions r = new Functions(hardwareMap);
         MotorPower m = new MotorPower(hardwareMap);
-        r.autoStart();
-        r.closeClaw();
+        r.init();
         waitForStart();
 
         if (isStopRequested()) return;
+        //1
         r.autoScore();
-        m.move(-0.3,1600);
+        m.move(.7,700);
         sleep(300);
         r.autoPullDown();
-        sleep(1000);
+        sleep(100);
         r.autoStart();
+
         m.move(0.5,150);
         m.strafe(-1,550);
         m.move(-1,400 );
         m.strafe(-1,300);
         m.move(1,750);
-        sleep(500);
+        m.move(-1,800);
+        m.strafe(-1,200);
+        m.move(1,800);
+        sleep(200);
         m.turnP(-1,100);
         m.move(-1,200);
-        sleep(3000);
+        sleep(300);
         m.move(1,330);
-        sleep(1000);
+        sleep(100);
+        //2
         r.autoScore();
         m.move(-1,100);
         m.strafe(1,900);
@@ -43,18 +48,34 @@ public class MotorPowerAuton extends LinearOpMode {
         r.autoPullDown();
         sleep(100);
         r.autoStart();
+
         m.turnP(1,100);
         m.move(1,300);
         m.strafe(-1,800);
-        sleep(3000);
+        sleep(300);
         m.move(.7,300);
-        sleep(1000);
+        sleep(100);
+        //3
         r.autoScore();
         m.strafe(1,700);
         m.move(-.3,2000);
         r.autoPullDown();
         sleep(100);
         r.autoStart();
+        //4
+        m.turnP(1,100);
+        m.move(1,300);
+        m.strafe(-1,800);
+        sleep(300);
+        m.move(.7,300);
+        sleep(100);
+        r.autoScore();
+        m.strafe(1,700);
+        m.move(-.3,2000);
+        r.autoPullDown();
+        sleep(100);
+        r.autoStart();
+
         m.move(1,600);
         m.strafe(-1,700);
 

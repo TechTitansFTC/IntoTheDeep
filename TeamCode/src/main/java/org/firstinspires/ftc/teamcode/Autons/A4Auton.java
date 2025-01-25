@@ -33,7 +33,7 @@ public class A4Auton extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 bot.autoScore();
-                sleep(1000);
+                sleep(500);
                 return false;
             }
         }
@@ -92,8 +92,8 @@ public void runOpMode() {
     MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
     Func rb = new Func(hardwareMap);
     Vector2d entry = new Vector2d(38,-36);
-    Vector2d s1 = new Vector2d(50,-3);
-    Vector2d s2 = new Vector2d(58,-3);
+    Vector2d s1 = new Vector2d(50,-5);
+    Vector2d s2 = new Vector2d(58,-5);
     Vector2d end = new Vector2d(60,-55);
     Vector2d accept = new Vector2d(45,-50);
     Vector2d target2 =   new Vector2d(0,-28);
@@ -110,21 +110,20 @@ public void runOpMode() {
             .strafeTo(s1)
             .waitSeconds(0.0001)
             .lineToY(-45)
-            .waitSeconds(0.0001)
             .lineToY(-10)
-            .strafeTo(new Vector2d(58,-3))
+            .strafeTo(new Vector2d(58,-5))
             .waitSeconds(0.0001)
             .lineToY(-45)
             .lineToY(-40)
             .lineToY(-59, new TranslationalVelConstraint(30));
-    TrajectoryActionBuilder score = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
+    TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
             .strafeTo(new Vector2d(3,-28));
 
 
-    TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
+    TrajectoryActionBuilder score3 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
 
             .strafeTo(new Vector2d(3,-28));
-    TrajectoryActionBuilder scorelast = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
+    TrajectoryActionBuilder score4 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
 
             .strafeTo(new Vector2d(8,-28));
 
@@ -165,7 +164,7 @@ public void runOpMode() {
 
     Actions.runBlocking(new SequentialAction(
                     rb.score(),
-                    score.build(),
+                    score2.build(),
                     rb.pulldown(),//score 2
                     rb.start(),
                     acceptall.build()
@@ -174,17 +173,17 @@ public void runOpMode() {
 
     Actions.runBlocking(new SequentialAction(
             rb.score(),
-            score2.build(),
+            score3.build(),
             rb.pulldown(),//score3
             rb.start(),
-                    acceptlast.build(),
-            fin
+            acceptall.build()
+
             )
     );
 
     Actions.runBlocking(new SequentialAction(
             rb.score(),
-                    scorelast.build(),
+                    score4.build(),
                     rb.pulldown(),//score 4
                     rb.start(),
                     fin

@@ -33,6 +33,7 @@ public class A5Auton extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 bot.autoScore();
+                sleep(500);
                 return false;
             }
         }
@@ -99,31 +100,33 @@ public class A5Auton extends LinearOpMode {
 
 
         TrajectoryActionBuilder score1 = drive.actionBuilder(initialPose)
-                .lineToY(-24, new TranslationalVelConstraint(40))
-                .afterDisp(0, rb.score());
+                .afterDisp(0, rb.score())
+                .waitSeconds(0.01)
+                .lineToY(-24, new TranslationalVelConstraint(40));
+
 
         TrajectoryActionBuilder push = drive.actionBuilder(new Pose2d(0, -24, Math.toRadians(-90)))
                 .lineToY(-36)
 //                .waitSeconds(0.0001)
                 .strafeTo(entry)
-//                .waitSeconds(0.0001)
+                .waitSeconds(0.0001)
                 .lineToY(-10)
 //                .waitSeconds(0.0001)
                 .strafeTo(s1)
-//                .waitSeconds(0.0001)
+                .waitSeconds(0.0001)
                 .lineToY(-45)
                 .lineToY(-10)
 //                .waitSeconds(0.0001)
                 .strafeTo(s2)
-//                .waitSeconds(0.0001)
+                .waitSeconds(0.0001)
                 .lineToY(-45)
                 .lineToY(-10)
 //                .waitSeconds(0.0001)
                 .strafeTo(s3)
-//                .waitSeconds(0.0001)
+                .waitSeconds(0.0001)
                 .lineToY(-45)
                 .lineToY(-40)
-                .lineToY(-59, new TranslationalVelConstraint(30));
+                .lineToY(-59, new TranslationalVelConstraint(40));
 
         TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
                 .strafeTo(new Vector2d(3,-28))
@@ -144,12 +147,12 @@ public class A5Auton extends LinearOpMode {
         TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(3, -28, Math.toRadians(-90)))
                 .strafeTo(accept)
                 .waitSeconds(0.0001)
-                .lineToY(-59,new TranslationalVelConstraint(30));
+                .lineToY(-59,new TranslationalVelConstraint(40));
 
         TrajectoryActionBuilder acceptlast= drive.actionBuilder(new Pose2d(3, -28, Math.toRadians(-90)))
                 .strafeTo(accept)
                 .waitSeconds(0.0001)
-                .lineToY(-59,new TranslationalVelConstraint(30));
+                .lineToY(-59,new TranslationalVelConstraint(40));
 
         Action fin = score1.endTrajectory().fresh()
                 .strafeTo(new Vector2d( 40,-80))
@@ -167,41 +170,41 @@ public class A5Auton extends LinearOpMode {
                 new SequentialAction(
                         score1.build(),
                         rb.pulldown(),//score 1
-                        rb.start(),
-                        push.build()
+                        rb.start()
+//                        push.build()
                 )
         );
 
-        Actions.runBlocking(new SequentialAction(
-                        score2.build(),
-                        rb.pulldown(),//score 2
-                        rb.start(),
-                        acceptall.build()
-                )
-        );
-
-        Actions.runBlocking(new SequentialAction(
-                        score3.build(),
-                        rb.pulldown(),//score3
-                        rb.start(),
-                        acceptall.build()
-                )
-        );
-
-        Actions.runBlocking(new SequentialAction(
-                        score4.build(),
-                        rb.pulldown(),//score 4
-                        rb.start(),
-                        acceptlast.build()
-                )
-        );
-
-        Actions.runBlocking(new SequentialAction(
-                        score5.build(),
-                        rb.pulldown(),//score 5
-                        rb.start(),
-                        fin
-                )
-        );
+//        Actions.runBlocking(new SequentialAction(
+//                        score2.build(),
+//                        rb.pulldown(),//score 2
+//                        rb.start(),
+//                        acceptall.build()
+//                )
+//        );
+//
+//        Actions.runBlocking(new SequentialAction(
+//                        score3.build(),
+//                        rb.pulldown(),//score3
+//                        rb.start(),
+//                        acceptall.build()
+//                )
+//        );
+//
+//        Actions.runBlocking(new SequentialAction(
+//                        score4.build(),
+//                        rb.pulldown(),//score 4
+//                        rb.start(),
+//                        acceptlast.build()
+//                )
+//        );
+//
+//        Actions.runBlocking(new SequentialAction(
+//                        score5.build(),
+//                        rb.pulldown(),//score 5
+//                        rb.start(),
+//                        fin
+//                )
+//        );
     }
 }
