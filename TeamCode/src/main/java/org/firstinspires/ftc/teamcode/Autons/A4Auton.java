@@ -96,7 +96,7 @@ public void runOpMode() {
     Vector2d s2 = new Vector2d(58,-5);
     Vector2d end = new Vector2d(60,-55);
     Vector2d accept = new Vector2d(45,-50);
-    Vector2d target2 =   new Vector2d(0,-28);
+    Vector2d target2 =   new Vector2d(0,-26);
     // vision here that outputs position
 
 
@@ -117,30 +117,32 @@ public void runOpMode() {
             .lineToY(-40)
             .lineToY(-59, new TranslationalVelConstraint(20));
     TrajectoryActionBuilder score2 = drive.actionBuilder(new Pose2d(64, -59, Math.toRadians(-90)))
-            .strafeTo(new Vector2d(7,-28));
+            .strafeTo(new Vector2d(7,-26));
 
 
 
 
 
     TrajectoryActionBuilder score3 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
-            .strafeTo(new Vector2d(-3,-28));
+            .strafeTo(new Vector2d(-3,-26));
 
 
 
     TrajectoryActionBuilder score4 = drive.actionBuilder(new Pose2d(45, -59, Math.toRadians(-90)))
-            .strafeTo(new Vector2d(8,-28));
+            .strafeTo(new Vector2d(-5,-26))
+    .lineToY(-22);
 
 
 
 
-    TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(7, -28, Math.toRadians(-90)))
+
+    TrajectoryActionBuilder acceptall= drive.actionBuilder(new Pose2d(7, -26, Math.toRadians(-90)))
             .lineToY(-30)
             .strafeTo(accept)
             .waitSeconds(0.0001)
             .lineToY(-59,new TranslationalVelConstraint(30));
 
-    TrajectoryActionBuilder accept3= drive.actionBuilder(new Pose2d(-3, -28, Math.toRadians(-90)))
+    TrajectoryActionBuilder accept3= drive.actionBuilder(new Pose2d(-3, -26, Math.toRadians(-90)))
             .lineToY(-30)
             .strafeTo(accept)
             .waitSeconds(0.0001)

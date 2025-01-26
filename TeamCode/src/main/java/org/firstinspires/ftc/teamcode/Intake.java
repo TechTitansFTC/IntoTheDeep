@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Intake {
     private static final double LIFT_UP = 0.33;
-    private static final double LIFT_DOWN = 0.01;
+    private static final double LIFT_DOWN = 0.0;
     private static final double WRIST_DEF = 0.52;
     private static final double CLAW_CLOSE = 0.1;
     private static final double CLAW_OPEN = 0.45;

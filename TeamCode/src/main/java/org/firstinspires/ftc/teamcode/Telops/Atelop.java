@@ -59,11 +59,11 @@ public class Atelop extends LinearOpMode {
 
 
         while (opModeIsActive()) {
-            if (gamepad2.left_bumper){
+            if (gamepad1.left_bumper){
                 y = -gamepad1.left_stick_y - gamepad1.right_stick_y - gamepad2.left_stick_y - gamepad2.right_stick_y;
                 x = gamepad1.left_stick_x + gamepad2.left_stick_x;
                 rx = gamepad1.right_stick_x + gamepad2.right_stick_x;
-            } else if (gamepad2.right_bumper){
+            } else if (gamepad1.right_bumper){
                 y = 0.4 * (-gamepad1.left_stick_y - gamepad1.right_stick_y - gamepad2.left_stick_y - gamepad2.right_stick_y);
                 x = 0.4 * (gamepad1.left_stick_x + gamepad2.left_stick_x);
                 rx = 0.4 * (gamepad1.right_stick_x + gamepad2.right_stick_x);
@@ -72,11 +72,7 @@ public class Atelop extends LinearOpMode {
                 x = 0.8 * (gamepad1.left_stick_x + gamepad2.left_stick_x);
                 rx = 0.8 * (gamepad1.right_stick_x + gamepad2.right_stick_x);
             }
-            if (r.isdeploy()) {
-                y = 0.3 * (-gamepad1.left_stick_y - gamepad1.right_stick_y - gamepad2.left_stick_y - gamepad2.right_stick_y);
-                x = 0.3 * (gamepad1.left_stick_x + gamepad2.left_stick_x);
-                rx = 0.3 * (gamepad1.right_stick_x + gamepad2.right_stick_x);
-            }
+
 
             // This button choice was made so that it is hard to hit on accident,
             // it can be freely changed based on preference.
@@ -133,10 +129,10 @@ public class Atelop extends LinearOpMode {
                 }
                 r.inLiftUp();
             }
-            if (gamepad2.left_bumper || gamepad1.left_bumper){
+            if (gamepad2.left_bumper){
                 r.inClawOpen();
             }
-            if (gamepad2.right_bumper || gamepad1.right_bumper){
+            if (gamepad2.right_bumper ){
                 r.inClawClose();
             }
             if(gamepad2.left_trigger > 0 || gamepad1.left_trigger > 0){

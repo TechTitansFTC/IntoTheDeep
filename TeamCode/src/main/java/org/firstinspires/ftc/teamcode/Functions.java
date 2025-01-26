@@ -49,6 +49,7 @@ public class Functions {
     inHold inhold = inHold.CLOSE;
 
     public enum inDrop{
+        UP,
         OPEN,
         RETRACT,
 
@@ -253,6 +254,12 @@ public void inHold(){
 
     public void inDrop(){
         switch (indrop) {
+            case UP:
+
+
+                intake.liftup();
+                indrop = inDrop.OPEN;
+                break;
             case OPEN:
                 intake.clawopen();
                 indrop = inDrop.RETRACT;
